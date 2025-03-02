@@ -1,0 +1,8 @@
+*
+sphinx-docs/build/
+sphinx-docs/unittests/
+sphinx-docs/src/
+!.gitignore
+!makefile
+!docs/
+!docs/**

@@ -1,0 +1,7 @@
+unittest2doc.formatter.json\_formatter
+======================================
+
+.. automodule:: unittest2doc.formatter.json_formatter
+
+
+

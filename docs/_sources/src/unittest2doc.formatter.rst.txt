@@ -1,0 +1,17 @@
+﻿unittest2doc.formatter
+======================
+
+.. automodule:: unittest2doc.formatter
+
+
+
+.. rubric:: Modules
+
+.. autosummary::
+   :toctree:
+   :template: autosummary_module.rst
+   :recursive:
+
+   json_formatter
+
+

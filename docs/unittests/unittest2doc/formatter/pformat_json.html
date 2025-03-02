@@ -1,0 +1,1268 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>unittest2doc.formatter.pformat_json &#8212; unittest2doc  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/cloud.css?v=f9ae72be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2c7d14eb" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/underscore.js?v=e1a751a7"></script>
+    <script src="../../../_static/underscore_rename.js?v=cd124915"></script>
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/underscore.js?v=e1a751a7"></script>
+
+    
+    
+     
+        <script src="../../../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../../../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../../../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="unittest2doc.unittest2doc" href="../unittest2doc/index.html" />
+    <link rel="prev" title="unittest2doc.formatter" href="index.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../unittest2doc/index.html" title="unittest2doc.unittest2doc"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="unittest2doc.formatter"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">unittest2doc  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../../catalogue.html" >API Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >UNITTESTs</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >unittest2doc</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="index.html" accesskey="U">unittest2doc.formatter</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">unittest2doc.formatter.pformat_json</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="unittest2doc-formatter-pformat-json">
+<span id="unittests-unittest2doc-formatter-pformat-json"></span><h1>unittest2doc.formatter.pformat_json<a class="headerlink" href="#unittest2doc-formatter-pformat-json" title="Link to this heading">¶</a></h1>
+<p>references: <code class="xref py py-func docutils literal notranslate"><span class="pre">unittest2doc.formatter.pformat_json()</span></code></p>
+<p>Test cases for json_formatter module’s pformat_json function</p>
+<section id="setup">
+<span id="unittests-unittest2doc-formatter-pformat-json-setup"></span><h2>setUp<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h2>
+<p>here we also test the FLog class, it is a helper class to print function inputs and outputs</p>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; here we also test the FLog class, it is a helper class to print function inputs and outputs &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">flog</span> <span class="o">=</span> <span class="n">FLog</span><span class="p">(</span><span class="n">do_print</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output_suffix</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">input_suffix</span><span class="o">=</span><span class="s1">&#39; # ===&gt;&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flog</span><span class="o">.</span><span class="n">frun</span>
+</pre></div>
+</div>
+</details></section>
+<section id="basic-format">
+<span id="unittests-unittest2doc-formatter-pformat-json-basic-format"></span><h2>basic_format<a class="headerlink" href="#basic-format" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_basic_format</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test basic dictionary formatting</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span><span class="p">}</span>
+    <span class="c1"># call pformat_json(data) and print the result</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Test basic list formatting</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;four&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+    <span class="c1"># call pformat_json(data) and print the result</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Test simple value</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;simple string&quot;</span>
+    <span class="c1"># call pformat_json(data) and print the result</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;New York&#39;</span><span class="p">},</span> <span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;New York&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span> <span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">[</span>
+  <span class="mi">1</span><span class="p">,</span>
+  <span class="mi">2</span><span class="p">,</span>
+  <span class="mi">3</span><span class="p">,</span>
+  <span class="s1">&#39;four&#39;</span><span class="p">,</span>
+  <span class="mf">5.0</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">pformat_json</span><span class="p">(</span><span class="s1">&#39;simple string&#39;</span><span class="p">,</span> <span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="s1">&#39;simple string&#39;</span>
+</pre></div>
+</div>
+</details></section>
+<section id="nested-structures">
+<span id="unittests-unittest2doc-formatter-pformat-json-nested-structures"></span><h2>nested_structures<a class="headerlink" href="#nested-structures" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_nested_structures</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test nested dictionary and list</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span>
+                <span class="s2">&quot;occupation&quot;</span><span class="p">:</span> <span class="s2">&quot;Engineer&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;hobbies&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;reading&quot;</span><span class="p">,</span> <span class="s2">&quot;hiking&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;sport&quot;</span><span class="p">:</span> <span class="s2">&quot;tennis&quot;</span><span class="p">}]</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span><span class="s1">&#39;person&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;details&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span> <span class="s1">&#39;occupation&#39;</span><span class="p">:</span> <span class="s1">&#39;Engineer&#39;</span><span class="p">}},</span> <span class="s1">&#39;hobbies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;reading&#39;</span><span class="p">,</span> <span class="s1">&#39;hiking&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;sport&#39;</span><span class="p">:</span> <span class="s1">&#39;tennis&#39;</span><span class="p">}]}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;person&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;details&#39;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span>
+      <span class="s1">&#39;occupation&#39;</span><span class="p">:</span> <span class="s1">&#39;Engineer&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="s1">&#39;hobbies&#39;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s1">&#39;reading&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hiking&#39;</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="s1">&#39;sport&#39;</span><span class="p">:</span> <span class="s1">&#39;tennis&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+<section id="dict-title-comment">
+<span id="unittests-unittest2doc-formatter-pformat-json-dict-title-comment"></span><h2>dict_title_comment<a class="headerlink" href="#dict-title-comment" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_dict_title_comment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test using string comment for dict title</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span> <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s2">&quot;Dictionary Title&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Test using __dtitle__ special key</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span> <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">}</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Dictionary Title With Special Key&quot;</span><span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="c1"># Test multi-line dict title</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;First Line</span><span class="se">\n</span><span class="s2">Second Line</span><span class="se">\n</span><span class="s2">Third Line&quot;</span><span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;Dictionary Title&#39;</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span> <span class="c1"># Dictionary Title</span>
+  <span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="s1">&#39;value2&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;__dtitle__&#39;</span><span class="p">:</span> <span class="s1">&#39;Dictionary Title With Special Key&#39;</span><span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span> <span class="c1"># Dictionary Title With Special Key</span>
+  <span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="s1">&#39;value2&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;__dtitle__&#39;</span><span class="p">:</span> <span class="s1">&#39;First Line</span><span class="se">\n</span><span class="s1">Second Line</span><span class="se">\n</span><span class="s1">Third Line&#39;</span><span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span> <span class="c1"># First Line</span>
+  <span class="c1"># Second Line</span>
+  <span class="c1"># Third Line</span>
+  <span class="s1">&#39;key1&#39;</span><span class="p">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;key2&#39;</span><span class="p">:</span> <span class="s1">&#39;value2&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+<section id="list-title-comment">
+<span id="unittests-unittest2doc-formatter-pformat-json-list-title-comment"></span><h2>list_title_comment<a class="headerlink" href="#list-title-comment" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_list_title_comment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test using string comment for list title</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span> <span class="s2">&quot;item2&quot;</span><span class="p">,</span> <span class="s2">&quot;item3&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s2">&quot;List Title&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Test using __ltitle__ special key</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;__ltitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;List Title With Special Key&quot;</span><span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="c1"># Test list prefix and suffix comments</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;__ltitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;List With Prefix and Suffix&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;__lprefix__&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Prefix Line 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Prefix Line 2&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;__lsuffix__&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Suffix Line 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Suffix Line 2&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">([</span><span class="s1">&#39;item1&#39;</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">],</span> <span class="n">comments</span><span class="o">=</span><span class="s1">&#39;List Title&#39;</span><span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">[</span> <span class="c1"># List Title</span>
+  <span class="s1">&#39;item1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;item2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;item3&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">[</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span>
+  <span class="p">],</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;__ltitle__&#39;</span><span class="p">:</span> <span class="s1">&#39;List Title With Special Key&#39;</span><span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">[</span> <span class="c1"># List Title With Special Key</span>
+  <span class="s1">&#39;item1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;item2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;item3&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">[</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span>
+  <span class="p">],</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__ltitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;List With Prefix and Suffix&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;__lprefix__&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;Prefix Line 1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Prefix Line 2&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;__lsuffix__&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;Suffix Line 1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Suffix Line 2&quot;</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">[</span> <span class="c1"># List With Prefix and Suffix</span>
+  <span class="c1"># Prefix Line 1</span>
+  <span class="c1"># Prefix Line 2</span>
+  <span class="s1">&#39;item1&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;item2&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;item3&#39;</span><span class="p">,</span>
+  <span class="c1"># Suffix Line 1</span>
+  <span class="c1"># Suffix Line 2</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</details></section>
+<section id="specific-element-comments">
+<span id="unittests-unittest2doc-formatter-pformat-json-specific-element-comments"></span><h2>specific_element_comments<a class="headerlink" href="#specific-element-comments" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_specific_element_comments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test comments for specific dict keys</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Boston&quot;</span><span class="p">}</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Person&#39;s name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;Person&#39;s age in years&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;City of residence&quot;</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="c1"># Test comments for specific list indices</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;Java&quot;</span><span class="p">,</span> <span class="s2">&quot;JavaScript&quot;</span><span class="p">,</span> <span class="s2">&quot;C++&quot;</span><span class="p">]</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;My favorite language&quot;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Web development language&quot;</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Boston&quot;</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Person&#39;s name&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;Person&#39;s age in years&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;City of residence&quot;</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span>    <span class="c1"># Person&#39;s name</span>
+  <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>        <span class="c1"># Person&#39;s age in years</span>
+  <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;Boston&#39;</span><span class="p">,</span> <span class="c1"># City of residence</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">[</span>
+    <span class="s2">&quot;Python&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Java&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;JavaScript&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;C++&quot;</span>
+  <span class="p">],</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;My favorite language&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Web development language&#39;</span><span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">[</span>
+  <span class="s1">&#39;Python&#39;</span><span class="p">,</span>     <span class="c1"># My favorite language</span>
+  <span class="s1">&#39;Java&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;JavaScript&#39;</span><span class="p">,</span> <span class="c1"># Web development language</span>
+  <span class="s1">&#39;C++&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</details></section>
+<section id="callable-comments">
+<span id="unittests-unittest2doc-formatter-pformat-json-callable-comments"></span><h2>callable_comments<a class="headerlink" href="#callable-comments" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_callable_comments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test callable comments for dict</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">129.99</span><span class="p">,</span> <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;discount&quot;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">calc_total</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Base price: $</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;quantity&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Order quantity of </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> units&quot;</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;discount&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Discount rate of </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="n">calc_total</span><span class="p">,</span>
+        <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="n">calc_total</span><span class="p">,</span>
+        <span class="s2">&quot;discount&quot;</span><span class="p">:</span> <span class="n">calc_total</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">129.99</span><span class="p">,</span>
+    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;discount&quot;</span><span class="p">:</span> <span class="mf">0.15</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;function TestJsonFormatter.test_callable_comments.&lt;locals&gt;.calc_total at 0x7f01b2906d40&gt;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;function TestJsonFormatter.test_callable_comments.&lt;locals&gt;.calc_total at 0x7f01b2906d40&gt;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;discount&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;function TestJsonFormatter.test_callable_comments.&lt;locals&gt;.calc_total at 0x7f01b2906d40&gt;&quot;</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mf">129.99</span><span class="p">,</span>  <span class="c1"># Base price: $129.99</span>
+  <span class="s1">&#39;quantity&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>    <span class="c1"># Order quantity of 5 units</span>
+  <span class="s1">&#39;discount&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span> <span class="c1"># Discount rate of 15%</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+<section id="compact-mode">
+<span id="unittests-unittest2doc-formatter-pformat-json-compact-mode"></span><h2>compact_mode<a class="headerlink" href="#compact-mode" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_compact_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test compact mode for dict</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;First item&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item&quot;</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="n">comments</span><span class="p">[</span><span class="s1">&#39;__lcompact__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="n">comments</span><span class="p">[</span><span class="s1">&#39;__lcompact__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="n">comments</span><span class="p">[</span><span class="s1">&#39;__lcompact__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="n">comments</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;__lcompact__&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">,</span> <span class="n">compact</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">,</span> <span class="n">compact</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">,</span> <span class="n">compact</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;First item&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item&quot;</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1"># &#39;a&#39;:First item # &#39;c&#39;:Third item</span>
+  <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="c1"># &#39;e&#39;:Fifth item</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;First item&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item&quot;</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1"># &#39;a&#39;:First item # &#39;c&#39;:Third item</span>
+  <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="c1"># &#39;e&#39;:Fifth item</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;First item&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item&quot;</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="c1"># &#39;a&#39;:First item</span>
+  <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="c1"># &#39;c&#39;:Third item</span>
+  <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="c1"># &#39;e&#39;:Fifth item</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;First item&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item&quot;</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="c1"># &#39;a&#39;:First item</span>
+  <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1"># &#39;c&#39;:Third item</span>
+  <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="c1"># &#39;e&#39;:Fifth item</span>
+  <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;First item&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;Third item&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth item&#39;</span><span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="c1"># First item</span>
+  <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1"># Third item</span>
+  <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="c1"># Fifth item</span>
+  <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;First item&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;Third item&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth item&#39;</span><span class="p">},</span>
+  <span class="n">compact</span><span class="o">=</span><span class="mi">15</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="c1"># &#39;a&#39;:First item</span>
+  <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1"># &#39;c&#39;:Third item</span>
+  <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="c1"># &#39;e&#39;:Fifth item</span>
+  <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;First item&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;Third item&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth item&#39;</span><span class="p">},</span>
+  <span class="n">compact</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="c1"># &#39;a&#39;:First item</span>
+  <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="c1"># &#39;c&#39;:Third item</span>
+  <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="c1"># &#39;e&#39;:Fifth item</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="mi">6</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;First item&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;Third item&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth item&#39;</span><span class="p">},</span>
+  <span class="n">compact</span><span class="o">=</span><span class="mi">30</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="c1"># &#39;a&#39;:First item # &#39;c&#39;:Third item</span>
+  <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="c1"># &#39;e&#39;:Fifth item</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+<section id="recursive-comments">
+<span id="unittests-unittest2doc-formatter-pformat-json-recursive-comments"></span><h2>recursive_comments<a class="headerlink" href="#recursive-comments" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_recursive_comments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test __lsub__ for all dict elements</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;alice@example.com&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;theme&quot;</span><span class="p">:</span> <span class="s2">&quot;dark&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;notifications&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;User Profile&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;__lsub__&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;Unique identifier&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Full name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;theme&quot;</span><span class="p">:</span> <span class="s2">&quot;UI theme preference&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="c1"># Test __llist__ and __ldict__ for typed elements</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;book&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Python Programming&quot;</span><span class="p">},</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;video&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Advanced Python&quot;</span><span class="p">}</span>
+    <span class="p">]</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;__llist__&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">40</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;__ldict__&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Content type&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Content title&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice Smith&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;alice@example.com&#39;</span><span class="p">},</span> <span class="s1">&#39;settings&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;theme&#39;</span><span class="p">:</span> <span class="s1">&#39;dark&#39;</span><span class="p">,</span> <span class="s1">&#39;notifications&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;User Profile&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;__lsub__&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;Unique identifier&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Full name&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;theme&quot;</span><span class="p">:</span> <span class="s2">&quot;UI theme preference&quot;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span> <span class="c1"># User Profile</span>
+  <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">12345</span><span class="p">,</span>                  <span class="c1"># Unique identifier</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice Smith&#39;</span><span class="p">,</span>        <span class="c1"># Full name</span>
+    <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;alice@example.com&#39;</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="s1">&#39;settings&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;theme&#39;</span><span class="p">:</span> <span class="s1">&#39;dark&#39;</span><span class="p">,</span>       <span class="c1"># UI theme preference</span>
+    <span class="s1">&#39;notifications&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">[{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;book&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Python Programming&#39;</span><span class="p">},</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;video&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Advanced Python&#39;</span><span class="p">}],</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__llist__&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">40</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;__ldict__&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Content type&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Content title&quot;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;book&#39;</span><span class="p">,</span>                <span class="c1"># Content type</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Python Programming&#39;</span><span class="p">,</span> <span class="c1"># Content title</span>
+  <span class="p">},</span>
+  <span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="p">{</span>
+    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;video&#39;</span><span class="p">,</span>            <span class="c1"># Content type</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Advanced Python&#39;</span><span class="p">,</span> <span class="c1"># Content title</span>
+  <span class="p">},</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</details></section>
+<section id="custom-indentation">
+<span id="unittests-unittest2doc-formatter-pformat-json-custom-indentation"></span><h2>custom_indentation<a class="headerlink" href="#custom-indentation" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_custom_indentation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test custom indentation</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;outer&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;middle&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;inner&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1"># Test with different indent values</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">({</span><span class="s1">&#39;outer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;middle&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;inner&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">}}},</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;outer&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;middle&#39;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s1">&#39;inner&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">pformat_json</span><span class="p">({</span><span class="s1">&#39;outer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;middle&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;inner&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">}}},</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+    <span class="s1">&#39;outer&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;middle&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;inner&#39;</span><span class="p">:</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+<section id="custom-comment-prefix">
+<span id="unittests-unittest2doc-formatter-pformat-json-custom-comment-prefix"></span><h2>custom_comment_prefix<a class="headerlink" href="#custom-comment-prefix" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_custom_comment_prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test custom comment prefix</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Person Info&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Person&#39;s name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;Age in years&quot;</span>
+    <span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">,</span> <span class="n">comment_prefix</span><span class="o">=</span><span class="s2">&quot;// &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Person Info&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Person&#39;s name&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="s2">&quot;Age in years&quot;</span>
+  <span class="p">},</span>
+  <span class="n">comment_prefix</span><span class="o">=</span><span class="s1">&#39;// &#39;</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span> <span class="o">//</span> <span class="n">Person</span> <span class="n">Info</span>
+  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="o">//</span> <span class="n">Person</span><span class="s1">&#39;s name</span>
+  <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>      <span class="o">//</span> <span class="n">Age</span> <span class="ow">in</span> <span class="n">years</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+<section id="different-compact-values">
+<span id="unittests-unittest2doc-formatter-pformat-json-different-compact-values"></span><h2>different_compact_values<a class="headerlink" href="#different-compact-values" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_different_compact_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Same data with different __lcompact__ values</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;item2&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="s2">&quot;item4&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="s2">&quot;First item comment&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item comment&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item comment&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># No compact mode</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No compact mode:&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+
+    <span class="c1"># Very wide compact mode (essentially same as no compact)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Compact mode (width=100):&quot;</span><span class="p">)</span>
+    <span class="n">comments_wide</span> <span class="o">=</span> <span class="n">comments</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">comments_wide</span><span class="p">[</span><span class="s2">&quot;__lcompact__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments_wide</span><span class="p">)</span>
+
+    <span class="c1"># Medium compact mode</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Compact mode (width=50):&quot;</span><span class="p">)</span>
+    <span class="n">comments_medium</span> <span class="o">=</span> <span class="n">comments</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">comments_medium</span><span class="p">[</span><span class="s2">&quot;__lcompact__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments_medium</span><span class="p">)</span>
+
+    <span class="c1"># Narrow compact mode</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Compact mode (width=25):&quot;</span><span class="p">)</span>
+    <span class="n">comments_narrow</span> <span class="o">=</span> <span class="n">comments</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">comments_narrow</span><span class="p">[</span><span class="s2">&quot;__lcompact__&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments_narrow</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">No</span> <span class="n">compact</span> <span class="n">mode</span><span class="p">:</span>
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;item2&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;item4&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="mi">500</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="s2">&quot;First item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item comment&quot;</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;item1&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="c1"># First item comment</span>
+  <span class="s1">&#39;item2&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="s1">&#39;item3&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="c1"># Third item comment</span>
+  <span class="s1">&#39;item4&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+  <span class="s1">&#39;item5&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="c1"># Fifth item comment</span>
+<span class="p">}</span>
+
+
+<span class="n">Compact</span> <span class="n">mode</span> <span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;item2&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;item4&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="mi">500</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="s2">&quot;First item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">100</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;item1&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;item4&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="s1">&#39;item5&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="c1"># &#39;item1&#39;:First item comment # &#39;item3&#39;:Third item comment # &#39;item5&#39;:Fifth item comment</span>
+<span class="p">}</span>
+
+
+<span class="n">Compact</span> <span class="n">mode</span> <span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;item2&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;item4&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="mi">500</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="s2">&quot;First item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">50</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;item1&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;item2&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;item3&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="c1"># &#39;item1&#39;:First item comment # &#39;item3&#39;:Third item comment</span>
+  <span class="s1">&#39;item4&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="s1">&#39;item5&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="c1"># &#39;item5&#39;:Fifth item comment</span>
+<span class="p">}</span>
+
+
+<span class="n">Compact</span> <span class="n">mode</span> <span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;item2&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;item4&quot;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="mi">500</span>
+  <span class="p">},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;item1&quot;</span><span class="p">:</span> <span class="s2">&quot;First item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item3&quot;</span><span class="p">:</span> <span class="s2">&quot;Third item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;item5&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth item comment&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">25</span>
+  <span class="p">}</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span>
+  <span class="s1">&#39;item1&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="c1"># &#39;item1&#39;:First item comment</span>
+  <span class="s1">&#39;item2&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+  <span class="s1">&#39;item3&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="c1"># &#39;item3&#39;:Third item comment</span>
+  <span class="s1">&#39;item4&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+  <span class="s1">&#39;item5&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="c1"># &#39;item5&#39;:Fifth item comment</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+<section id="deeply-nested-structure">
+<span id="unittests-unittest2doc-formatter-pformat-json-deeply-nested-structure"></span><h2>deeply_nested_structure<a class="headerlink" href="#deeply-nested-structure" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_deeply_nested_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a deeply nested structure to test indentation handling</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;level1&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;level2&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;level3&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;level4&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;level5&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;deeply nested value&quot;</span>
+                        <span class="p">},</span>
+                        <span class="s2">&quot;array&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]]</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Deep Nesting Test&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;__lsub__&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;level1&quot;</span><span class="p">:</span> <span class="s2">&quot;First level&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;level2&quot;</span><span class="p">:</span> <span class="s2">&quot;Second level&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;level3&quot;</span><span class="p">:</span> <span class="s2">&quot;Third level&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;level4&quot;</span><span class="p">:</span> <span class="s2">&quot;Fourth level&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;level5&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth level&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;The final value&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;array&quot;</span><span class="p">:</span> <span class="s2">&quot;Array of values&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">pformat_json</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">level</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">level1</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;deeply nested value&#39;</span><span class="p">},</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]]}}}},</span> <span class="n">subcomments</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">,</span> <span class="s1">&#39;__lsub__&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">}}</span>
+<span class="n">level</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">level2</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;deeply nested value&#39;</span><span class="p">},</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]]}}},</span> <span class="n">subcomments</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">,</span> <span class="s1">&#39;__dtitle__&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;__lsub__&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">}}</span>
+<span class="n">level</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">level3</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;deeply nested value&#39;</span><span class="p">},</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]]}},</span> <span class="n">subcomments</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">,</span> <span class="s1">&#39;__dtitle__&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;__lsub__&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">}}</span>
+<span class="n">level</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">level4</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;deeply nested value&#39;</span><span class="p">},</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]]},</span> <span class="n">subcomments</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">,</span> <span class="s1">&#39;__dtitle__&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;__lsub__&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">}}</span>
+<span class="n">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">level5</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;deeply nested value&#39;</span><span class="p">},</span> <span class="n">subcomments</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">,</span> <span class="s1">&#39;__dtitle__&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;__lsub__&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">}}</span>
+<span class="n">level</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">deeply</span> <span class="n">nested</span> <span class="n">value</span><span class="p">,</span> <span class="n">subcomments</span><span class="p">:</span> <span class="n">The</span> <span class="n">final</span> <span class="n">value</span>
+<span class="n">level</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">array</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]],</span> <span class="n">subcomments</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">,</span> <span class="s1">&#39;__ltitle__&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">,</span> <span class="s1">&#39;__lsub__&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="s1">&#39;First level&#39;</span><span class="p">,</span> <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="s1">&#39;Second level&#39;</span><span class="p">,</span> <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="s1">&#39;Third level&#39;</span><span class="p">,</span> <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="s1">&#39;Fourth level&#39;</span><span class="p">,</span> <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="s1">&#39;Fifth level&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;The final value&#39;</span><span class="p">,</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="s1">&#39;Array of values&#39;</span><span class="p">}}</span>
+<span class="n">pformat_json</span><span class="p">(</span>
+  <span class="p">{</span><span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;deeply nested value&#39;</span><span class="p">},</span> <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]]}}}}},</span>
+  <span class="n">comments</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Deep Nesting Test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;__lsub__&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;level1&quot;</span><span class="p">:</span> <span class="s2">&quot;First level&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;level2&quot;</span><span class="p">:</span> <span class="s2">&quot;Second level&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;level3&quot;</span><span class="p">:</span> <span class="s2">&quot;Third level&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;level4&quot;</span><span class="p">:</span> <span class="s2">&quot;Fourth level&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;level5&quot;</span><span class="p">:</span> <span class="s2">&quot;Fifth level&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;The final value&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;array&quot;</span><span class="p">:</span> <span class="s2">&quot;Array of values&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="n">debug</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span> <span class="c1"># ===&gt;</span>
+<span class="p">{</span> <span class="c1"># Deep Nesting Test</span>
+  <span class="s1">&#39;level1&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;level2&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># Second level</span>
+      <span class="s1">&#39;level3&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># Third level</span>
+        <span class="s1">&#39;level4&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># Fourth level</span>
+          <span class="s1">&#39;level5&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># Fifth level</span>
+            <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;deeply nested value&#39;</span><span class="p">,</span> <span class="c1"># The final value</span>
+          <span class="p">},</span>
+          <span class="s1">&#39;array&#39;</span><span class="p">:</span> <span class="p">[</span> <span class="c1"># Array of values</span>
+            <span class="mi">1</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">,</span>
+            <span class="p">[</span>
+              <span class="mi">3</span><span class="p">,</span>
+              <span class="mi">4</span><span class="p">,</span>
+              <span class="p">[</span>
+                <span class="mi">5</span><span class="p">,</span>
+                <span class="mi">6</span><span class="p">,</span>
+              <span class="p">],</span>
+            <span class="p">],</span>
+          <span class="p">],</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+<section id="comprehensive-example">
+<span id="unittests-unittest2doc-formatter-pformat-json-comprehensive-example"></span><h2>comprehensive_example<a class="headerlink" href="#comprehensive-example" title="Link to this heading">¶</a></h2>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_comprehensive_example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;python&quot;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Test case combining multiple features</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Comprehensive Example&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+            <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;example&quot;</span><span class="p">,</span> <span class="s2">&quot;comprehensive&quot;</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;debug&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="mi">30</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;data_points&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">10.5</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Point A&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">20.7</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Point B&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">15.3</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Point C&quot;</span><span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;statistics&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s2">&quot;average&quot;</span><span class="p">:</span> <span class="mf">15.5</span><span class="p">,</span>
+            <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mf">20.7</span><span class="p">,</span>
+            <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mf">10.5</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Define comprehensive comments</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">format_stat</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;average&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Average value: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Maximum value: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Minimum value: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="n">comments</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Complete Feature Demonstration&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+        <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Document Metadata&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;The title of this example&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;tags&quot;</span><span class="p">:</span> <span class="s2">&quot;Keywords for categorization&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;System Configuration&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;__lcompact__&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+            <span class="s2">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Available Options&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;debug&quot;</span><span class="p">:</span> <span class="s2">&quot;Enable debug mode&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="s2">&quot;Show detailed output&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;timeout&quot;</span><span class="p">:</span> <span class="s2">&quot;Operation timeout in seconds&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;data_points&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;__ltitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Measurement Data&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;__lprefix__&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Array of data point objects&quot;</span><span class="p">,</span> <span class="s2">&quot;Each with id, value and label&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;__ldict__&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;Unique identifier&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Measurement value&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Display name&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;statistics&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;__dtitle__&quot;</span><span class="p">:</span> <span class="s2">&quot;Statistical Analysis&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of data points&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;average&quot;</span><span class="p">:</span> <span class="n">format_stat</span><span class="p">,</span>
+            <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="n">format_stat</span><span class="p">,</span>
+            <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="n">format_stat</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pformat_json</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="c1"># Complete Feature Demonstration</span>
+  <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># Document Metadata</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Comprehensive Example&#39;</span><span class="p">,</span> <span class="c1"># The title of this example</span>
+    <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="p">[</span> <span class="c1"># Keywords for categorization</span>
+      <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;example&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;comprehensive&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+  <span class="s1">&#39;configuration&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># System Configuration</span>
+    <span class="s1">&#39;enabled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># Available Options</span>
+      <span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># Enable debug mode</span>
+      <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># Show detailed output</span>
+      <span class="s1">&#39;timeout&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>   <span class="c1"># Operation timeout in seconds</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="s1">&#39;data_points&#39;</span><span class="p">:</span> <span class="p">[</span> <span class="c1"># Measurement Data</span>
+    <span class="c1"># Array of data point objects</span>
+    <span class="c1"># Each with id, value and label</span>
+    <span class="p">{</span>
+      <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>            <span class="c1"># Unique identifier</span>
+      <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mf">10.5</span><span class="p">,</span>      <span class="c1"># Measurement value</span>
+      <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Point A&#39;</span><span class="p">,</span> <span class="c1"># Display name</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>            <span class="c1"># Unique identifier</span>
+      <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mf">20.7</span><span class="p">,</span>      <span class="c1"># Measurement value</span>
+      <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Point B&#39;</span><span class="p">,</span> <span class="c1"># Display name</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>            <span class="c1"># Unique identifier</span>
+      <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mf">15.3</span><span class="p">,</span>      <span class="c1"># Measurement value</span>
+      <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Point C&#39;</span><span class="p">,</span> <span class="c1"># Display name</span>
+    <span class="p">},</span>
+  <span class="p">],</span>
+  <span class="s1">&#39;statistics&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># Statistical Analysis</span>
+    <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>      <span class="c1"># Number of data points</span>
+    <span class="s1">&#39;average&#39;</span><span class="p">:</span> <span class="mf">15.5</span><span class="p">,</span> <span class="c1"># Average value: 15.5</span>
+    <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="mf">20.7</span><span class="p">,</span>     <span class="c1"># Maximum value: 20.7</span>
+    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mf">10.5</span><span class="p">,</span>     <span class="c1"># Minimum value: 10.5</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</details></section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../../../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">unittest2doc.formatter.pformat_json</a><ul>
+<li><a class="reference internal" href="#setup">setUp</a></li>
+<li><a class="reference internal" href="#basic-format">basic_format</a></li>
+<li><a class="reference internal" href="#nested-structures">nested_structures</a></li>
+<li><a class="reference internal" href="#dict-title-comment">dict_title_comment</a></li>
+<li><a class="reference internal" href="#list-title-comment">list_title_comment</a></li>
+<li><a class="reference internal" href="#specific-element-comments">specific_element_comments</a></li>
+<li><a class="reference internal" href="#callable-comments">callable_comments</a></li>
+<li><a class="reference internal" href="#compact-mode">compact_mode</a></li>
+<li><a class="reference internal" href="#recursive-comments">recursive_comments</a></li>
+<li><a class="reference internal" href="#custom-indentation">custom_indentation</a></li>
+<li><a class="reference internal" href="#custom-comment-prefix">custom_comment_prefix</a></li>
+<li><a class="reference internal" href="#different-compact-values">different_compact_values</a></li>
+<li><a class="reference internal" href="#deeply-nested-structure">deeply_nested_structure</a></li>
+<li><a class="reference internal" href="#comprehensive-example">comprehensive_example</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../catalogue.html">API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../catalogue.html#unittests">Unittests</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/unittests/unittest2doc/formatter/pformat_json.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../unittest2doc/index.html" title="unittest2doc.unittest2doc"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="index.html" title="unittest2doc.formatter"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../../../index.html">unittest2doc  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../../catalogue.html" >API Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" >UNITTESTs</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" >unittest2doc</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="index.html" >unittest2doc.formatter</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">unittest2doc.formatter.pformat_json</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fmajor.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

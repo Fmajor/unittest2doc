@@ -1,0 +1,1259 @@
+.. _unittests/unittest2doc.formatter.pformat_json:
+
+unittest2doc.formatter.pformat_json
+========================================================================================
+
+references: :func:`unittest2doc.formatter.pformat_json`
+
+
+Test cases for json_formatter module's pformat_json function
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.setUp:
+
+setUp
+-----
+
+here we also test the FLog class, it is a helper class to print function inputs and outputs
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def setUp(self):
+        """ here we also test the FLog class, it is a helper class to print function inputs and outputs """
+        self.flog = FLog(do_print=True, output_suffix='\n', input_suffix=' # ===>')
+        self.frun = self.flog.frun
+    
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.basic_format:
+
+basic_format
+------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_basic_format(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test basic dictionary formatting
+        data = {"name": "John", "age": 30, "city": "New York"}
+        # call pformat_json(data) and print the result
+        self.frun(pformat_json, data)
+    
+        # Test basic list formatting
+        data = [1, 2, 3, "four", 5.0]
+        # call pformat_json(data) and print the result
+        self.frun(pformat_json, data)
+    
+        # Test simple value
+        data = "simple string"
+        # call pformat_json(data) and print the result
+        self.frun(pformat_json, data)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json({'name': 'John', 'age': 30, 'city': 'New York'}, ) # ===>
+    {
+      'name': 'John',
+      'age': 30,
+      'city': 'New York',
+    }
+  
+    pformat_json([1, 2, 3, 'four', 5.0], ) # ===>
+    [
+      1,
+      2,
+      3,
+      'four',
+      5.0,
+    ]
+  
+    pformat_json('simple string', ) # ===>
+    'simple string'
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.nested_structures:
+
+nested_structures
+-----------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_nested_structures(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test nested dictionary and list
+        data = {
+            "person": {
+                "name": "Alice",
+                "details": {
+                    "age": 28,
+                    "occupation": "Engineer"
+                }
+            },
+            "hobbies": ["reading", "hiking", {"sport": "tennis"}]
+        }
+        self.frun(pformat_json, data)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json(
+      {'person': {'name': 'Alice', 'details': {'age': 28, 'occupation': 'Engineer'}}, 'hobbies': ['reading', 'hiking', {'sport': 'tennis'}]}
+    ) # ===>
+    {
+      'person': {
+        'name': 'Alice',
+        'details': {
+          'age': 28,
+          'occupation': 'Engineer',
+        },
+      },
+      'hobbies': [
+        'reading',
+        'hiking',
+        {
+          'sport': 'tennis',
+        },
+      ],
+    }
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.dict_title_comment:
+
+dict_title_comment
+------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_dict_title_comment(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test using string comment for dict title
+        data = {"key1": "value1", "key2": "value2"}
+        self.frun(pformat_json, data, comments="Dictionary Title")
+    
+        # Test using __dtitle__ special key
+        data = {"key1": "value1", "key2": "value2"}
+        comments = {"__dtitle__": "Dictionary Title With Special Key"}
+        self.frun(pformat_json, data, comments=comments)
+    
+        # Test multi-line dict title
+        comments = {"__dtitle__": "First Line\nSecond Line\nThird Line"}
+        self.frun(pformat_json, data, comments=comments)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json(
+      {
+        "key1": "value1",
+        "key2": "value2"
+      },
+      comments='Dictionary Title'
+    ) # ===>
+    { # Dictionary Title
+      'key1': 'value1',
+      'key2': 'value2',
+    }
+  
+    pformat_json(
+      {
+        "key1": "value1",
+        "key2": "value2"
+      },
+      comments={'__dtitle__': 'Dictionary Title With Special Key'}
+    ) # ===>
+    { # Dictionary Title With Special Key
+      'key1': 'value1',
+      'key2': 'value2',
+    }
+  
+    pformat_json(
+      {
+        "key1": "value1",
+        "key2": "value2"
+      },
+      comments={'__dtitle__': 'First Line\nSecond Line\nThird Line'}
+    ) # ===>
+    { # First Line
+      # Second Line
+      # Third Line
+      'key1': 'value1',
+      'key2': 'value2',
+    }
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.list_title_comment:
+
+list_title_comment
+------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_list_title_comment(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test using string comment for list title
+        data = ["item1", "item2", "item3"]
+        self.frun(pformat_json, data, comments="List Title")
+    
+        # Test using __ltitle__ special key
+        comments = {"__ltitle__": "List Title With Special Key"}
+        self.frun(pformat_json, data, comments=comments)
+    
+        # Test list prefix and suffix comments
+        comments = {
+            "__ltitle__": "List With Prefix and Suffix",
+            "__lprefix__": ["Prefix Line 1", "Prefix Line 2"],
+            "__lsuffix__": ["Suffix Line 1", "Suffix Line 2"]
+        }
+        self.frun(pformat_json, data, comments=comments)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json(['item1', 'item2', 'item3'], comments='List Title') # ===>
+    [ # List Title
+      'item1',
+      'item2',
+      'item3',
+    ]
+  
+    pformat_json(
+      [
+        "item1",
+        "item2",
+        "item3"
+      ],
+      comments={'__ltitle__': 'List Title With Special Key'}
+    ) # ===>
+    [ # List Title With Special Key
+      'item1',
+      'item2',
+      'item3',
+    ]
+  
+    pformat_json(
+      [
+        "item1",
+        "item2",
+        "item3"
+      ],
+      comments={
+        "__ltitle__": "List With Prefix and Suffix",
+        "__lprefix__": [
+          "Prefix Line 1",
+          "Prefix Line 2"
+        ],
+        "__lsuffix__": [
+          "Suffix Line 1",
+          "Suffix Line 2"
+        ]
+      }
+    ) # ===>
+    [ # List With Prefix and Suffix
+      # Prefix Line 1
+      # Prefix Line 2
+      'item1',
+      'item2',
+      'item3',
+      # Suffix Line 1
+      # Suffix Line 2
+    ]
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.specific_element_comments:
+
+specific_element_comments
+-------------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_specific_element_comments(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test comments for specific dict keys
+        data = {"name": "Bob", "age": 45, "city": "Boston"}
+        comments = {
+            "name": "Person's name",
+            "age": "Person's age in years",
+            "city": "City of residence"
+        }
+        self.frun(pformat_json, data, comments=comments)
+    
+        # Test comments for specific list indices
+        data = ["Python", "Java", "JavaScript", "C++"]
+        comments = {
+            0: "My favorite language",
+            2: "Web development language"
+        }
+        self.frun(pformat_json, data, comments=comments)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json(
+      {
+        "name": "Bob",
+        "age": 45,
+        "city": "Boston"
+      },
+      comments={
+        "name": "Person's name",
+        "age": "Person's age in years",
+        "city": "City of residence"
+      }
+    ) # ===>
+    {
+      'name': 'Bob',    # Person's name
+      'age': 45,        # Person's age in years
+      'city': 'Boston', # City of residence
+    }
+  
+    pformat_json(
+      [
+        "Python",
+        "Java",
+        "JavaScript",
+        "C++"
+      ],
+      comments={0: 'My favorite language', 2: 'Web development language'}
+    ) # ===>
+    [
+      'Python',     # My favorite language
+      'Java',
+      'JavaScript', # Web development language
+      'C++',
+    ]
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.callable_comments:
+
+callable_comments
+-----------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_callable_comments(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test callable comments for dict
+        data = {"price": 129.99, "quantity": 5, "discount": 0.15}
+    
+        def calc_total(key, value):
+            if key == "price":
+                return f"Base price: ${value}"
+            elif key == "quantity":
+                return f"Order quantity of {value} units"
+            elif key == "discount":
+                return f"Discount rate of {int(value*100)}%"
+            return ""
+    
+        comments = {
+            "price": calc_total,
+            "quantity": calc_total,
+            "discount": calc_total
+        }
+        self.frun(pformat_json, data, comments=comments)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json(
+      {
+        "price": 129.99,
+        "quantity": 5,
+        "discount": 0.15
+      },
+      comments={
+        "price": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f01b2906d40>",
+        "quantity": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f01b2906d40>",
+        "discount": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f01b2906d40>"
+      }
+    ) # ===>
+    {
+      'price': 129.99,  # Base price: $129.99
+      'quantity': 5,    # Order quantity of 5 units
+      'discount': 0.15, # Discount rate of 15%
+    }
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.compact_mode:
+
+compact_mode
+------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_compact_mode(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test compact mode for dict
+        data = {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6}
+        comments = {
+            "__lcompact__": 30,
+            "a": "First item",
+            "c": "Third item",
+            "e": "Fifth item"
+        }
+        self.frun(pformat_json, data, comments=comments)
+    
+        comments['__lcompact__'] = 25
+        self.frun(pformat_json, data, comments=comments)
+    
+        comments['__lcompact__'] = 20
+        self.frun(pformat_json, data, comments=comments)
+    
+        comments['__lcompact__'] = 15
+        self.frun(pformat_json, data, comments=comments)
+    
+        comments.pop('__lcompact__')
+        self.frun(pformat_json, data, comments=comments)
+    
+        self.frun(pformat_json, data, comments=comments, compact=15)
+    
+        self.frun(pformat_json, data, comments=comments, compact=20)
+    
+        self.frun(pformat_json, data, comments=comments, compact=30)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json(
+      {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6
+      },
+      comments={
+        "__lcompact__": 30,
+        "a": "First item",
+        "c": "Third item",
+        "e": "Fifth item"
+      }
+    ) # ===>
+    {
+      'a': 1, 'b': 2, 'c': 3, # 'a':First item # 'c':Third item
+      'd': 4, 'e': 5, 'f': 6, # 'e':Fifth item
+    }
+  
+    pformat_json(
+      {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6
+      },
+      comments={
+        "__lcompact__": 25,
+        "a": "First item",
+        "c": "Third item",
+        "e": "Fifth item"
+      }
+    ) # ===>
+    {
+      'a': 1, 'b': 2, 'c': 3, # 'a':First item # 'c':Third item
+      'd': 4, 'e': 5, 'f': 6, # 'e':Fifth item
+    }
+  
+    pformat_json(
+      {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6
+      },
+      comments={
+        "__lcompact__": 20,
+        "a": "First item",
+        "c": "Third item",
+        "e": "Fifth item"
+      }
+    ) # ===>
+    {
+      'a': 1, 'b': 2, # 'a':First item
+      'c': 3, 'd': 4, # 'c':Third item
+      'e': 5, 'f': 6, # 'e':Fifth item
+    }
+  
+    pformat_json(
+      {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6
+      },
+      comments={
+        "__lcompact__": 15,
+        "a": "First item",
+        "c": "Third item",
+        "e": "Fifth item"
+      }
+    ) # ===>
+    {
+      'a': 1, # 'a':First item
+      'b': 2,
+      'c': 3, # 'c':Third item
+      'd': 4,
+      'e': 5, # 'e':Fifth item
+      'f': 6,
+    }
+  
+    pformat_json(
+      {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6
+      },
+      comments={'a': 'First item', 'c': 'Third item', 'e': 'Fifth item'}
+    ) # ===>
+    {
+      'a': 1, # First item
+      'b': 2,
+      'c': 3, # Third item
+      'd': 4,
+      'e': 5, # Fifth item
+      'f': 6,
+    }
+  
+    pformat_json(
+      {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6
+      },
+      comments={'a': 'First item', 'c': 'Third item', 'e': 'Fifth item'},
+      compact=15
+    ) # ===>
+    {
+      'a': 1, # 'a':First item
+      'b': 2,
+      'c': 3, # 'c':Third item
+      'd': 4,
+      'e': 5, # 'e':Fifth item
+      'f': 6,
+    }
+  
+    pformat_json(
+      {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6
+      },
+      comments={'a': 'First item', 'c': 'Third item', 'e': 'Fifth item'},
+      compact=20
+    ) # ===>
+    {
+      'a': 1, 'b': 2, # 'a':First item
+      'c': 3, 'd': 4, # 'c':Third item
+      'e': 5, 'f': 6, # 'e':Fifth item
+    }
+  
+    pformat_json(
+      {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4,
+        "e": 5,
+        "f": 6
+      },
+      comments={'a': 'First item', 'c': 'Third item', 'e': 'Fifth item'},
+      compact=30
+    ) # ===>
+    {
+      'a': 1, 'b': 2, 'c': 3, # 'a':First item # 'c':Third item
+      'd': 4, 'e': 5, 'f': 6, # 'e':Fifth item
+    }
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.recursive_comments:
+
+recursive_comments
+------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_recursive_comments(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test __lsub__ for all dict elements
+        data = {
+            "user": {
+                "id": 12345,
+                "name": "Alice Smith",
+                "email": "alice@example.com"
+            },
+            "settings": {
+                "theme": "dark",
+                "notifications": True
+            }
+        }
+        comments = {
+            "__dtitle__": "User Profile",
+            "__lsub__": {
+                "id": "Unique identifier",
+                "name": "Full name",
+                "theme": "UI theme preference"
+            }
+        }
+        self.frun(pformat_json, data, comments=comments)
+    
+        # Test __llist__ and __ldict__ for typed elements
+        data = [
+            {"type": "book", "title": "Python Programming"},
+            [1, 2, 3],
+            {"type": "video", "title": "Advanced Python"}
+        ]
+        comments = {
+            "__llist__": {
+                "__lcompact__": 40
+            },
+            "__ldict__": {
+                "type": "Content type",
+                "title": "Content title"
+            }
+        }
+        self.frun(pformat_json, data, comments=comments)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json(
+      {'user': {'id': 12345, 'name': 'Alice Smith', 'email': 'alice@example.com'}, 'settings': {'theme': 'dark', 'notifications': True}},
+      comments={
+        "__dtitle__": "User Profile",
+        "__lsub__": {
+          "id": "Unique identifier",
+          "name": "Full name",
+          "theme": "UI theme preference"
+        }
+      }
+    ) # ===>
+    { # User Profile
+      'user': {
+        'id': 12345,                  # Unique identifier
+        'name': 'Alice Smith',        # Full name
+        'email': 'alice@example.com',
+      },
+      'settings': {
+        'theme': 'dark',       # UI theme preference
+        'notifications': True,
+      },
+    }
+  
+    pformat_json(
+      [{'type': 'book', 'title': 'Python Programming'}, [1, 2, 3], {'type': 'video', 'title': 'Advanced Python'}],
+      comments={
+        "__llist__": {
+          "__lcompact__": 40
+        },
+        "__ldict__": {
+          "type": "Content type",
+          "title": "Content title"
+        }
+      }
+    ) # ===>
+    [
+      {
+        'type': 'book',                # Content type
+        'title': 'Python Programming', # Content title
+      },
+      [
+        1, 2, 3,
+      ],
+      {
+        'type': 'video',            # Content type
+        'title': 'Advanced Python', # Content title
+      },
+    ]
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.custom_indentation:
+
+custom_indentation
+------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_custom_indentation(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test custom indentation
+        data = {
+            "outer": {
+                "middle": {
+                    "inner": "value"
+                }
+            }
+        }
+        # Test with different indent values
+        self.frun(pformat_json, data, indent=2)
+        self.frun(pformat_json, data, indent=4)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json({'outer': {'middle': {'inner': 'value'}}}, indent=2) # ===>
+    {
+      'outer': {
+        'middle': {
+          'inner': 'value',
+        },
+      },
+    }
+  
+    pformat_json({'outer': {'middle': {'inner': 'value'}}}, indent=4) # ===>
+    {
+        'outer': {
+            'middle': {
+                'inner': 'value',
+            },
+        },
+    }
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.custom_comment_prefix:
+
+custom_comment_prefix
+---------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_custom_comment_prefix(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test custom comment prefix
+        data = {"name": "John", "age": 30}
+        comments = {
+            "__dtitle__": "Person Info",
+            "name": "Person's name",
+            "age": "Age in years"
+        }
+        self.frun(pformat_json, data, comments=comments, comment_prefix="// ")
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    pformat_json(
+      {
+        "name": "John",
+        "age": 30
+      },
+      comments={
+        "__dtitle__": "Person Info",
+        "name": "Person's name",
+        "age": "Age in years"
+      },
+      comment_prefix='// '
+    ) # ===>
+    { // Person Info
+      'name': 'John', // Person's name
+      'age': 30,      // Age in years
+    }
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.different_compact_values:
+
+different_compact_values
+------------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_different_compact_values(self):
+        """ {"output_highlight": "python"}
+        """
+        # Same data with different __lcompact__ values
+        data = {"item1": 100, "item2": 200, "item3": 300, "item4": 400, "item5": 500}
+        comments = {
+            "item1": "First item comment",
+            "item3": "Third item comment",
+            "item5": "Fifth item comment"
+        }
+    
+        # No compact mode
+        print("\nNo compact mode:")
+        self.frun(pformat_json, data, comments=comments)
+    
+        # Very wide compact mode (essentially same as no compact)
+        print("\nCompact mode (width=100):")
+        comments_wide = comments.copy()
+        comments_wide["__lcompact__"] = 100
+        self.frun(pformat_json, data, comments=comments_wide)
+    
+        # Medium compact mode
+        print("\nCompact mode (width=50):")
+        comments_medium = comments.copy()
+        comments_medium["__lcompact__"] = 50
+        self.frun(pformat_json, data, comments=comments_medium)
+    
+        # Narrow compact mode
+        print("\nCompact mode (width=25):")
+        comments_narrow = comments.copy()
+        comments_narrow["__lcompact__"] = 25
+        self.frun(pformat_json, data, comments=comments_narrow)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+  
+    No compact mode:
+    pformat_json(
+      {
+        "item1": 100,
+        "item2": 200,
+        "item3": 300,
+        "item4": 400,
+        "item5": 500
+      },
+      comments={
+        "item1": "First item comment",
+        "item3": "Third item comment",
+        "item5": "Fifth item comment"
+      }
+    ) # ===>
+    {
+      'item1': 100, # First item comment
+      'item2': 200,
+      'item3': 300, # Third item comment
+      'item4': 400,
+      'item5': 500, # Fifth item comment
+    }
+  
+  
+    Compact mode (width=100):
+    pformat_json(
+      {
+        "item1": 100,
+        "item2": 200,
+        "item3": 300,
+        "item4": 400,
+        "item5": 500
+      },
+      comments={
+        "item1": "First item comment",
+        "item3": "Third item comment",
+        "item5": "Fifth item comment",
+        "__lcompact__": 100
+      }
+    ) # ===>
+    {
+      'item1': 100, 'item2': 200, 'item3': 300, 'item4': 400, 'item5': 500, # 'item1':First item comment # 'item3':Third item comment # 'item5':Fifth item comment
+    }
+  
+  
+    Compact mode (width=50):
+    pformat_json(
+      {
+        "item1": 100,
+        "item2": 200,
+        "item3": 300,
+        "item4": 400,
+        "item5": 500
+      },
+      comments={
+        "item1": "First item comment",
+        "item3": "Third item comment",
+        "item5": "Fifth item comment",
+        "__lcompact__": 50
+      }
+    ) # ===>
+    {
+      'item1': 100, 'item2': 200, 'item3': 300, # 'item1':First item comment # 'item3':Third item comment
+      'item4': 400, 'item5': 500, # 'item5':Fifth item comment
+    }
+  
+  
+    Compact mode (width=25):
+    pformat_json(
+      {
+        "item1": 100,
+        "item2": 200,
+        "item3": 300,
+        "item4": 400,
+        "item5": 500
+      },
+      comments={
+        "item1": "First item comment",
+        "item3": "Third item comment",
+        "item5": "Fifth item comment",
+        "__lcompact__": 25
+      }
+    ) # ===>
+    {
+      'item1': 100, # 'item1':First item comment
+      'item2': 200,
+      'item3': 300, # 'item3':Third item comment
+      'item4': 400,
+      'item5': 500, # 'item5':Fifth item comment
+    }
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.deeply_nested_structure:
+
+deeply_nested_structure
+-----------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_deeply_nested_structure(self):
+        """ {"output_highlight": "python"}
+        """
+        # Create a deeply nested structure to test indentation handling
+        data = {
+            "level1": {
+                "level2": {
+                    "level3": {
+                        "level4": {
+                            "level5": {
+                                "value": "deeply nested value"
+                            },
+                            "array": [1, 2, [3, 4, [5, 6]]]
+                        }
+                    }
+                }
+            }
+        }
+    
+        comments = {
+            "__dtitle__": "Deep Nesting Test",
+            "__lsub__": {
+                "level1": "First level",
+                "level2": "Second level",
+                "level3": "Third level",
+                "level4": "Fourth level",
+                "level5": "Fifth level",
+                "value": "The final value",
+                "array": "Array of values"
+            }
+        }
+    
+        self.frun(pformat_json, data, comments=comments, debug=True)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    level: 0, key: level1, value: {'level2': {'level3': {'level4': {'level5': {'value': 'deeply nested value'}, 'array': [1, 2, [3, 4, [5, 6]]]}}}}, subcomments: {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values', '__lsub__': {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values'}}
+    level: 1, key: level2, value: {'level3': {'level4': {'level5': {'value': 'deeply nested value'}, 'array': [1, 2, [3, 4, [5, 6]]]}}}, subcomments: {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values', '__dtitle__': 'Second level', '__lsub__': {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values'}}
+    level: 2, key: level3, value: {'level4': {'level5': {'value': 'deeply nested value'}, 'array': [1, 2, [3, 4, [5, 6]]]}}, subcomments: {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values', '__dtitle__': 'Third level', '__lsub__': {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values'}}
+    level: 3, key: level4, value: {'level5': {'value': 'deeply nested value'}, 'array': [1, 2, [3, 4, [5, 6]]]}, subcomments: {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values', '__dtitle__': 'Fourth level', '__lsub__': {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values'}}
+    level: 4, key: level5, value: {'value': 'deeply nested value'}, subcomments: {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values', '__dtitle__': 'Fifth level', '__lsub__': {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values'}}
+    level: 5, key: value, value: deeply nested value, subcomments: The final value
+    level: 4, key: array, value: [1, 2, [3, 4, [5, 6]]], subcomments: {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values', '__ltitle__': 'Array of values', '__lsub__': {'level1': 'First level', 'level2': 'Second level', 'level3': 'Third level', 'level4': 'Fourth level', 'level5': 'Fifth level', 'value': 'The final value', 'array': 'Array of values'}}
+    pformat_json(
+      {'level1': {'level2': {'level3': {'level4': {'level5': {'value': 'deeply nested value'}, 'array': [1, 2, [3, 4, [5, 6]]]}}}}},
+      comments={
+        "__dtitle__": "Deep Nesting Test",
+        "__lsub__": {
+          "level1": "First level",
+          "level2": "Second level",
+          "level3": "Third level",
+          "level4": "Fourth level",
+          "level5": "Fifth level",
+          "value": "The final value",
+          "array": "Array of values"
+        }
+      },
+      debug=True
+    ) # ===>
+    { # Deep Nesting Test
+      'level1': {
+        'level2': { # Second level
+          'level3': { # Third level
+            'level4': { # Fourth level
+              'level5': { # Fifth level
+                'value': 'deeply nested value', # The final value
+              },
+              'array': [ # Array of values
+                1,
+                2,
+                [
+                  3,
+                  4,
+                  [
+                    5,
+                    6,
+                  ],
+                ],
+              ],
+            },
+          },
+        },
+      },
+    }
+  
+  
+
+
+.. _unittests/unittest2doc.formatter.pformat_json.comprehensive_example:
+
+comprehensive_example
+---------------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_comprehensive_example(self):
+        """ {"output_highlight": "python"}
+        """
+        # Test case combining multiple features
+        data = {
+            "metadata": {
+                "title": "Comprehensive Example",
+                "version": 1.5,
+                "tags": ["test", "example", "comprehensive"]
+            },
+            "configuration": {
+                "enabled": True,
+                "options": {
+                    "debug": False,
+                    "verbose": True,
+                    "timeout": 30
+                }
+            },
+            "data_points": [
+                {"id": 1, "value": 10.5, "label": "Point A"},
+                {"id": 2, "value": 20.7, "label": "Point B"},
+                {"id": 3, "value": 15.3, "label": "Point C"}
+            ],
+            "statistics": {
+                "count": 3,
+                "average": 15.5,
+                "max": 20.7,
+                "min": 10.5
+            }
+        }
+    
+        # Define comprehensive comments
+        def format_stat(key, value):
+            if key == "average":
+                return f"Average value: {value:.1f}"
+            elif key == "max":
+                return f"Maximum value: {value:.1f}"
+            elif key == "min":
+                return f"Minimum value: {value:.1f}"
+            return str(value)
+    
+        comments = {
+            "__dtitle__": "Complete Feature Demonstration",
+            "__lcompact__": 60,
+            "metadata": {
+                "__dtitle__": "Document Metadata",
+                "title": "The title of this example",
+                "tags": "Keywords for categorization"
+            },
+            "configuration": {
+                "__dtitle__": "System Configuration",
+                "__lcompact__": 40,
+                "options": {
+                    "__dtitle__": "Available Options",
+                    "debug": "Enable debug mode",
+                    "verbose": "Show detailed output",
+                    "timeout": "Operation timeout in seconds"
+                }
+            },
+            "data_points": {
+                "__ltitle__": "Measurement Data",
+                "__lprefix__": ["Array of data point objects", "Each with id, value and label"],
+                "__ldict__": {
+                    "id": "Unique identifier",
+                    "value": "Measurement value",
+                    "label": "Display name"
+                }
+            },
+            "statistics": {
+                "__dtitle__": "Statistical Analysis",
+                "count": "Number of data points",
+                "average": format_stat,
+                "max": format_stat,
+                "min": format_stat
+            }
+        }
+    
+        result = pformat_json(data, comments=comments)
+        print(result)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    { # Complete Feature Demonstration
+      'metadata': { # Document Metadata
+        'title': 'Comprehensive Example', # The title of this example
+        'version': 1.5,
+        'tags': [ # Keywords for categorization
+          'test',
+          'example',
+          'comprehensive',
+        ],
+      },
+      'configuration': { # System Configuration
+        'enabled': True,
+        'options': { # Available Options
+          'debug': False,  # Enable debug mode
+          'verbose': True, # Show detailed output
+          'timeout': 30,   # Operation timeout in seconds
+        },
+      },
+      'data_points': [ # Measurement Data
+        # Array of data point objects
+        # Each with id, value and label
+        {
+          'id': 1,            # Unique identifier
+          'value': 10.5,      # Measurement value
+          'label': 'Point A', # Display name
+        },
+        {
+          'id': 2,            # Unique identifier
+          'value': 20.7,      # Measurement value
+          'label': 'Point B', # Display name
+        },
+        {
+          'id': 3,            # Unique identifier
+          'value': 15.3,      # Measurement value
+          'label': 'Point C', # Display name
+        },
+      ],
+      'statistics': { # Statistical Analysis
+        'count': 3,      # Number of data points
+        'average': 15.5, # Average value: 15.5
+        'max': 20.7,     # Maximum value: 20.7
+        'min': 10.5,     # Minimum value: 10.5
+      },
+    }
+  
+

@@ -1,0 +1,80 @@
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop:
+
+unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop
+========================================================================================
+
+references: :class:`unittest2doc.unittest2doc.Unittest2Doc`
+
+
+docstring of class
+------------------
+
+in this class, we test the decorator ``@Unittest2Doc.stop``
+
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop.setUp:
+
+setUp
+-----
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def setUp(s):
+      print("# this setup function is always called at beginning")
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+    # this setup function is always called at beginning
+  
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop.1:
+
+1
+-
+
+this should be the only test when you use ``Unittest2Doc.generate_docs()``
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_1(s):
+      """ this should be the only test when you use ``Unittest2Doc.generate_docs()`` """
+      pass
+    
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop.tearDown:
+
+tearDown
+--------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def tearDown(s):
+      print("# this tearDown function is always called at end")
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+    # this tearDown function is always called at end
+  
+

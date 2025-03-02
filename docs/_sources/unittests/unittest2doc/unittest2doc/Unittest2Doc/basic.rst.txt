@@ -1,0 +1,702 @@
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic:
+
+unittest2doc.unittest2doc.Unittest2Doc.basic
+========================================================================================
+
+references: :class:`unittest2doc.unittest2doc.Unittest2Doc`
+
+
+docstring of class, new title
+-----------------------------
+
+* this docstring is added to top of the document page
+
+  * we should use ``-`` as the title marker
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.test:
+
+test
+----
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test(s):
+        a = 1
+        b = 2
+        print("# Unittest2Doc is a subclass of unittest.TestCase")
+        print("# we can use all its assertion methods")
+        s.assertEqual(a, 1)
+        s.assertNotEqual(a, b)
+        s.assertIs(a, 1)
+        s.assertIsNot(a, b)
+        s.assertIsNone(None)
+        s.assertIsNotNone(a)
+        s.assertTrue(True)
+        s.assertFalse(False)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+    # Unittest2Doc is a subclass of unittest.TestCase
+    # we can use all its assertion methods
+  
+
+
+group of tests
+--------------
+
+function startswith rst will only provide its docstring to generate docs
+
+we set self.title_marker to '^', and following tests will be grouped under this title
+
+because rst title markers have these priorities:
+
+* `-`
+* `^`
+
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.show_variable:
+
+show_variable
+^^^^^^^^^^^^^
+
+the title marker is `^` (set in previous function rst_test_doc)
+
+here we test the ``Unittest2Doc.v`` method, to display variables
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_show_variable(s):
+        """ the title marker is `^` (set in previous function rst_test_doc)
+    
+            here we test the ``Unittest2Doc.v`` method, to display variables
+        """
+        a = 1
+        b = '2'
+        c = {
+            'normal': 'some data',
+            'secret': 'should be masked',
+            'subsecret': {
+                'good': 1,
+                'bad': 0,
+                'sub': {
+                    'good': 1,
+                    'bad': 0,
+                }
+            }
+        }
+        d = [1,2,3]
+        s.v(['a', 'b', 'c', 'd'], locals(), globals(), mask=[
+            'c.secret',
+            'c.subsecret.bad',
+            'c.subsecret.sub.bad',
+        ])
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+    {
+        'a': 1,
+        'b': '2',
+        'c': {
+            'normal': 'some data',
+            'secret': '**MASKED**:(16)',
+            'subsecret': {
+                'good': 1,
+                'bad': '**MASKED**:(1)',
+                'sub': {
+                    'good': 1,
+                    'bad': '**MASKED**:(1)'
+                }
+            }
+        },
+        'd': [
+            1,
+            2,
+            3
+        ]
+    }
+  
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.add_more_doc_0:
+
+add_more_doc_0
+^^^^^^^^^^^^^^
+
+
+here we close the input block by json setting at first line of docstring
+
+the title marker is still `^` (set in previous function rst_test_doc)
+
+
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_add_more_doc_0(s):
+        """ {"open_input":false}
+    
+            here we close the input block by json setting at first line of docstring
+    
+            the title marker is still `^` (set in previous function rst_test_doc)
+    
+        """
+        pass
+    
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.add_more_doc_1:
+
+add_more_doc_1
+^^^^^^^^^^^^^^
+
+
+here we close the output block by json setting at first line of docstring
+
+the title marker is still `^` (set in previous function rst_test_doc)
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_add_more_doc_1(s):
+        """ {"open_output": false}
+    
+            here we close the output block by json setting at first line of docstring
+    
+            the title marker is still `^` (set in previous function rst_test_doc)
+        """
+        print('here we close the output ')
+    
+
+
+.. collapse:: OUTPUT
+
+  .. code-block:: 
+
+    here we close the output 
+  
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.add_more_doc_2:
+
+add_more_doc_2
+^^^^^^^^^^^^^^
+
+after this, set title level to '-', and the current group is finished
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_add_more_doc_2(s):
+        """ after this, set title level to '-', and the current group is finished
+        """
+        s.title_marker = '-'
+    
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.add_more_doc_3:
+
+add_more_doc_3
+--------------
+
+this test back to top level
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_add_more_doc_3(s):
+        """ this test back to top level
+        """
+        pass
+    
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.doc_string:
+
+doc_string
+^^^^^^^^^^
+
+
+title marker set by above json is only effective in this function
+
+* test list
+
+  * test list indent
+
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_doc_string(s):
+        """ {"title_marker": "^"}
+    
+            title marker set by above json is only effective in this function
+    
+            * test list
+    
+              * test list indent
+    
+        """
+        s.title_marker = '-' # resume title level
+    
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.output_as_json:
+
+output_as_json
+--------------
+
+
+the output is highlighted as `json`
+the title marker here and below are all the default `-`
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_output_as_json(s):
+        """ {"output_highlight": "json"}
+    
+            the output is highlighted as `json`
+            the title marker here and below are all the default `-`
+        """
+        print(json.dumps({"1":1, "2":"2", "3": 3.0, "4":4, "a":[{"1":1, "2":2}, {"3":3, "4":4}]}, indent=2))
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: json
+
+    {
+      "1": 1,
+      "2": "2",
+      "3": 3.0,
+      "4": 4,
+      "a": [
+        {
+          "1": 1,
+          "2": 2
+        },
+        {
+          "3": 3,
+          "4": 4
+        }
+      ]
+    }
+  
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.output_as_yaml:
+
+output_as_yaml
+--------------
+
+
+the output is highlighted as `yaml`
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_output_as_yaml(s):
+        """ {"output_highlight": "yaml"}
+    
+            the output is highlighted as `yaml`
+        """
+        # pprint({1:1, '2':'2', '3': 3.0, '4':4, 'a':[{1:1, 2:2}, {3:3, 4:4}]}, expand_all=True, indent_guides=False)
+        docpprint({1:1, '2':'2', '3': 3.0, '4':4, 'a':[{1:1, 2:2}, {3:3, 4:4}]})
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: yaml
+
+    {
+        1: 1,
+        '2': '2',
+        '3': 3.0,
+        '4': 4,
+        'a': [
+            {
+                1: 1,
+                2: 2
+            },
+            {
+                3: 3,
+                4: 4
+            }
+        ]
+    }
+  
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.output_as_python:
+
+output_as_python
+----------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_output_as_python(s):
+        """ {"output_highlight": "python"}
+        """
+        # print(pformat_json({1:1, '2':'2', '3': 3.0, '4':4, 'a':[{1:1, 2:2}, {3:3, 4:4}]}))
+        docpprint({1:1, '2':'2', '3': 3.0, '4':4, 'a':[{1:1, 2:2}, {3:3, 4:4}]})
+        d = [
+              {
+                'user_id': '9876543210987654321',
+                'system_tags': [
+                  {
+                    'category': {
+                      'id': 'ed',
+                      'name': 'EdTech',
+                    },
+                    'item': {
+                      'id': '998877665544332211',
+                      'name': 'EduTech Platform',
+                    },
+                  },
+                  {
+                    'category': {
+                      'id': 'ac',
+                      'name': 'Academia',
+                    },
+                    'item': {
+                      'id': '112233445566778899',
+                      'name': 'CS101 Course',
+                    },
+                  },
+                ],
+                'thread_id': '1626426375145156611',
+                'created_at': '2023-02-17T03:40:40.000Z',
+                'edit_history': [
+                  '1626426375145156611',
+                ],
+                'metadata': {
+                  'labels': [
+                    {
+                      'start': 64,
+                      'end': 67,
+                    },
+                  ],
+                  'hashtags': [
+                    {
+                      'start': 86,
+                      'end': 91,
+                    },
+                  ],
+                },
+                'geo': {
+                },
+                'id': '1626426375145156611',
+                'lang': 'en',
+                'stats': {
+                  'shares': 331,
+                  'replies': 0,
+                },
+                'references': [
+                  {
+                    'type': 'repost',
+                    'id': '1626173352330002434',
+                  },
+                ],
+                'text': "RT @edu_tech: New online learning platform launched! 🚀 Check out our AI-powered courses #EdTech",
+                '__tablename__': 'social.posts',
+              },
+              {
+                'created_at': '2021-02-08T18:21:13.000Z',
+                'bio': '',
+                'verified': False,
+                'stats': {
+                  'followers': 272,
+                  'following': 253,
+                  'posts': 6543,
+                  'listed': 4,
+                },
+                'username': 'AcademiaNews',
+                '__tablename__': 'social.users',
+              },
+            ]
+        # print(pformat_json(d, indent=4))
+        docpprint(d)
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: python
+
+    {
+        1: 1,
+        '2': '2',
+        '3': 3.0,
+        '4': 4,
+        'a': [
+            {
+                1: 1,
+                2: 2
+            },
+            {
+                3: 3,
+                4: 4
+            }
+        ]
+    }
+    [
+        {
+            'user_id': '9876543210987654321',
+            'system_tags': [
+                {
+                    'category': {
+                        'id': 'ed',
+                        'name': 'EdTech'
+                    },
+                    'item': {
+                        'id': '998877665544332211',
+                        'name': 'EduTech Platform'
+                    }
+                },
+                {
+                    'category': {
+                        'id': 'ac',
+                        'name': 'Academia'
+                    },
+                    'item': {
+                        'id': '112233445566778899',
+                        'name': 'CS101 Course'
+                    }
+                }
+            ],
+            'thread_id': '1626426375145156611',
+            'created_at': '2023-02-17T03:40:40.000Z',
+            'edit_history': [
+                '1626426375145156611'
+            ],
+            'metadata': {
+                'labels': [
+                    {
+                        'start': 64,
+                        'end': 67
+                    }
+                ],
+                'hashtags': [
+                    {
+                        'start': 86,
+                        'end': 91
+                    }
+                ]
+            },
+            'geo': {},
+            'id': '1626426375145156611',
+            'lang': 'en',
+            'stats': {
+                'shares': 331,
+                'replies': 0
+            },
+            'references': [
+                {
+                    'type': 'repost',
+                    'id': '1626173352330002434'
+                }
+            ],
+            'text': 'RT @edu_tech: New online learning platform launched! 🚀 Check out our AI-powered courses #EdTech',
+            '__tablename__': 'social.posts'
+        },
+        {
+            'created_at': '2021-02-08T18:21:13.000Z',
+            'bio': '',
+            'verified': False,
+            'stats': {
+                'followers': 272,
+                'following': 253,
+                'posts': 6543,
+                'listed': 4
+            },
+            'username': 'AcademiaNews',
+            '__tablename__': 'social.users'
+        }
+    ]
+  
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.with_exception:
+
+with_exception
+--------------
+
+test with exception
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    @Unittest2Doc.expected_failure
+    def test_with_exception(s):
+        """ test with exception """
+        raise Exception('expected exception')
+    
+
+
+.. collapse:: ERROR
+  :open:
+
+  .. code-block:: 
+
+    Traceback (most recent call last):
+      File "/home/random/workspaces/fmetadata/tools/unittest2doc/src/unittest2doc/unittest2doc.py", line 881, in generate_docs
+        func()
+      File "/home/random/workspaces/fmetadata/tools/unittest2doc/tests/test_unittest2doc.py", line 214, in test_with_exception
+        raise Exception('expected exception')
+    Exception: expected exception
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.add_foldable_output:
+
+add_foldable_output
+-------------------
+
+add extra foldable text at end of the doc page
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_add_foldable_output(s):
+      """ add extra foldable text at end of the doc page
+      """
+      print("# add some output")
+      s.add_foldable_output(
+        {
+          'name': 'some python code',
+          'highlight': 'python',
+          'output':textwrap.dedent('''
+              # some code ...
+              def func(*args, **kwargs):
+                pass
+            ''')
+        } 
+      )
+    
+      # some nested data
+      data = {
+        'a': 1,
+        'b': 2,
+        'c': 3,
+        'd': {
+          'a': 1,
+          'b': 2,
+          'c': 3,
+        }
+      }
+      print("# add some output")
+    
+      s.add_foldable_output(
+        {
+          'name': 'some yaml data',
+          'highlight': 'yaml',
+          'output': yaml.dump(data, indent=2)
+        } 
+      )
+      print("# add some output")
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+    # add some output
+    # add some output
+    # add some output
+  
+
+
+.. collapse:: some python code
+
+  .. code-block:: python
+
+    
+    # some code ...
+    def func(*args, **kwargs):
+      pass
+    
+
+
+.. collapse:: some yaml data
+
+  .. code-block:: yaml
+
+    a: 1
+    b: 2
+    c: 3
+    d:
+      a: 1
+      b: 2
+      c: 3
+    
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.basic.last:
+
+last
+----
+
+we use decorator above, make sure that this test is the last one
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def test_last(s):
+      """ we use decorator above, make sure that this test is the last one """
+      pass
+    
+

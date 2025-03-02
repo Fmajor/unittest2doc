@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>unittest2doc.unittest2doc &#8212; unittest2doc  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css?v=f9ae72be" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2c7d14eb" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/underscore.js?v=e1a751a7"></script>
+    <script src="../_static/underscore_rename.js?v=cd124915"></script>
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/underscore.js?v=e1a751a7"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="unittest2doc.formatter" href="unittest2doc.formatter.html" />
+    <link rel="prev" title="src" href="../src.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="unittest2doc.formatter.html" title="unittest2doc.formatter"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../src.html" title="src"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">unittest2doc  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../catalogue.html" >API Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../src.html" accesskey="U">src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">unittest2doc.unittest2doc</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-unittest2doc.unittest2doc">
+<span id="unittest2doc-unittest2doc"></span><h1>unittest2doc.unittest2doc<a class="headerlink" href="#module-unittest2doc.unittest2doc" title="Link to this heading">¶</a></h1>
+<p><strong>Classes:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.FLog" title="unittest2doc.unittest2doc.FLog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FLog</span></code></a>([fargs, fkwargs, do_print, ...])</p></td>
+<td><p>Record the function and its output, used to generate document for unittest functions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc" title="unittest2doc.unittest2doc.Unittest2Doc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unittest2Doc</span></code></a>(*args[, name, ref, ...])</p></td>
+<td><p>wrapper unittests and make documentation pages for sphinx</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.docpprint" title="unittest2doc.unittest2doc.docpprint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">docpprint</span></code></a>(data, **kwargs)</p></td>
+<td><p>Pretty print data for documentation purposes</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.FLog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">FLog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fkwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print_input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_max_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.FLog" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Record the function and its output, used to generate document for unittest functions</p>
+<p><em>Usage</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># in Unittest2Doc.setUp</span>
+<span class="n">s</span><span class="o">.</span><span class="n">flog</span> <span class="o">=</span> <span class="n">FLog</span><span class="p">(</span><span class="n">do_print</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">input_prefix</span><span class="o">=</span><span class="s1">&#39;# call=&gt; &#39;</span><span class="p">,</span> <span class="n">input_suffix</span><span class="o">=</span><span class="s1">&#39; ==&gt;&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">func</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">flog</span><span class="o">.</span><span class="n">func</span>
+
+<span class="c1"># in test functions</span>
+<span class="n">s</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">somefunc</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">somefunc</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[],</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{})</span>
+<span class="n">s</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">frun</span><span class="p">(</span><span class="n">somefunc</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">args2</span><span class="p">,</span> <span class="n">args3</span><span class="p">,</span> <span class="n">kwarg0</span><span class="o">=...</span><span class="p">,</span> <span class="n">kwargs1</span><span class="o">=...</span><span class="p">,</span> <span class="n">kwargs2</span><span class="o">=...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.FLog.__init__" title="unittest2doc.unittest2doc.FLog.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([fargs, fkwargs, do_print, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.FLog.frun" title="unittest2doc.unittest2doc.FLog.frun"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frun</span></code></a>(func, *args, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.FLog.func" title="unittest2doc.unittest2doc.FLog.func"><code class="xref py py-obj docutils literal notranslate"><span class="pre">func</span></code></a>(func, *[, args, kwargs, fargs, ...])</p></td>
+<td><p>run function with give args and kwargs, return formated result</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.FLog.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fkwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print_input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_max_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">80</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.FLog.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.FLog.frun">
+<span class="sig-name descname"><span class="pre">frun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.FLog.frun" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.FLog.func">
+<span class="sig-name descname"><span class="pre">func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">tuple</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fkwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print_input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_print_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_max_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#unittest2doc.unittest2doc.FLog.func" title="Link to this definition">¶</a></dt>
+<dd><p>run function with give args and kwargs, return formated result</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>list</em><em> | </em><em>tuple</em><em> | </em><em>None</em>) – see below</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em><em> | </em><em>None</em>) – together with <code class="docutils literal notranslate"><span class="pre">args</span></code>, we call the function like <code class="docutils literal notranslate"><span class="pre">func(*args,</span> <span class="pre">**kwargs)</span></code></p></li>
+<li><p><strong>fargs</strong> (<em>dict</em><em>[</em><em>Callable</em><em>] </em><em>| </em><em>None</em>) – function to reformat args befreo we print it in the <cite>input</cite> retion section, see below</p></li>
+<li><p><strong>fkwargs</strong> (<em>dict</em><em> | </em><em>None</em>) – together with <code class="docutils literal notranslate"><span class="pre">fargs</span></code>, we preprocess (reformat) the input
+and then print them in the function input part, see the <code class="docutils literal notranslate"><span class="pre">Returns</span></code> for details</p></li>
+<li><p><strong>print</strong> – if true, will also print the <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> results</p></li>
+<li><p><strong>input_prefix</strong> (<em>str</em><em> | </em><em>None</em>) – add prefix for the <cite>input</cite> result</p></li>
+<li><p><strong>input_suffix</strong> (<em>str</em><em> | </em><em>None</em>) – add suffix for the <cite>input</cite> result</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>dict with the keys <code class="docutils literal notranslate"><span class="pre">output</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">output</span></code> is the return value from the func call
+The <code class="docutils literal notranslate"><span class="pre">intput</span></code> is like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">key0</span><span class="o">=</span><span class="n">value0</span><span class="p">,</span> <span class="n">key1</span><span class="o">=</span><span class="n">value1</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where the <code class="docutils literal notranslate"><span class="pre">key&lt;n&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">value&lt;n&gt;</span></code> are from <code class="docutils literal notranslate"><span class="pre">kwargs</span></code></p>
+<p>if fargs and fkwargs are not None, we preprocess the input data before we print them, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span>
+    <span class="n">fargs</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">fargs</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="o">...</span><span class="p">,</span> <span class="n">fargs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">](</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+    <span class="n">key0</span><span class="o">=</span><span class="n">fkwargs</span><span class="p">[</span><span class="n">key0</span><span class="p">](</span><span class="n">value0</span><span class="p">),</span> <span class="n">key1</span><span class="o">=</span><span class="n">fkwargs</span><span class="p">[</span><span class="n">key1</span><span class="p">](</span><span class="n">value1</span><span class="p">),</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">Unittest2Doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_test_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_highlight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>wrapper unittests and make documentation pages for sphinx</p>
+<p><strong>Docstring formats in the unittest functions</strong>:</p>
+<ul class="simple">
+<li><p>the docstring of the custom Unittest2Doc class will be added to beginning of the doc page</p></li>
+<li><p>the first line of the docstring can be used as config section, e.g.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">{&quot;open_input&quot;:false}</span></code> to close the input by default</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{&quot;title_marker&quot;:</span> <span class="pre">&quot;^&quot;}</span></code> to leveldown this test (change default title marker to <code class="docutils literal notranslate"><span class="pre">^</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{&quot;title_marker&quot;:</span> <span class="pre">&quot;-&quot;}</span></code> to levelup this test (change default title marker to <code class="docutils literal notranslate"><span class="pre">-</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{&quot;output_highlight&quot;:</span> <span class="pre">&quot;python&quot;}</span></code>, <code class="docutils literal notranslate"><span class="pre">{&quot;output_highlight&quot;:</span> <span class="pre">&quot;json&quot;}</span></code></p></li>
+</ul>
+</li>
+<li><p>functions used</p>
+<ul>
+<li><p>we only run functions that name startswith <code class="docutils literal notranslate"><span class="pre">test</span></code></p></li>
+<li><p>we only use their docstring for functions that name startswith <code class="docutils literal notranslate"><span class="pre">rst</span></code></p></li>
+<li><p>setUp is always called at beginning of the test and tearDown is always called at end</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">ThisTest</span><span class="p">(</span>
+  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;unittest2doc.unittest2doc.Unittest2Doc.basic&#39;</span><span class="p">,</span>   <span class="c1"># required</span>
+  <span class="n">ref</span><span class="o">=</span><span class="s1">&#39;:class:`unittest2doc.unittest2doc.Unittest2Doc`&#39;</span><span class="p">,</span> <span class="c1"># optional</span>
+  <span class="n">doc_root</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;sphinx-docs/source/unittests&#39;</span><span class="p">,</span> <span class="c1"># required</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>see <a class="reference internal" href="../unittests/unittest2doc/unittest2doc/Unittest2Doc/index.html"><span class="doc">unittest2doc.unittest2doc.Unittest2Doc</span></a> for more detailed examples</p>
+<p><strong>Methods:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.__init__" title="unittest2doc.unittest2doc.Unittest2Doc.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args[, name, ref, update_index, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output" title="unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_foldable_output</span></code></a>(each)</p></td>
+<td><p>add extra foldabel text at end of the doc page</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.expected_failure" title="unittest2doc.unittest2doc.Unittest2Doc.expected_failure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expected_failure</span></code></a>(func)</p></td>
+<td><p>use &#64;Unittest2Doc.expected_failure to mark a test as expected to fail</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.generate_docs" title="unittest2doc.unittest2doc.Unittest2Doc.generate_docs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_docs</span></code></a>()</p></td>
+<td><p>do unittest and generate docs</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.only" title="unittest2doc.unittest2doc.Unittest2Doc.only"><code class="xref py py-obj docutils literal notranslate"><span class="pre">only</span></code></a>(func)</p></td>
+<td><p>use &#64;Unittest2Doc.only to only run some unittest</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.skip" title="unittest2doc.unittest2doc.Unittest2Doc.skip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">skip</span></code></a>(func)</p></td>
+<td><p>use &#64;Unittest2Doc.skipped to skip some unittest</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.stop" title="unittest2doc.unittest2doc.Unittest2Doc.stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code></a>(func)</p></td>
+<td><p>use &#64;Unittest2Doc.stopped to stop before this function</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.stop_after" title="unittest2doc.unittest2doc.Unittest2Doc.stop_after"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_after</span></code></a>(func)</p></td>
+<td><p>use &#64;Unittest2Doc.stop_after to stop unittest after this function</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.v" title="unittest2doc.unittest2doc.Unittest2Doc.v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v</span></code></a>(toshow, l, g[, mask, doprint])</p></td>
+<td><p>pretty print varialbes in toshow list</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_test_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_highlight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the package, e.g., name=’lib.utils’</p></li>
+<li><p><strong>ref</strong> (<em>str</em>) – if set, will add <cite>references: {ref}</cite> at beginning. ref should be a rst link in sphinx</p></li>
+<li><p><strong>doc_root</strong> – root folder of the unittests docs folder.
+Usually it should be <cite>&lt;package-folder&gt;/docs/source/unittests</cite></p></li>
+<li><p><strong>update_index</strong> – update all parent index files</p></li>
+<li><p><strong>output_highlight</strong> – the highlight language for the output section</p></li>
+<li><p><strong>open_input</strong> – open input section</p></li>
+<li><p><strong>open_output</strong> – open output section</p></li>
+<li><p><strong>no_test_prefix</strong> – remove the <code class="docutils literal notranslate"><span class="pre">test_</span></code> function name prefix in the doc page</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output">
+<span class="sig-name descname"><span class="pre">add_foldable_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">each</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output" title="Link to this definition">¶</a></dt>
+<dd><p>add extra foldabel text at end of the doc page</p>
+<p>params: name, output, highlight, open</p>
+<p><strong>usage</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_foldable_output</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;structures and more examples&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;highlight&quot;</span><span class="p">:</span> <span class="s1">&#39;python&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;output&#39;</span><span class="p">:</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">      # some code ...</span>
+<span class="s1">      def func(*args, **kwargs):</span>
+<span class="s1">        pass</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.expected_failure">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expected_failure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.expected_failure" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;Unittest2Doc.expected_failure to mark a test as expected to fail</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.generate_docs">
+<span class="sig-name descname"><span class="pre">generate_docs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.generate_docs" title="Link to this definition">¶</a></dt>
+<dd><p>do unittest and generate docs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.only">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.only" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;Unittest2Doc.only to only run some unittest</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.skip">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.skip" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;Unittest2Doc.skipped to skip some unittest</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.stop">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.stop" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;Unittest2Doc.stopped to stop before this function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.stop_after">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.stop_after" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;Unittest2Doc.stop_after to stop unittest after this function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.v">
+<span class="sig-name descname"><span class="pre">v</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toshow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doprint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.v" title="Link to this definition">¶</a></dt>
+<dd><p>pretty print varialbes in toshow list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>toshow</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – the variables to be shown</p></li>
+<li><p><strong>l</strong> (<em>dict</em>) – should input <code class="docutils literal notranslate"><span class="pre">locals()</span></code></p></li>
+<li><p><strong>g</strong> (<em>dict</em>) – should input <code class="docutils literal notranslate"><span class="pre">globals()</span></code></p></li>
+<li><p><strong>mask</strong> (<em>list</em>) – the variables that contain secret values, should be masked</p></li>
+<li><p><strong>doprint</strong> (<em>bool</em>) – if True, do pprint</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Usages</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># in Unittest2Doc test functions</span>
+<span class="n">s</span><span class="o">.</span><span class="n">v</span><span class="p">([</span><span class="s1">&#39;var0&#39;</span><span class="p">,</span> <span class="s1">&#39;var1&#39;</span><span class="p">],</span> <span class="nb">locals</span><span class="p">(),</span> <span class="nb">globals</span><span class="p">(),</span> <span class="n">mask</span><span class="o">=</span><span class="p">[])</span>
+
+<span class="c1"># mask some secrets</span>
+<span class="n">s</span><span class="o">.</span><span class="n">v</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="nb">locals</span><span class="p">(),</span> <span class="nb">globals</span><span class="p">(),</span> <span class="n">mask</span><span class="o">=</span><span class="p">[</span>
+    <span class="s1">&#39;c.secret&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;c.subsecret.bad&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;c.subsecret.sub.bad&#39;</span><span class="p">,</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.docpprint">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">docpprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.docpprint" title="Link to this definition">¶</a></dt>
+<dd><p>Pretty print data for documentation purposes</p>
+<p>A wrapper around rich.pretty.pprint with default settings optimized
+for documentation output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>any</em>) – The data to pretty print</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments passed to rich.pretty.pprint</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">unittest2doc.unittest2doc</a><ul>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.FLog"><code class="docutils literal notranslate"><span class="pre">FLog</span></code></a><ul>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.FLog.__init__"><code class="docutils literal notranslate"><span class="pre">FLog.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.FLog.frun"><code class="docutils literal notranslate"><span class="pre">FLog.frun()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.FLog.func"><code class="docutils literal notranslate"><span class="pre">FLog.func()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc</span></code></a><ul>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.__init__"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.add_foldable_output()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.expected_failure"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.expected_failure()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.generate_docs"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.generate_docs()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.only"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.only()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.skip"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.skip()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.stop"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.stop()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.stop_after"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.stop_after()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.v"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.v()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.docpprint"><code class="docutils literal notranslate"><span class="pre">docpprint()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../catalogue.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../catalogue.html#unittests">Unittests</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/src/unittest2doc.unittest2doc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="unittest2doc.formatter.html" title="unittest2doc.formatter"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../src.html" title="src"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">unittest2doc  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../catalogue.html" >API Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../src.html" >src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">unittest2doc.unittest2doc</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fmajor.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
