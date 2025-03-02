@@ -99,22 +99,34 @@
 </pre></div>
 </div>
 </details></section>
-<section id="only">
-<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-only-only"></span><h2>only<a class="headerlink" href="#only" title="Link to this heading">¶</a></h2>
-<p>this should be the only test use you use <code class="docutils literal notranslate"><span class="pre">Unittest2Doc.generate_docs()</span></code></p>
+<section id="only-1">
+<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-only-only-1"></span><h2>only_1<a class="headerlink" href="#only-1" title="Link to this heading">¶</a></h2>
+<p>when you use <code class="docutils literal notranslate"><span class="pre">Unittest2Doc.generate_docs()</span></code>, this test will be executed</p>
 <p>Note that if you use <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">...</span></code> framework, all tests will be executed</p>
 <p>Thus the <cite>only</cite> decorator should only be used during your development and testing,
 e.g., you just want to test one function and want to skip others for speed</p>
 <details class="summary-input" open>
-<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@Unittest2Doc</span><span class="o">.</span><span class="n">only</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_only</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot; this should be the only test use you use ``Unittest2Doc.generate_docs()``</span>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@unittest2doc</span><span class="o">.</span><span class="n">only</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_only_1</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; when you use ``Unittest2Doc.generate_docs()``, this test will be executed</span>
 
 <span class="sd">      Note that if you use ``python -m unittest ...`` framework, all tests will be executed</span>
 
 <span class="sd">      Thus the `only` decorator should only be used during your development and testing,</span>
 <span class="sd">      e.g., you just want to test one function and want to skip others for speed</span>
 
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">pass</span>
+</pre></div>
+</div>
+</details></section>
+<section id="only-2">
+<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-only-only-2"></span><h2>only_2<a class="headerlink" href="#only-2" title="Link to this heading">¶</a></h2>
+<p>when you use <code class="docutils literal notranslate"><span class="pre">Unittest2Doc.generate_docs()</span></code>, this test will be executed</p>
+<details class="summary-input" open>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@unittest2doc</span><span class="o">.</span><span class="n">only</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_only_2</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; when you use ``Unittest2Doc.generate_docs()``, this test will be executed</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="k">pass</span>
 </pre></div>
@@ -146,7 +158,8 @@ e.g., you just want to test one function and want to skip others for speed</p>
 <li><a class="reference internal" href="#">unittest2doc.unittest2doc.Unittest2Doc.test_decorator_only</a><ul>
 <li><a class="reference internal" href="#docstring-of-class">docstring of class</a></li>
 <li><a class="reference internal" href="#setup">setUp</a></li>
-<li><a class="reference internal" href="#only">only</a></li>
+<li><a class="reference internal" href="#only-1">only_1</a></li>
+<li><a class="reference internal" href="#only-2">only_2</a></li>
 <li><a class="reference internal" href="#teardown">tearDown</a></li>
 </ul>
 </li>

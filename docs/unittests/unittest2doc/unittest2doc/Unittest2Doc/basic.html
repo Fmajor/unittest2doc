@@ -86,11 +86,8 @@
 <section id="docstring-of-class-new-title">
 <h2>docstring of class, new title<a class="headerlink" href="#docstring-of-class-new-title" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>this docstring is added to top of the document page</p>
-<ul>
-<li><p>we should use <code class="docutils literal notranslate"><span class="pre">-</span></code> as the title marker</p></li>
-</ul>
-</li>
+<li><p>Sphinx have already use “=” as title marker</p></li>
+<li><p>to form a subtitle, we should use <code class="docutils literal notranslate"><span class="pre">-</span></code> as the title marker</p></li>
 </ul>
 </section>
 <section id="test">
@@ -99,7 +96,7 @@
 <summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# Unittest2Doc is a subclass of unittest.TestCase&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# this is a normal unittest.TestCase&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# we can use all its assertion methods&quot;</span><span class="p">)</span>
     <span class="n">s</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">s</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
@@ -112,7 +109,7 @@
 </pre></div>
 </div>
 </details><details class="summary-output" open>
-<summary>OUTPUT</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unittest2Doc is a subclass of unittest.TestCase</span>
+<summary>OUTPUT</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is a normal unittest.TestCase</span>
 <span class="c1"># we can use all its assertion methods</span>
 </pre></div>
 </div>
@@ -120,11 +117,12 @@
 <section id="group-of-tests">
 <h2>group of tests<a class="headerlink" href="#group-of-tests" title="Link to this heading">¶</a></h2>
 <p>function startswith rst will only provide its docstring to generate docs</p>
-<p>we set self.title_marker to ‘^’, and following tests will be grouped under this title</p>
+<p>we set the <code class="docutils literal notranslate"><span class="pre">title_marker</span></code> config to ‘^’, and following tests will be grouped under this title</p>
 <p>because rst title markers have these priorities:</p>
 <ul class="simple">
-<li><p><cite>-</cite></p></li>
-<li><p><cite>^</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span></code> (already used by upper Sphinx structure)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></li>
 </ul>
 <section id="show-variable">
 <span id="unittests-unittest2doc-unittest2doc-unittest2doc-basic-show-variable"></span><h3>show_variable<a class="headerlink" href="#show-variable" title="Link to this heading">¶</a></h3>
@@ -151,7 +149,7 @@
         <span class="p">}</span>
     <span class="p">}</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">v</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="nb">locals</span><span class="p">(),</span> <span class="nb">globals</span><span class="p">(),</span> <span class="n">mask</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">unittest2doc</span><span class="o">.</span><span class="n">v</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="nb">locals</span><span class="p">(),</span> <span class="nb">globals</span><span class="p">(),</span> <span class="n">mask</span><span class="o">=</span><span class="p">[</span>
         <span class="s1">&#39;c.secret&#39;</span><span class="p">,</span>
         <span class="s1">&#39;c.subsecret.bad&#39;</span><span class="p">,</span>
         <span class="s1">&#39;c.subsecret.sub.bad&#39;</span><span class="p">,</span>
@@ -227,57 +225,53 @@
 <summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_add_more_doc_2</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; after this, set title level to &#39;-&#39;, and the current group is finished</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">title_marker</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+    <span class="n">unittest2doc</span><span class="o">.</span><span class="n">update_config</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">title_marker</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="c1"># set title level to &#39;-&#39; after this test</span>
 </pre></div>
 </div>
 </details></section>
 </section>
 <section id="add-more-doc-3">
 <span id="unittests-unittest2doc-unittest2doc-unittest2doc-basic-add-more-doc-3"></span><h2>add_more_doc_3<a class="headerlink" href="#add-more-doc-3" title="Link to this heading">¶</a></h2>
-<p>this test back to top level</p>
+<p>this test back to top level (because title_marker is set to ‘-’ at last function)</p>
 <details class="summary-input" open>
 <summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_add_more_doc_3</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; this test back to top level</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; this test back to top level (because title_marker is set to &#39;-&#39; at last function)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
-</details><section id="doc-string">
-<span id="unittests-unittest2doc-unittest2doc-unittest2doc-basic-doc-string"></span><h3>doc_string<a class="headerlink" href="#doc-string" title="Link to this heading">¶</a></h3>
+</details><section id="title-marker-for-single-test">
+<span id="unittests-unittest2doc-unittest2doc-unittest2doc-basic-title-marker-for-single-test"></span><h3>title_marker_for_single_test<a class="headerlink" href="#title-marker-for-single-test" title="Link to this heading">¶</a></h3>
 <p>title marker set by above json is only effective in this function</p>
-<ul class="simple">
-<li><p>test list</p>
-<ul>
-<li><p>test list indent</p></li>
-</ul>
-</li>
-</ul>
 <details class="summary-input" open>
-<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_doc_string</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_title_marker_for_single_test</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;title_marker&quot;: &quot;^&quot;}</span>
 
 <span class="sd">        title marker set by above json is only effective in this function</span>
 
-<span class="sd">        * test list</span>
-
-<span class="sd">          * test list indent</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">title_marker</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span> <span class="c1"># resume title level</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# the title_marker ^ is only used in this function, and will not affect other tests&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# after this test, the title_marker is back to previous &#39;-&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-output" open>
+<summary>OUTPUT</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the title_marker ^ is only used in this function, and will not affect other tests</span>
+<span class="c1"># after this test, the title_marker is back to previous &#39;-&#39;</span>
 </pre></div>
 </div>
 </details></section>
 </section>
 <section id="output-as-json">
 <span id="unittests-unittest2doc-unittest2doc-unittest2doc-basic-output-as-json"></span><h2>output_as_json<a class="headerlink" href="#output-as-json" title="Link to this heading">¶</a></h2>
-<p>the output is highlighted as <cite>json</cite>
-the title marker here and below are all the default <cite>-</cite></p>
+<p>the output is highlighted as <code class="docutils literal notranslate"><span class="pre">json</span></code></p>
+<p>the title marker here and below are all the default <code class="docutils literal notranslate"><span class="pre">-</span></code></p>
 <details class="summary-input" open>
 <summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_output_as_json</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;json&quot;}</span>
 
-<span class="sd">        the output is highlighted as `json`</span>
-<span class="sd">        the title marker here and below are all the default `-`</span>
+<span class="sd">        the output is highlighted as ``json``</span>
+
+<span class="sd">        the title marker here and below are all the default ``-``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;1&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">:[{</span><span class="s2">&quot;1&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;3&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">}]},</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
@@ -304,12 +298,12 @@ the title marker here and below are all the default <cite>-</cite></p>
 </details></section>
 <section id="output-as-yaml">
 <span id="unittests-unittest2doc-unittest2doc-unittest2doc-basic-output-as-yaml"></span><h2>output_as_yaml<a class="headerlink" href="#output-as-yaml" title="Link to this heading">¶</a></h2>
-<p>the output is highlighted as <cite>yaml</cite></p>
+<p>the output is highlighted as <code class="docutils literal notranslate"><span class="pre">yaml</span></code></p>
 <details class="summary-input" open>
 <summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_output_as_yaml</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_highlight&quot;: &quot;yaml&quot;}</span>
 
-<span class="sd">        the output is highlighted as `yaml`</span>
+<span class="sd">        the output is highlighted as ``yaml``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># pprint({1:1, &#39;2&#39;:&#39;2&#39;, &#39;3&#39;: 3.0, &#39;4&#39;:4, &#39;a&#39;:[{1:1, 2:2}, {3:3, 4:4}]}, expand_all=True, indent_guides=False)</span>
     <span class="n">docpprint</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:[{</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">4</span><span class="p">}]})</span>
@@ -343,82 +337,16 @@ the title marker here and below are all the default <cite>-</cite></p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># print(pformat_json({1:1, &#39;2&#39;:&#39;2&#39;, &#39;3&#39;: 3.0, &#39;4&#39;:4, &#39;a&#39;:[{1:1, 2:2}, {3:3, 4:4}]}))</span>
     <span class="n">docpprint</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:[{</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">4</span><span class="p">}]})</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">[</span>
           <span class="p">{</span>
-            <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9876543210987654321&#39;</span><span class="p">,</span>
             <span class="s1">&#39;system_tags&#39;</span><span class="p">:</span> <span class="p">[</span>
-              <span class="p">{</span>
-                <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="p">{</span>
-                  <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;ed&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;EdTech&#39;</span><span class="p">,</span>
-                <span class="p">},</span>
-                <span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="p">{</span>
-                  <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;998877665544332211&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;EduTech Platform&#39;</span><span class="p">,</span>
-                <span class="p">},</span>
-              <span class="p">},</span>
-              <span class="p">{</span>
-                <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="p">{</span>
-                  <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;ac&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Academia&#39;</span><span class="p">,</span>
-                <span class="p">},</span>
-                <span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="p">{</span>
-                  <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;112233445566778899&#39;</span><span class="p">,</span>
-                  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;CS101 Course&#39;</span><span class="p">,</span>
-                <span class="p">},</span>
-              <span class="p">},</span>
+              <span class="n">OrderedDict</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]),</span>
             <span class="p">],</span>
-            <span class="s1">&#39;thread_id&#39;</span><span class="p">:</span> <span class="s1">&#39;1626426375145156611&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2023-02-17T03:40:40.000Z&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;edit_history&#39;</span><span class="p">:</span> <span class="p">[</span>
-              <span class="s1">&#39;1626426375145156611&#39;</span><span class="p">,</span>
-            <span class="p">],</span>
-            <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="p">{</span>
-              <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                  <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
-                  <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="mi">67</span><span class="p">,</span>
-                <span class="p">},</span>
-              <span class="p">],</span>
-              <span class="s1">&#39;hashtags&#39;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                  <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="mi">86</span><span class="p">,</span>
-                  <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="mi">91</span><span class="p">,</span>
-                <span class="p">},</span>
-              <span class="p">],</span>
-            <span class="p">},</span>
-            <span class="s1">&#39;geo&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="p">},</span>
-            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1626426375145156611&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;lang&#39;</span><span class="p">:</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;stats&#39;</span><span class="p">:</span> <span class="p">{</span>
-              <span class="s1">&#39;shares&#39;</span><span class="p">:</span> <span class="mi">331</span><span class="p">,</span>
-              <span class="s1">&#39;replies&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="p">},</span>
-            <span class="s1">&#39;references&#39;</span><span class="p">:</span> <span class="p">[</span>
-              <span class="p">{</span>
-                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;repost&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1626173352330002434&#39;</span><span class="p">,</span>
-              <span class="p">},</span>
-            <span class="p">],</span>
-            <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s2">&quot;RT @edu_tech: New online learning platform launched! 🚀 Check out our AI-powered courses #EdTech&quot;</span><span class="p">,</span>
-            <span class="s1">&#39;__tablename__&#39;</span><span class="p">:</span> <span class="s1">&#39;social.posts&#39;</span><span class="p">,</span>
-          <span class="p">},</span>
-          <span class="p">{</span>
-            <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-02-08T18:21:13.000Z&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;bio&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;verified&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="s1">&#39;stats&#39;</span><span class="p">:</span> <span class="p">{</span>
-              <span class="s1">&#39;followers&#39;</span><span class="p">:</span> <span class="mi">272</span><span class="p">,</span>
-              <span class="s1">&#39;following&#39;</span><span class="p">:</span> <span class="mi">253</span><span class="p">,</span>
-              <span class="s1">&#39;posts&#39;</span><span class="p">:</span> <span class="mi">6543</span><span class="p">,</span>
-              <span class="s1">&#39;listed&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-            <span class="p">},</span>
-            <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;AcademiaNews&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;__tablename__&#39;</span><span class="p">:</span> <span class="s1">&#39;social.users&#39;</span><span class="p">,</span>
-          <span class="p">},</span>
+            <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+          <span class="p">}</span>
         <span class="p">]</span>
-    <span class="c1"># print(pformat_json(d, indent=4))</span>
     <span class="n">docpprint</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -441,76 +369,10 @@ the title marker here and below are all the default <cite>-</cite></p>
 <span class="p">}</span>
 <span class="p">[</span>
     <span class="p">{</span>
-        <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="s1">&#39;9876543210987654321&#39;</span><span class="p">,</span>
         <span class="s1">&#39;system_tags&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;ed&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;EdTech&#39;</span>
-                <span class="p">},</span>
-                <span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;998877665544332211&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;EduTech Platform&#39;</span>
-                <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;ac&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Academia&#39;</span>
-                <span class="p">},</span>
-                <span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;112233445566778899&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;CS101 Course&#39;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
+            <span class="n">OrderedDict</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
         <span class="p">],</span>
-        <span class="s1">&#39;thread_id&#39;</span><span class="p">:</span> <span class="s1">&#39;1626426375145156611&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2023-02-17T03:40:40.000Z&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;edit_history&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s1">&#39;1626426375145156611&#39;</span>
-        <span class="p">],</span>
-        <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
-                    <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="mi">67</span>
-                <span class="p">}</span>
-            <span class="p">],</span>
-            <span class="s1">&#39;hashtags&#39;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                    <span class="s1">&#39;start&#39;</span><span class="p">:</span> <span class="mi">86</span><span class="p">,</span>
-                    <span class="s1">&#39;end&#39;</span><span class="p">:</span> <span class="mi">91</span>
-                <span class="p">}</span>
-            <span class="p">]</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;geo&#39;</span><span class="p">:</span> <span class="p">{},</span>
-        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1626426375145156611&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;lang&#39;</span><span class="p">:</span> <span class="s1">&#39;en&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;stats&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;shares&#39;</span><span class="p">:</span> <span class="mi">331</span><span class="p">,</span>
-            <span class="s1">&#39;replies&#39;</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;references&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;repost&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;1626173352330002434&#39;</span>
-            <span class="p">}</span>
-        <span class="p">],</span>
-        <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="s1">&#39;RT @edu_tech: New online learning platform launched! 🚀 Check out our AI-powered courses #EdTech&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__tablename__&#39;</span><span class="p">:</span> <span class="s1">&#39;social.posts&#39;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="s1">&#39;created_at&#39;</span><span class="p">:</span> <span class="s1">&#39;2021-02-08T18:21:13.000Z&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;bio&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;verified&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;stats&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;followers&#39;</span><span class="p">:</span> <span class="mi">272</span><span class="p">,</span>
-            <span class="s1">&#39;following&#39;</span><span class="p">:</span> <span class="mi">253</span><span class="p">,</span>
-            <span class="s1">&#39;posts&#39;</span><span class="p">:</span> <span class="mi">6543</span><span class="p">,</span>
-            <span class="s1">&#39;listed&#39;</span><span class="p">:</span> <span class="mi">4</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;AcademiaNews&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__tablename__&#39;</span><span class="p">:</span> <span class="s1">&#39;social.users&#39;</span>
+        <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">596234</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">]</span>
 </pre></div>
@@ -518,19 +380,22 @@ the title marker here and below are all the default <cite>-</cite></p>
 </details></section>
 <section id="with-exception">
 <span id="unittests-unittest2doc-unittest2doc-unittest2doc-basic-with-exception"></span><h2>with_exception<a class="headerlink" href="#with-exception" title="Link to this heading">¶</a></h2>
-<p>test with exception</p>
+<p>test with exception, the output string will be processed by <code class="docutils literal notranslate"><span class="pre">no_home_folder</span></code> processor defined below</p>
 <details class="summary-input" open>
-<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@Unittest2Doc</span><span class="o">.</span><span class="n">expected_failure</span>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@unittest2doc</span><span class="o">.</span><span class="n">expected_failure</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">test_with_exception</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; test with exception &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; {&quot;output_processors&quot;: [&quot;no_home_folder&quot;]}</span>
+
+<span class="sd">        test with exception, the output string will be processed by ``no_home_folder`` processor defined below</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;expected exception&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </details><details class="summary-error" open>
 <summary>ERROR</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s2">&quot;/home/random/workspaces/fmetadata/tools/unittest2doc/src/unittest2doc/unittest2doc.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">881</span><span class="p">,</span> <span class="ow">in</span> <span class="n">generate_docs</span>
+  <span class="n">File</span> <span class="s2">&quot;$</span><span class="si">{PROJECT_ROOT}</span><span class="s2">/unittest2doc/src/unittest2doc/unittest2doc.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">887</span><span class="p">,</span> <span class="ow">in</span> <span class="n">generate_docs</span>
     <span class="n">func</span><span class="p">()</span>
-  <span class="n">File</span> <span class="s2">&quot;/home/random/workspaces/fmetadata/tools/unittest2doc/tests/test_unittest2doc.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">214</span><span class="p">,</span> <span class="ow">in</span> <span class="n">test_with_exception</span>
+  <span class="n">File</span> <span class="s2">&quot;$</span><span class="si">{PROJECT_ROOT}</span><span class="s2">/unittest2doc/tests/test_unittest2doc.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">152</span><span class="p">,</span> <span class="ow">in</span> <span class="n">test_with_exception</span>
     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;expected exception&#39;</span><span class="p">)</span>
 <span class="ne">Exception</span><span class="p">:</span> <span class="n">expected</span> <span class="n">exception</span>
 </pre></div>
@@ -544,16 +409,16 @@ the title marker here and below are all the default <cite>-</cite></p>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot; add extra foldable text at end of the doc page</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# add some output&quot;</span><span class="p">)</span>
-  <span class="n">s</span><span class="o">.</span><span class="n">add_foldable_output</span><span class="p">(</span>
-    <span class="p">{</span>
-      <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;some python code&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;highlight&#39;</span><span class="p">:</span> <span class="s1">&#39;python&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;output&#39;</span><span class="p">:</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+  <span class="n">unittest2doc</span><span class="o">.</span><span class="n">add_foldable_output</span><span class="p">(</span>
+    <span class="n">s</span><span class="p">,</span> <span class="c1"># must pass self into add_foldable_output</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;some python code&#39;</span><span class="p">,</span>
+    <span class="n">highlight</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">          # some code ...</span>
 <span class="s1">          def func(*args, **kwargs):</span>
 <span class="s1">            pass</span>
-<span class="s1">        &#39;&#39;&#39;</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="s1">        &#39;&#39;&#39;</span>
+    <span class="p">)</span>
   <span class="p">)</span>
 
   <span class="c1"># some nested data</span>
@@ -569,12 +434,11 @@ the title marker here and below are all the default <cite>-</cite></p>
   <span class="p">}</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# add some output&quot;</span><span class="p">)</span>
 
-  <span class="n">s</span><span class="o">.</span><span class="n">add_foldable_output</span><span class="p">(</span>
-    <span class="p">{</span>
-      <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;some yaml data&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;highlight&#39;</span><span class="p">:</span> <span class="s1">&#39;yaml&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;output&#39;</span><span class="p">:</span> <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="p">}</span>
+  <span class="n">unittest2doc</span><span class="o">.</span><span class="n">add_foldable_output</span><span class="p">(</span>
+    <span class="n">s</span><span class="p">,</span> <span class="c1"># must pass self into add_foldable_output</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;some yaml data&#39;</span><span class="p">,</span>
+    <span class="n">highlight</span><span class="o">=</span><span class="s1">&#39;yaml&#39;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
   <span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# add some output&quot;</span><span class="p">)</span>
 </pre></div>
@@ -634,7 +498,7 @@ the title marker here and below are all the default <cite>-</cite></p>
 </ul>
 </li>
 <li><a class="reference internal" href="#add-more-doc-3">add_more_doc_3</a><ul>
-<li><a class="reference internal" href="#doc-string">doc_string</a></li>
+<li><a class="reference internal" href="#title-marker-for-single-test">title_marker_for_single_test</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#output-as-json">output_as_json</a></li>

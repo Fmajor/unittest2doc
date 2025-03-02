@@ -41,6 +41,7 @@
 
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator" href="test_unittest_decorator.html" />
     <link rel="prev" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop" href="test_decorator_stop.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
@@ -55,6 +56,9 @@
         <li class="right" >
           <a href="../../../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="test_unittest_decorator.html" title="unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="test_decorator_stop.html" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
@@ -95,11 +99,11 @@
 </pre></div>
 </div>
 </details></section>
-<section id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-1">
-<span id="id1"></span><h2>1<a class="headerlink" href="#unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-1" title="Link to this heading">¶</a></h2>
+<section id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-3">
+<span id="id1"></span><h2>3<a class="headerlink" href="#unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-3" title="Link to this heading">¶</a></h2>
 <p>this should be the executed when you use <code class="docutils literal notranslate"><span class="pre">Unittest2Doc.generate_docs()</span></code></p>
 <details class="summary-input" open>
-<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_1</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_3</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot; this should be the executed when you use ``Unittest2Doc.generate_docs()`` &quot;&quot;&quot;</span>
   <span class="k">pass</span>
 </pre></div>
@@ -107,10 +111,14 @@
 </details></section>
 <section id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-2">
 <span id="id2"></span><h2>2<a class="headerlink" href="#unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-2" title="Link to this heading">¶</a></h2>
+<p>stop after this test when you use <code class="docutils literal notranslate"><span class="pre">Unittest2Doc.generate_docs()</span></code></p>
 <details class="summary-input" open>
-<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">_stop_after</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@unittest2doc</span><span class="o">.</span><span class="n">stop_after</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_2</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; stop after this test when you use ``Unittest2Doc.generate_docs()``</span>
+
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="k">pass</span>
 </pre></div>
 </div>
 </details></section>
@@ -140,7 +148,7 @@
 <li><a class="reference internal" href="#">unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop_after</a><ul>
 <li><a class="reference internal" href="#docstring-of-class">docstring of class</a></li>
 <li><a class="reference internal" href="#setup">setUp</a></li>
-<li><a class="reference internal" href="#unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-1">1</a></li>
+<li><a class="reference internal" href="#unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-3">3</a></li>
 <li><a class="reference internal" href="#unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-after-2">2</a></li>
 <li><a class="reference internal" href="#teardown">tearDown</a></li>
 </ul>
@@ -204,6 +212,9 @@
         <li class="right" >
           <a href="../../../../py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="test_unittest_decorator.html" title="unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator"
+             >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="test_decorator_stop.html" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop"
              >previous</a> &nbsp; &nbsp;</li>

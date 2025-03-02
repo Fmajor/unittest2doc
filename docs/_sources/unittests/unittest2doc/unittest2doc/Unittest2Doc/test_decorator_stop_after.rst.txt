@@ -37,9 +37,9 @@ setUp
   
 
 
-.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop_after.1:
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop_after.3:
 
-1
+3
 -
 
 this should be the executed when you use ``Unittest2Doc.generate_docs()``
@@ -49,7 +49,7 @@ this should be the executed when you use ``Unittest2Doc.generate_docs()``
 
   .. code-block:: python
 
-    def test_1(s):
+    def test_3(s):
       """ this should be the executed when you use ``Unittest2Doc.generate_docs()`` """
       pass
     
@@ -60,14 +60,21 @@ this should be the executed when you use ``Unittest2Doc.generate_docs()``
 2
 -
 
+stop after this test when you use ``Unittest2Doc.generate_docs()``
+
+
+
 .. collapse:: INPUT
   :open:
 
   .. code-block:: python
 
-    def wrapper(*args, **kwargs):
-        _stop_after = True
-        func(*args, **kwargs)
+    @unittest2doc.stop_after
+    def test_2(s):
+      """ stop after this test when you use ``Unittest2Doc.generate_docs()``
+    
+      """
+      pass
     
 
 

@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop &#8212; unittest2doc  documentation</title>
+    <title>unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator &#8212; unittest2doc  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/cloud.css?v=f9ae72be" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=2c7d14eb" />
@@ -41,8 +41,7 @@
 
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop_after" href="test_decorator_stop_after.html" />
-    <link rel="prev" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_only" href="test_decorator_only.html" /> 
+    <link rel="prev" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop_after" href="test_decorator_stop_after.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
     <div class="relbar-top">
@@ -58,9 +57,6 @@
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="test_decorator_stop_after.html" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop_after"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="test_decorator_only.html" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_only"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../../../../index.html">unittest2doc  documentation</a> &#187;</li>
 
@@ -69,7 +65,7 @@
           <li class="nav-item nav-item-3"><a href="../../index.html" >unittest2doc</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="../index.html" >unittest2doc.unittest2doc</a> &#187;</li>
           <li class="nav-item nav-item-5"><a href="index.html" accesskey="U">unittest2doc.unittest2doc.Unittest2Doc</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop</a></li> 
+        <li class="nav-item nav-item-this"><a href="">unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator</a></li> 
       </ul>
     </div>
     </div>
@@ -80,15 +76,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="unittest2doc-unittest2doc-unittest2doc-test-decorator-stop">
-<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop"></span><h1>unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop<a class="headerlink" href="#unittest2doc-unittest2doc-unittest2doc-test-decorator-stop" title="Link to this heading">¶</a></h1>
+  <section id="unittest2doc-unittest2doc-unittest2doc-test-unittest-decorator">
+<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-unittest-decorator"></span><h1>unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator<a class="headerlink" href="#unittest2doc-unittest2doc-unittest2doc-test-unittest-decorator" title="Link to this heading">¶</a></h1>
 <p>references: <a class="reference internal" href="../../../../src/unittest2doc.unittest2doc.html#unittest2doc.unittest2doc.Unittest2Doc" title="unittest2doc.unittest2doc.Unittest2Doc"><code class="xref py py-class docutils literal notranslate"><span class="pre">unittest2doc.unittest2doc.Unittest2Doc</span></code></a></p>
 <section id="docstring-of-class">
 <h2>docstring of class<a class="headerlink" href="#docstring-of-class" title="Link to this heading">¶</a></h2>
-<p>in this class, we test the decorator <code class="docutils literal notranslate"><span class="pre">&#64;Unittest2Doc.stop</span></code></p>
+<p>in this class, we test the unittest decorator (not unittest2doc decorator)</p>
 </section>
 <section id="setup">
-<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-setup"></span><h2>setUp<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h2>
+<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-unittest-decorator-setup"></span><h2>setUp<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h2>
 <details class="summary-input" open>
 <summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# this setup function is always called at beginning&quot;</span><span class="p">)</span>
@@ -99,23 +95,26 @@
 </pre></div>
 </div>
 </details></section>
-<section id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-3">
-<span id="id1"></span><h2>3<a class="headerlink" href="#unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-3" title="Link to this heading">¶</a></h2>
-<p>this should be the only test when you use <code class="docutils literal notranslate"><span class="pre">Unittest2Doc.generate_docs()</span></code></p>
-<p>we have a &#64;unittest2doc.stop decorator at next test</p>
+<section id="with-exception">
+<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-unittest-decorator-with-exception"></span><h2>with_exception<a class="headerlink" href="#with-exception" title="Link to this heading">¶</a></h2>
 <details class="summary-input" open>
-<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_3</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot; this should be the only test when you use ``Unittest2Doc.generate_docs()``</span>
-
-<span class="sd">      we have a @unittest2doc.stop decorator at next test</span>
-
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="k">pass</span>
+<summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@unittest</span><span class="o">.</span><span class="n">expectedFailure</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_with_exception</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+  <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;expected exception&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</details><details class="summary-error" open>
+<summary>ERROR</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;/home/random/workspaces/fmetadata/tools/unittest2doc/src/unittest2doc/unittest2doc.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">887</span><span class="p">,</span> <span class="ow">in</span> <span class="n">generate_docs</span>
+    <span class="n">func</span><span class="p">()</span>
+  <span class="n">File</span> <span class="s2">&quot;/home/random/workspaces/fmetadata/tools/unittest2doc/tests/test_unittest2doc.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">320</span><span class="p">,</span> <span class="ow">in</span> <span class="n">test_with_exception</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;expected exception&#39;</span><span class="p">)</span>
+<span class="ne">Exception</span><span class="p">:</span> <span class="n">expected</span> <span class="n">exception</span>
 </pre></div>
 </div>
 </details></section>
 <section id="teardown">
-<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-teardown"></span><h2>tearDown<a class="headerlink" href="#teardown" title="Link to this heading">¶</a></h2>
+<span id="unittests-unittest2doc-unittest2doc-unittest2doc-test-unittest-decorator-teardown"></span><h2>tearDown<a class="headerlink" href="#teardown" title="Link to this heading">¶</a></h2>
 <details class="summary-input" open>
 <summary>INPUT</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tearDown</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# this tearDown function is always called at end&quot;</span><span class="p">)</span>
@@ -137,10 +136,10 @@
         <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
     <h3><a href="../../../../index.html">Page contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop</a><ul>
+<li><a class="reference internal" href="#">unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator</a><ul>
 <li><a class="reference internal" href="#docstring-of-class">docstring of class</a></li>
 <li><a class="reference internal" href="#setup">setUp</a></li>
-<li><a class="reference internal" href="#unittests-unittest2doc-unittest2doc-unittest2doc-test-decorator-stop-3">3</a></li>
+<li><a class="reference internal" href="#with-exception">with_exception</a></li>
 <li><a class="reference internal" href="#teardown">tearDown</a></li>
 </ul>
 </li>
@@ -157,7 +156,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../../../_sources/unittests/unittest2doc/unittest2doc/Unittest2Doc/test_decorator_stop.rst.txt"
+      <li><a href="../../../../_sources/unittests/unittest2doc/unittest2doc/Unittest2Doc/test_unittest_decorator.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -205,9 +204,6 @@
              >modules</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="test_decorator_stop_after.html" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop_after"
-             >next</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="test_decorator_only.html" title="unittest2doc.unittest2doc.Unittest2Doc.test_decorator_only"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../../../../index.html">unittest2doc  documentation</a> &#187;</li>
 
@@ -216,7 +212,7 @@
           <li class="nav-item nav-item-3"><a href="../../index.html" >unittest2doc</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="../index.html" >unittest2doc.unittest2doc</a> &#187;</li>
           <li class="nav-item nav-item-5"><a href="index.html" >unittest2doc.unittest2doc.Unittest2Doc</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">unittest2doc.unittest2doc.Unittest2Doc.test_decorator_stop</a></li> 
+        <li class="nav-item nav-item-this"><a href="">unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator</a></li> 
       </ul>
     </div>
     </div>

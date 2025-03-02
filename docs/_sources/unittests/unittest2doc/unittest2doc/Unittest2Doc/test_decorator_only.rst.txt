@@ -37,12 +37,12 @@ setUp
   
 
 
-.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_only.only:
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_only.only_1:
 
-only
-----
+only_1
+------
 
-this should be the only test use you use ``Unittest2Doc.generate_docs()``
+when you use ``Unittest2Doc.generate_docs()``, this test will be executed
 
 Note that if you use ``python -m unittest ...`` framework, all tests will be executed
 
@@ -56,15 +56,36 @@ e.g., you just want to test one function and want to skip others for speed
 
   .. code-block:: python
 
-    @Unittest2Doc.only
-    def test_only(s):
-      """ this should be the only test use you use ``Unittest2Doc.generate_docs()``
+    @unittest2doc.only
+    def test_only_1(s):
+      """ when you use ``Unittest2Doc.generate_docs()``, this test will be executed
     
           Note that if you use ``python -m unittest ...`` framework, all tests will be executed
     
           Thus the `only` decorator should only be used during your development and testing,
           e.g., you just want to test one function and want to skip others for speed
     
+      """
+      pass
+    
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_decorator_only.only_2:
+
+only_2
+------
+
+when you use ``Unittest2Doc.generate_docs()``, this test will be executed
+
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    @unittest2doc.only
+    def test_only_2(s):
+      """ when you use ``Unittest2Doc.generate_docs()``, this test will be executed
       """
       pass
     

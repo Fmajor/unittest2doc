@@ -85,7 +85,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.FLog" title="unittest2doc.unittest2doc.FLog"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FLog</span></code></a>([fargs, fkwargs, do_print, ...])</p></td>
 <td><p>Record the function and its output, used to generate document for unittest functions</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc" title="unittest2doc.unittest2doc.Unittest2Doc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unittest2Doc</span></code></a>(*args[, name, ref, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc" title="unittest2doc.unittest2doc.Unittest2Doc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Unittest2Doc</span></code></a>(*, testcase, name[, ref, ...])</p></td>
 <td><p>wrapper unittests and make documentation pages for sphinx</p></td>
 </tr>
 </tbody>
@@ -93,8 +93,35 @@
 <p><strong>Functions:</strong></p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.add_foldable_output" title="unittest2doc.unittest2doc.add_foldable_output"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_foldable_output</span></code></a>(self, *, name, output[, ...])</p></td>
+<td><p>add extra foldabel text at end of the doc page</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.all_type_json_serializer" title="unittest2doc.unittest2doc.all_type_json_serializer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_type_json_serializer</span></code></a>(obj)</p></td>
+<td><p>try to use repr() to serialize objects that are not JSON serializable</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.docpprint" title="unittest2doc.unittest2doc.docpprint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">docpprint</span></code></a>(data, **kwargs)</p></td>
 <td><p>Pretty print data for documentation purposes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.expected_failure" title="unittest2doc.unittest2doc.expected_failure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expected_failure</span></code></a>(func)</p></td>
+<td><p>use &#64;unittest2doc.expected_failure to mark a test as expected to fail</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.only" title="unittest2doc.unittest2doc.only"><code class="xref py py-obj docutils literal notranslate"><span class="pre">only</span></code></a>(func)</p></td>
+<td><p>use &#64;unittest2doc.only to only run some unittest</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.skip" title="unittest2doc.unittest2doc.skip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">skip</span></code></a>(func)</p></td>
+<td><p>use &#64;unittest2doc.skip to skip some unittest</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.stop" title="unittest2doc.unittest2doc.stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code></a>(func)</p></td>
+<td><p>use &#64;unittest2doc.stop to stop unittest before this function</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.stop_after" title="unittest2doc.unittest2doc.stop_after"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_after</span></code></a>(func)</p></td>
+<td><p>use &#64;unittest2doc.stop_after to stop unittest after this function</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.update_config" title="unittest2doc.unittest2doc.update_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_config</span></code></a>(self, **kwargs)</p></td>
+<td><p>update config for unittest2doc</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.v" title="unittest2doc.unittest2doc.v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v</span></code></a>(toshow, l, g[, mask, doprint])</p></td>
+<td><p>pretty print varialbes in toshow list</p></td>
 </tr>
 </tbody>
 </table>
@@ -185,8 +212,8 @@ The <code class="docutils literal notranslate"><span class="pre">intput</span></
 
 <dl class="py class">
 <dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">Unittest2Doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_test_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_highlight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">Unittest2Doc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testcase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TestCase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_test_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_highlight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_processors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>wrapper unittests and make documentation pages for sphinx</p>
 <p><strong>Docstring formats in the unittest functions</strong>:</p>
 <ul class="simple">
@@ -219,32 +246,11 @@ The <code class="docutils literal notranslate"><span class="pre">intput</span></
 <p><strong>Methods:</strong></p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.__init__" title="unittest2doc.unittest2doc.Unittest2Doc.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args[, name, ref, update_index, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.__init__" title="unittest2doc.unittest2doc.Unittest2Doc.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*, testcase, name[, ref, ...])</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output" title="unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_foldable_output</span></code></a>(each)</p></td>
-<td><p>add extra foldabel text at end of the doc page</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.expected_failure" title="unittest2doc.unittest2doc.Unittest2Doc.expected_failure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expected_failure</span></code></a>(func)</p></td>
-<td><p>use &#64;Unittest2Doc.expected_failure to mark a test as expected to fail</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.generate_docs" title="unittest2doc.unittest2doc.Unittest2Doc.generate_docs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_docs</span></code></a>()</p></td>
 <td><p>do unittest and generate docs</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.only" title="unittest2doc.unittest2doc.Unittest2Doc.only"><code class="xref py py-obj docutils literal notranslate"><span class="pre">only</span></code></a>(func)</p></td>
-<td><p>use &#64;Unittest2Doc.only to only run some unittest</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.skip" title="unittest2doc.unittest2doc.Unittest2Doc.skip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">skip</span></code></a>(func)</p></td>
-<td><p>use &#64;Unittest2Doc.skipped to skip some unittest</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.stop" title="unittest2doc.unittest2doc.Unittest2Doc.stop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop</span></code></a>(func)</p></td>
-<td><p>use &#64;Unittest2Doc.stopped to stop before this function</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.stop_after" title="unittest2doc.unittest2doc.Unittest2Doc.stop_after"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_after</span></code></a>(func)</p></td>
-<td><p>use &#64;Unittest2Doc.stop_after to stop unittest after this function</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.v" title="unittest2doc.unittest2doc.Unittest2Doc.v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">v</span></code></a>(toshow, l, g[, mask, doprint])</p></td>
-<td><p>pretty print varialbes in toshow list</p></td>
 </tr>
 </tbody>
 </table>
@@ -252,7 +258,7 @@ The <code class="docutils literal notranslate"><span class="pre">intput</span></
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_test_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_highlight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.__init__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testcase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TestCase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_test_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_highlight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_processors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.__init__" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -271,65 +277,121 @@ Usually it should be <cite>&lt;package-folder&gt;/docs/source/unittests</cite></
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output">
-<span class="sig-name descname"><span class="pre">add_foldable_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">each</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output" title="Link to this definition">¶</a></dt>
-<dd><p>add extra foldabel text at end of the doc page</p>
-<p>params: name, output, highlight, open</p>
-<p><strong>usage</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_foldable_output</span><span class="p">(</span>
-  <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;structures and more examples&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;highlight&quot;</span><span class="p">:</span> <span class="s1">&#39;python&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;output&#39;</span><span class="p">:</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">      # some code ...</span>
-<span class="s1">      def func(*args, **kwargs):</span>
-<span class="s1">        pass</span>
-<span class="s1">    &#39;&#39;&#39;</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.expected_failure">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expected_failure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.expected_failure" title="Link to this definition">¶</a></dt>
-<dd><p>use &#64;Unittest2Doc.expected_failure to mark a test as expected to fail</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.generate_docs">
 <span class="sig-name descname"><span class="pre">generate_docs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.generate_docs" title="Link to this definition">¶</a></dt>
 <dd><p>do unittest and generate docs</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.only">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.only" title="Link to this definition">¶</a></dt>
-<dd><p>use &#64;Unittest2Doc.only to only run some unittest</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.skip">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.skip" title="Link to this definition">¶</a></dt>
-<dd><p>use &#64;Unittest2Doc.skipped to skip some unittest</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.add_foldable_output">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">add_foldable_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highlight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.add_foldable_output" title="Link to this definition">¶</a></dt>
+<dd><p>add extra foldabel text at end of the doc page</p>
+<p>params: name, output, highlight, open</p>
+<p><strong>usage</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># in unittest.TestCase test functions</span>
+<span class="n">unittest2doc</span><span class="o">.</span><span class="n">add_foldable_output</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;some code&quot;</span><span class="p">,</span>
+    <span class="n">highlight</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        # some code ...</span>
+<span class="s1">        def func(*args, **kwargs):</span>
+<span class="s1">        pass</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+    <span class="p">),</span>
+    <span class="nb">open</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.stop">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.stop" title="Link to this definition">¶</a></dt>
-<dd><p>use &#64;Unittest2Doc.stopped to stop before this function</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.all_type_json_serializer">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">all_type_json_serializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#unittest2doc.unittest2doc.all_type_json_serializer" title="Link to this definition">¶</a></dt>
+<dd><p>try to use repr() to serialize objects that are not JSON serializable</p>
+<dl class="field-list simple">
+</dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.stop_after">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.stop_after" title="Link to this definition">¶</a></dt>
-<dd><p>use &#64;Unittest2Doc.stop_after to stop unittest after this function</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.docpprint">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">docpprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.docpprint" title="Link to this definition">¶</a></dt>
+<dd><p>Pretty print data for documentation purposes</p>
+<p>A wrapper around rich.pretty.pprint with default settings optimized
+for documentation output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>any</em>) – The data to pretty print</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments passed to rich.pretty.pprint</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="unittest2doc.unittest2doc.Unittest2Doc.v">
-<span class="sig-name descname"><span class="pre">v</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toshow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doprint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#unittest2doc.unittest2doc.Unittest2Doc.v" title="Link to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.expected_failure">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">expected_failure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.expected_failure" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;unittest2doc.expected_failure to mark a test as expected to fail</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.only">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">only</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.only" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;unittest2doc.only to only run some unittest</p>
+<dl class="simple">
+<dt>Note: it work only when you use Unittest2Doc.generate_docs(),</dt><dd><p>it does not work when you use unittest.main()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.skip">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.skip" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;unittest2doc.skip to skip some unittest</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.stop">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.stop" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;unittest2doc.stop to stop unittest before this function</p>
+<dl class="simple">
+<dt>Note: it work only when you use Unittest2Doc.generate_docs(),</dt><dd><p>it does not work when you use unittest.main()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.stop_after">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">stop_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.stop_after" title="Link to this definition">¶</a></dt>
+<dd><p>use &#64;unittest2doc.stop_after to stop unittest after this function</p>
+<dl class="simple">
+<dt>Note: it work only when you use Unittest2Doc.generate_docs(),</dt><dd><p>it does not work when you use unittest.main()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.update_config">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">update_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.update_config" title="Link to this definition">¶</a></dt>
+<dd><p>update config for unittest2doc</p>
+<p>call this function in unittest.TestCase test functions</p>
+<p>keys can be:</p>
+<ul class="simple">
+<li><p>title_marker</p></li>
+<li><p>open_input</p></li>
+<li><p>open_output</p></li>
+<li><p>output_highlight</p></li>
+<li><p>save_stdout</p></li>
+<li><p>output_processors</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.v">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">v</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toshow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doprint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#unittest2doc.unittest2doc.v" title="Link to this definition">¶</a></dt>
 <dd><p>pretty print varialbes in toshow list</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -356,24 +418,6 @@ Usually it should be <cite>&lt;package-folder&gt;/docs/source/unittests</cite></
 </div>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="unittest2doc.unittest2doc.docpprint">
-<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">docpprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.docpprint" title="Link to this definition">¶</a></dt>
-<dd><p>Pretty print data for documentation purposes</p>
-<p>A wrapper around rich.pretty.pprint with default settings optimized
-for documentation output.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>any</em>) – The data to pretty print</p></li>
-<li><p><strong>**kwargs</strong> – Additional arguments passed to rich.pretty.pprint</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -394,17 +438,19 @@ for documentation output.</p>
 </li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc</span></code></a><ul>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.__init__"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.__init__()</span></code></a></li>
-<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.add_foldable_output"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.add_foldable_output()</span></code></a></li>
-<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.expected_failure"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.expected_failure()</span></code></a></li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.generate_docs"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.generate_docs()</span></code></a></li>
-<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.only"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.only()</span></code></a></li>
-<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.skip"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.skip()</span></code></a></li>
-<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.stop"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.stop()</span></code></a></li>
-<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.stop_after"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.stop_after()</span></code></a></li>
-<li><a class="reference internal" href="#unittest2doc.unittest2doc.Unittest2Doc.v"><code class="docutils literal notranslate"><span class="pre">Unittest2Doc.v()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.add_foldable_output"><code class="docutils literal notranslate"><span class="pre">add_foldable_output()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.all_type_json_serializer"><code class="docutils literal notranslate"><span class="pre">all_type_json_serializer()</span></code></a></li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.docpprint"><code class="docutils literal notranslate"><span class="pre">docpprint()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.expected_failure"><code class="docutils literal notranslate"><span class="pre">expected_failure()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.only"><code class="docutils literal notranslate"><span class="pre">only()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.skip"><code class="docutils literal notranslate"><span class="pre">skip()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.stop"><code class="docutils literal notranslate"><span class="pre">stop()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.stop_after"><code class="docutils literal notranslate"><span class="pre">stop_after()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.update_config"><code class="docutils literal notranslate"><span class="pre">update_config()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.v"><code class="docutils literal notranslate"><span class="pre">v()</span></code></a></li>
 </ul>
 </li>
 </ul>

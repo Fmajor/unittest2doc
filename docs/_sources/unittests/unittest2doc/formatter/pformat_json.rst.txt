@@ -423,9 +423,9 @@ callable_comments
         "discount": 0.15
       },
       comments={
-        "price": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f01b2906d40>",
-        "quantity": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f01b2906d40>",
-        "discount": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f01b2906d40>"
+        "price": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f5b46b82ca0>",
+        "quantity": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f5b46b82ca0>",
+        "discount": "<function TestJsonFormatter.test_callable_comments.<locals>.calc_total at 0x7f5b46b82ca0>"
       }
     ) # ===>
     {

@@ -1,0 +1,91 @@
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator:
+
+unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator
+========================================================================================
+
+references: :class:`unittest2doc.unittest2doc.Unittest2Doc`
+
+
+docstring of class
+------------------
+
+in this class, we test the unittest decorator (not unittest2doc decorator)
+
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator.setUp:
+
+setUp
+-----
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def setUp(s):
+      print("# this setup function is always called at beginning")
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+    # this setup function is always called at beginning
+  
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator.with_exception:
+
+with_exception
+--------------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    @unittest.expectedFailure
+    def test_with_exception(s):
+      raise Exception('expected exception')
+    
+
+
+.. collapse:: ERROR
+  :open:
+
+  .. code-block:: 
+
+    Traceback (most recent call last):
+      File "/home/random/workspaces/fmetadata/tools/unittest2doc/src/unittest2doc/unittest2doc.py", line 887, in generate_docs
+        func()
+      File "/home/random/workspaces/fmetadata/tools/unittest2doc/tests/test_unittest2doc.py", line 320, in test_with_exception
+        raise Exception('expected exception')
+    Exception: expected exception
+
+
+.. _unittests/unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator.tearDown:
+
+tearDown
+--------
+
+.. collapse:: INPUT
+  :open:
+
+  .. code-block:: python
+
+    def tearDown(s):
+      print("# this tearDown function is always called at end")
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+    # this tearDown function is always called at end
+  
+
