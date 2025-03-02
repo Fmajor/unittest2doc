@@ -298,6 +298,27 @@ if 'test Unittest2Doc' and 1:
 
           """
           pass
+    
+    class Test5(unittest.TestCase):
+        """ docstring of class
+            ------------------
+
+            in this class, we test the unittest decorator (not unittest2doc decorator)
+
+        """
+        def setUp(s):
+          print("# this setup function is always called at beginning")
+        def tearDown(s):
+          print("# this tearDown function is always called at end")
+        
+        @unittest.skip
+        def test_skipped(s):
+          raise Exception('this function should be skipped and we should not get this Exception') 
+
+        @unittest.expectedFailure
+        def test_with_exception(s):
+          raise Exception('expected exception')
+
 
 if __name__ == "__main__":
     def no_home_folder(output):
@@ -343,3 +364,11 @@ if __name__ == "__main__":
         doc_root=Path(__file__).absolute().parent.parent / 'sphinx-docs/source/unittests',
     )
     t4.generate_docs()
+
+    t5 = Unittest2Doc(
+        testcase=Test5(),
+        name='unittest2doc.unittest2doc.Unittest2Doc.test_unittest_decorator',
+        ref=':class:`unittest2doc.unittest2doc.Unittest2Doc`',
+        doc_root=Path(__file__).absolute().parent.parent / 'sphinx-docs/source/unittests',
+    )
+    t5.generate_docs()

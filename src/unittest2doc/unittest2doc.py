@@ -438,6 +438,9 @@ def skip(func):
 
 def stop(func):
     """ use @unittest2doc.stop to stop unittest before this function
+
+        Note: it work only when you use Unittest2Doc.generate_docs(),
+              it does not work when you use unittest.main()
     """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -449,6 +452,9 @@ def stop(func):
 
 def only(func):
     """ use @unittest2doc.only to only run some unittest
+
+        Note: it work only when you use Unittest2Doc.generate_docs(),
+              it does not work when you use unittest.main()
     """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -460,6 +466,9 @@ def only(func):
 
 def stop_after(func):
     """ use @unittest2doc.stop_after to stop unittest after this function
+
+        Note: it work only when you use Unittest2Doc.generate_docs(),
+              it does not work when you use unittest.main()
     """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -572,6 +581,19 @@ def add_foldable_output(self, *, name, output, highlight='', open=False):
         l.append(P_EXTRA)
 
 def update_config(self, **kwargs):
+    """ update config for unittest2doc
+
+        call this function in unittest.TestCase test functions
+
+        keys can be:
+
+        * title_marker
+        * open_input
+        * open_output
+        * output_highlight
+        * save_stdout
+        * output_processors
+    """
     if not hasattr(self, '_unittest2doc'):
         self._unittest2doc = {}
     self._unittest2doc.update(kwargs)
