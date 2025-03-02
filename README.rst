@@ -2,16 +2,18 @@
 unittest2doc
 ===============
 
-将Python单元测试转换为文档。
+English | `中文 <README.zh.rst>`_
 
-安装
-----
+Convert Python unit tests to documentation.
+
+Installation
+------------
 
 .. code-block:: bash
 
     pip install unittest2doc
 
-使用说明
---------
+Usage
+-----
 
-任何使用说明都不如直接给出例子。请参考
+No explanation is better than a direct example. Please refer to https://fmajor.github.io/unittest2doc/
