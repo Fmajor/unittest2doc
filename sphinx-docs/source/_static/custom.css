@@ -1,0 +1,51 @@
+.example-paragraph {
+  background: lightblue;
+}
+.example-paragraph .simple {
+  margin-top: 0;
+}
+div.document {
+  max-width: none;
+}
+div.related {
+  max-width: none;
+}
+
+div.body p {
+    line-height:   1.5em !important;
+    margin-top:    0.8em !important;
+    margin-bottom: 0.8em !important;
+}
+div.body h1 {
+    line-height:   1.0em !important;
+    margin-top:    1.0em !important;
+    margin-bottom: 1.0em !important;
+}
+div.body h2 {
+    line-height:   1.0em !important;
+    margin-top:    0.8em !important;
+    margin-bottom: 0.8em !important;
+}
+div.highlight {
+    margin-top:    0.8em !important;
+    margin-bottom: 0.8em !important;
+}
+div.body h3 {
+    line-height:   1.0em !important;
+    margin-top:    0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+div.body h4 {
+    line-height:   1.0em !important;
+    margin-top:    0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+div.pre {
+  padding-left: 0.5em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+table.docutils div.line-block {
+  margin-left: 0;
+}
