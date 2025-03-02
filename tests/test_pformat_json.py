@@ -3,10 +3,11 @@ import sys
 import os
 import json
 from pathlib import Path
+import unittest2doc
 from unittest2doc import Unittest2Doc, FLog
 from unittest2doc.formatter.json_formatter import pformat_json
 
-class TestJsonFormatter(Unittest2Doc):
+class TestJsonFormatter(unittest.TestCase):
     """ Test cases for json_formatter module's pformat_json function
     """
 
@@ -376,7 +377,8 @@ class TestJsonFormatter(Unittest2Doc):
         print(result)
 
 if __name__ == "__main__":
-    t = TestJsonFormatter(
+    t = unittest2doc.Unittest2Doc(
+        testcase=TestJsonFormatter(),
         name='unittest2doc.formatter.pformat_json',
         ref=':func:`unittest2doc.formatter.pformat_json`',
         doc_root=Path(__file__).absolute().parent.parent / 'sphinx-docs/source/unittests',

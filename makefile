@@ -12,6 +12,10 @@ generate-unittest-docs:
 
 build-docs:
 	make -C sphinx-docs html
+clean-docs:
+	make -C sphinx-docs clean
+	rm -rf sphinx-docs/source/src/*
+	rm -rf sphinx-docs/source/unittests/*
 
 build:
 	poetry build
