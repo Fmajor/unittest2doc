@@ -6,8 +6,8 @@ build-backend = "poetry.core.masonry.api"
 name = "unittest2doc"
 version = "0.0.1"
 description = "Convert unittest test cases to sphinx doc"
-readme = "README.md"
-requires-python = ">3.10,<4.0"
+readme = "README.rst"
+requires-python = ">3.10"
 authors = [
   { name = "Fmajor", email = "wujinnnnn@gmail.com" },
 ]

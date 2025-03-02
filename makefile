@@ -14,3 +14,14 @@ generate-unittest-docs:
 
 build-docs:
 	make -C sphinx-docs html
+
+build:
+	poetry build
+
+# config auth by `poetry config pypi-token.pypi`
+publish:
+	poetry publish
+
+# config auth by `poetry config pypi-token.testpypi`
+test-publish:
+	poetry publish --repository testpypi
