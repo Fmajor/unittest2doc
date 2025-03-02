@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to Unittest2doc &#8212; unittest2doc  documentation</title>
+    <title>欢迎使用 Unittest2doc &#8212; unittest2doc  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/cloud.css?v=f9ae72be" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=2c7d14eb" />
@@ -40,8 +40,7 @@
     
 
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Documentation" href="catalogue.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
     <div class="relbar-top">
@@ -55,12 +54,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="catalogue.html" title="API Documentation"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
-    <li><a href="#">unittest2doc  documentation</a> &#187;</li>
+    <li><a href="index.html">unittest2doc  documentation</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">Welcome to Unittest2doc</a></li> 
+        <li class="nav-item nav-item-this"><a href="">欢迎使用 Unittest2doc</a></li> 
       </ul>
     </div>
     </div>
@@ -71,54 +67,54 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="welcome-to-unittest2doc">
-<h1>Welcome to Unittest2doc<a class="headerlink" href="#welcome-to-unittest2doc" title="Link to this heading">¶</a></h1>
-<p>English | <a class="reference external" href="index.zh.html">中文</a></p>
-<p>Unittest2doc is a tool for converting Python unit test code into documentation. The unit test section in this documentation is generated using Unittest2doc.</p>
-<p>Seeing is believing, let’s learn how to use Unittest2doc through examples in this documentation.</p>
-<p>Project repository: <a class="reference external" href="https://github.com/Fmajor/unittest2doc">https://github.com/Fmajor/unittest2doc</a></p>
-<p>The project structure is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unittest2doc</span><span class="o">/</span>            <span class="c1"># Project root directory</span>
-  <span class="n">src</span><span class="o">/</span>                   <span class="c1"># Source code directory</span>
-    <span class="n">unittest2doc</span><span class="o">/</span>        <span class="c1"># Package directory</span>
+  <section id="unittest2doc">
+<h1>欢迎使用 Unittest2doc<a class="headerlink" href="#unittest2doc" title="Link to this heading">¶</a></h1>
+<p><a class="reference external" href="index.html">English</a> | 中文</p>
+<p>Unittest2doc 是一个将 Python 单元测试代码转换为文档的工具。本文档中的单元测试部分就是是使用 Unittest2doc 生成的。</p>
+<p>百闻不如一见，我们直接通过本文档的例子来学习 Unittest2doc 的用法。</p>
+<p>项目地址为: <a class="reference external" href="https://github.com/Fmajor/unittest2doc">https://github.com/Fmajor/unittest2doc</a></p>
+<p>项目的文件结构为:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">unittest2doc</span><span class="o">/</span>            <span class="c1"># 项目根目录</span>
+  <span class="n">src</span><span class="o">/</span>                   <span class="c1"># 源代码目录</span>
+    <span class="n">unittest2doc</span><span class="o">/</span>        <span class="c1"># 源代码的包目录</span>
       <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
       <span class="n">unittest2doc</span><span class="o">.</span><span class="n">py</span>
       <span class="o">...</span>
-  <span class="n">sphinx</span><span class="o">-</span><span class="n">docs</span><span class="o">/</span>           <span class="c1"># Documentation directory</span>
-    <span class="n">source</span><span class="o">/</span>              <span class="c1"># Documentation source files</span>
-      <span class="n">conf</span><span class="o">.</span><span class="n">py</span>            <span class="c1"># Configuration file, import test packages here</span>
+  <span class="n">sphinx</span><span class="o">-</span><span class="n">docs</span><span class="o">/</span>           <span class="c1"># 文档目录</span>
+    <span class="n">source</span><span class="o">/</span>              <span class="c1"># 文档源文件目录</span>
+      <span class="n">conf</span><span class="o">.</span><span class="n">py</span>            <span class="c1"># 配置文件, 在这里导入要测试的包</span>
       <span class="n">index</span><span class="o">.</span><span class="n">rst</span>
-      <span class="n">unittests</span><span class="o">/</span>         <span class="c1"># Unittest2doc will generate rst files here</span>
-      <span class="n">src</span><span class="o">/</span>               <span class="c1"># API documentation generated by sphinx autosummary</span>
+      <span class="n">unittests</span><span class="o">/</span>         <span class="c1"># Unittest2doc 会在这里生成rst文件</span>
+      <span class="n">src</span><span class="o">/</span>               <span class="c1"># sphinx通过autosummary功能生成的API文档</span>
       <span class="o">...</span>
-    <span class="n">build</span><span class="o">/</span>               <span class="c1"># Documentation build directory, run make html to generate this documentation</span>
-  <span class="n">tests</span><span class="o">/</span>                 <span class="c1"># Test directory, where we use Unittest2doc</span>
-    <span class="n">test_unittest2doc</span><span class="o">.</span><span class="n">py</span> <span class="c1"># Test file, including a Unittest2doc class and its running examples</span>
-    <span class="n">test_pformat_json</span><span class="o">.</span><span class="n">py</span> <span class="c1"># Here we test a function for structured JSON output</span>
-                         <span class="c1"># For a structured output function, the best way to test is to display the results and save as documentation</span>
+    <span class="n">build</span><span class="o">/</span>               <span class="c1"># 文档构建目录, 运行make html 后会在这里生成本文档</span>
+  <span class="n">tests</span><span class="o">/</span>                 <span class="c1"># 测试目录, 我们使用Unittest2doc的地方</span>
+    <span class="n">test_unittest2doc</span><span class="o">.</span><span class="n">py</span> <span class="c1"># 测试文件, 其中包括了一个Unittest2doc类, 和其运行示例</span>
+    <span class="n">test_pformat_json</span><span class="o">.</span><span class="n">py</span> <span class="c1"># 我们这里测试了一个结构化输出json的函数</span>
+                         <span class="c1">#   对于一个结构化输出函数，最好的测试方法是展示出其结果并保存为文档</span>
   <span class="n">pyproject</span><span class="o">.</span><span class="n">toml</span>
   <span class="n">README</span><span class="o">.</span><span class="n">rst</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>In the project root directory, use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">unittest</span></code></p>
+<li><p>在项目根目录使用 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">unittest</span></code></p>
 <ul>
-<li><p>Actually executes <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">discover</span> <span class="pre">-s</span> <span class="pre">tests</span> <span class="pre">-p</span> <span class="pre">'*.py'</span> <span class="pre">-b</span></code></p></li>
-<li><p>This is general unit testing, we only care about the test results, not the test process</p></li>
+<li><p>实际执行 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">discover</span> <span class="pre">-s</span> <span class="pre">tests</span> <span class="pre">-p</span> <span class="pre">'*.py'</span> <span class="pre">-b</span></code></p></li>
+<li><p>这就是一般的单元测试，我们只关心测试结果，不关心测试过程</p></li>
 </ul>
 </li>
-<li><p>In the project root directory, use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">generate-unittest-docs</span></code></p>
+<li><p>在项目根目录使用 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">generate-unittest-docs</span></code></p>
 <ul>
-<li><p>Actually executes <code class="docutils literal notranslate"><span class="pre">unittest2doc</span> <span class="pre">-s</span> <span class="pre">tests</span> <span class="pre">-p</span> <span class="pre">'*.py'</span></code>, which directly runs all test files that meet the conditions</p></li>
-<li><p>Each test file can be executed individually, with runtime parameters that allow them to generate RST format sphinx documentation
-and save to the <code class="docutils literal notranslate"><span class="pre">/sphinx-docs/source/unittests/</span></code> directory, ultimately displayed in our documentation</p></li>
+<li><p>实际执行 <code class="docutils literal notranslate"><span class="pre">unittest2doc</span> <span class="pre">-s</span> <span class="pre">tests</span> <span class="pre">-p</span> <span class="pre">'*.py'</span></code>, 他会直接运行所有满足条件的测试文件</p></li>
+<li><p>我们每一个测试文件都可以单独执行, 其中的运行参数使得他们可以在运行的时候生成RST格式的sphinx文档,
+并且保存到 <code class="docutils literal notranslate"><span class="pre">/sphinx-docs/source/unittests/</span></code> 目录下, 最终展现在我们的文档中</p></li>
 </ul>
 </li>
 </ul>
-<p>Here we directly show the test files</p>
+<p>这里我们直接展示测试文件</p>
 <section id="tests-test-unittest2doc-py">
 <h2><code class="docutils literal notranslate"><span class="pre">tests/test_unittest2doc.py</span></code><a class="headerlink" href="#tests-test-unittest2doc-py" title="Link to this heading">¶</a></h2>
-<p>Generated documentation: <a class="reference internal" href="unittests/unittest2doc/unittest2doc/Unittest2Doc/index.html"><span class="doc">unittest2doc.unittest2doc.Unittest2Doc</span></a></p>
+<p>其生成的文档为: <a class="reference internal" href="unittests/unittest2doc/unittest2doc/Unittest2Doc/index.html"><span class="doc">unittest2doc.unittest2doc.Unittest2Doc</span></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">from</span><span class="w"> </span><span class="nn">unittest2doc</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="linenos">  2</span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="linenos">  3</span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
@@ -505,7 +501,7 @@ and save to the <code class="docutils literal notranslate"><span class="pre">/sp
 </section>
 <section id="tests-test-pformat-json-py">
 <h2><code class="docutils literal notranslate"><span class="pre">tests/test_pformat_json.py</span></code><a class="headerlink" href="#tests-test-pformat-json-py" title="Link to this heading">¶</a></h2>
-<p>Generated documentation: <a class="reference internal" href="unittests/unittest2doc/formatter/index.html"><span class="doc">unittest2doc.formatter</span></a></p>
+<p>其生成的文档为: <a class="reference internal" href="unittests/unittest2doc/formatter/index.html"><span class="doc">unittest2doc.formatter</span></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
 <span class="linenos">  2</span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="linenos">  3</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -892,10 +888,10 @@ and save to the <code class="docutils literal notranslate"><span class="pre">/sp
 <span class="linenos">384</span>    <span class="n">t</span><span class="o">.</span><span class="n">generate_docs</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Finally, let’s look at the generated documentation</p>
+<p>最后，我们来看一下生成的文档</p>
 <ul class="simple">
-<li><p>API documentation comes from our project source code, generated by sphinx’s autosummary feature, which is not the focus of this article</p></li>
-<li><p>Unit test documentation comes from our test code, please explore the results yourself and compare with the test code</p></li>
+<li><p>API 文档来源于我们的项目源代码, 是sphinx中的autosummary功能生成的, 不是本文的重点</p></li>
+<li><p>而单元测试文档来源于我们的测试代码, 请自行探索其结果并与测试代码对比</p></li>
 </ul>
 </section>
 <section id="api-documentation-and-unittests">
@@ -916,9 +912,9 @@ and save to the <code class="docutils literal notranslate"><span class="pre">/sp
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
-    <h3><a href="#">Page contents</a></h3>
+    <h3><a href="index.html">Page contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">Welcome to Unittest2doc</a><ul>
+<li><a class="reference internal" href="#">欢迎使用 Unittest2doc</a><ul>
 <li><a class="reference internal" href="#tests-test-unittest2doc-py"><code class="docutils literal notranslate"><span class="pre">tests/test_unittest2doc.py</span></code></a></li>
 <li><a class="reference internal" href="#tests-test-pformat-json-py"><code class="docutils literal notranslate"><span class="pre">tests/test_pformat_json.py</span></code></a></li>
 <li><a class="reference internal" href="#api-documentation-and-unittests">API Documentation and Unittests</a></li>
@@ -928,7 +924,7 @@ and save to the <code class="docutils literal notranslate"><span class="pre">/sp
 
   </div>
 <div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="#">Table of Contents</a></h3>
+<h3><a href="index.html">Table of Contents</a></h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="catalogue.html">API Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="catalogue.html#unittests">Unittests</a></li>
@@ -937,7 +933,7 @@ and save to the <code class="docutils literal notranslate"><span class="pre">/sp
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
+      <li><a href="_sources/index.zh.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -983,12 +979,9 @@ and save to the <code class="docutils literal notranslate"><span class="pre">/sp
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="catalogue.html" title="API Documentation"
-             >next</a> &nbsp; &nbsp;</li>
-    <li><a href="#">unittest2doc  documentation</a> &#187;</li>
+    <li><a href="index.html">unittest2doc  documentation</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">Welcome to Unittest2doc</a></li> 
+        <li class="nav-item nav-item-this"><a href="">欢迎使用 Unittest2doc</a></li> 
       </ul>
     </div>
     </div>
