@@ -2,9 +2,7 @@ all:
 	@cat makefile
 
 install:
-	pip install .
-dev-install:
-	pip install -e .[dev]
+	pip install -e .
 
 unittest:
 	python -m unittest discover -s tests -p 'test_*.py' -b
