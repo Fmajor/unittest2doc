@@ -956,9 +956,8 @@ class Unittest2Doc:
                 extra_doc_prefix=[],
                 extra_doc_suffix=[],
             )
-        if save_stdout:
-            with open(Path(self.doc_dir, self.doc_name+'.rst'), 'w') as f:
-                f.write('\n'.join(_result_doc))
+        with open(Path(self.doc_dir, self.doc_name+'.rst'), 'w') as f:
+            f.write('\n'.join(_result_doc))
 
 __all__ = [
   'Unittest2Doc',
