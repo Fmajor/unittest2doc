@@ -10,7 +10,7 @@ import logging
 import json
 from typing import Optional, Callable, Iterator, Union, Any, Optional, Mapping, MutableMapping, Sequence, Iterable
 
-from rich.pretty import pprint
+from rich.pretty import pprint,pretty_repr
 from .templates import *
 
 # Add at the beginning of the file
@@ -425,6 +425,15 @@ def docpprint(data:any, **kwargs):
     """
     pprint(data, indent_guides=False, expand_all=True, **kwargs)
   # pprint.pprint(data, indent=2, width=160, compact=True, sort_dicts=False, **kwargs)
+
+def docpformat(data:any, indent=4, **kwargs):
+    return pretty_repr(data, indent_size=indent, expand_all=True, **kwargs)
+
+def get_caller_func_name() -> str:
+    frame = inspect.currentframe()
+    caller_frame = frame.f_back
+    caller_name = caller_frame.f_code.co_name
+    return caller_name
 
 # decorator functions
 def skip(func):
@@ -963,6 +972,7 @@ __all__ = [
   'Unittest2Doc',
   'FLog',
   'docpprint',
+  'docpformat',
   'unittest',
   'skip',
   'stop',
