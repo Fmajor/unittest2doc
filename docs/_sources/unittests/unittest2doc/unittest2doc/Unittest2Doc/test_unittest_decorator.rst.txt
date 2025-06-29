@@ -59,7 +59,7 @@ with_exception
   .. code-block:: 
 
     Traceback (most recent call last):
-      File "/home/random/workspaces/fmetadata/tools/unittest2doc/src/unittest2doc/unittest2doc.py", line 887, in generate_docs
+      File "/home/random/workspaces/fmetadata/tools/unittest2doc/src/unittest2doc/unittest2doc.py", line 909, in generate_docs
         func()
       File "/home/random/workspaces/fmetadata/tools/unittest2doc/tests/test_unittest2doc.py", line 320, in test_with_exception
         raise Exception('expected exception')

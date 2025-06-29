@@ -1,0 +1,2002 @@
+.. _unittests/unittest2doc.utils.exec_tool:
+
+unittest2doc.utils.exec_tool
+========================================================================================
+
+references: :mod:`unittest2doc.utils.exec_tool`
+
+
+Test case by load_main
+-----------------------------
+
+In the AI era, large language models have dramatically improved our coding efficiency.
+Our use of LLMs for coding has evolved through three stages:
+
+* **Ask**: Using web interfaces or APIs, we submit requirements or code snippets to LLMs and receive code output
+* **Compose**: LLMs gain the ability to view and modify local code, but interaction remains in a question-and-answer format  
+* **Agent**: LLMs not only have the ability to view and modify local code, but also possess local shell privileges, enabling them to execute any shell commands
+
+Agent-based coding represents a qualitative transformation in programming.
+Previously, we might have found LLMs occasionally unreliable or cumbersome to use because
+we had to constantly review their output for correctness.
+However, in Agent mode, specifically for program development scenarios,
+we can guide LLMs to write unit tests and instruct them to repeatedly
+execute these tests while modifying the program.
+Unit tests can, to a significant extent, replace human oversight in iterative reviews,
+dramatically improving the efficiency of AI code iteration.
+
+In Agent mode, we can attempt to decouple code logic by decomposing it into many small modules.
+Each module contains only functions and classes with specific functionality, structured as follows::
+
+    # some module.py
+    import something
+
+    class SomeClass:
+        '''detailed document'''
+        pass
+
+    def someFunc():
+        '''detailed document'''
+        pass
+
+    SOME_CONSTANT = ''
+
+    if __name__ == "__main__":
+        import unittest
+        class TestCase(unittest.TestCase):
+            pass
+        unittest.main()
+
+This structure encompasses complete program implementation, comprehensive documentation, and full unit testing.
+Agents can focus on a single file, continuously testing, modifying,
+and refining it until achieving high-quality, fully-tested code.
+
+However, this structure presents a challenge: 
+we cannot use other methods like pytest to discover and run the TestCases contained within for batch testing.
+Our example below will use some helper functions, employing Unittest2doc to load, run, and document the test cases
+in the ``if __name__ == "__main__"`` block.
+
+In normal case, you really should follow other CI/CD guidelines to
+
+* put code under ``src/package/module/to/code.py`` (the module part)
+* put test code under ``tests/somewhere/to/test_code.py`` (all the test cases and a possible one line ``unittest.main()`` code in the ``if __name__ == "__main__"`` block)
+In this way, pytest can discover and run the test cases, this is the standard way to do unit testing.
+
+But here we CAN run the test cases in the ``if __name__ == "__main__"`` block, using the following code::
+
+    from pathlib import Path
+    import unittest2doc
+    from unittest2doc import Unittest2Doc
+    from unittest2doc.utils.exec_tool import filter_after_comment_by, load_module, collect_module_attr, load_main
+
+    if __name__ == "__main__":
+        test_module = "unittest2doc.utils.exec_tool"
+        module = load_module(test_module)
+        module_globals = collect_module_attr(module, all=True)
+
+        main = load_main(
+                 module,
+                 code_filter=filter_after_comment_by("Run unittests"),
+                 globals=module_globals,
+                 add_code_object=True,
+               )
+
+        t = unittest2doc.Unittest2Doc(
+            testcase=main['TestExecTool'](),
+            name='unittest2doc.utils.exec_tool',
+            ref=':mod:`unittest2doc.utils.exec_tool`',
+            doc_root=Path(__file__).absolute().parent.parent / 'sphinx-docs/source/unittests',
+            open_input=False,
+        )
+        t.generate_docs()
+
+
+.. _unittests/unittest2doc.utils.exec_tool.filter_after_comment_string_match:
+
+filter_after_comment_string_match
+---------------------------------
+
+Test filter_after_comment with string matching.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_filter_after_comment_string_match(self):
+        """Test filter_after_comment with string matching."""
+        code = dedent('''
+            def func1():
+                return "before"
+    
+            def func2():
+                return "middle"
+    
+            # REMOVE: everything after this comment
+            def func3():
+                return "after"
+    
+            class AfterClass:
+                pass
+        ''').strip()
+    
+        result = filter_after_comment(code, "REMOVE: everything after this comment")
+    
+        self.assertIn('def func1():', result)
+        self.assertIn('def func2():', result)
+        self.assertNotIn('def func3():', result)
+        self.assertNotIn('class AfterClass:', result)
+        self.assertNotIn('REMOVE:', result)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.filter_after_comment_regex_match:
+
+filter_after_comment_regex_match
+--------------------------------
+
+Test filter_after_comment with regex pattern.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_filter_after_comment_regex_match(self):
+        """Test filter_after_comment with regex pattern."""
+        code = dedent('''
+            import os
+            import sys
+    
+            def main():
+                print("Hello")
+    
+            # TODO: implement feature xyz
+            def unfinished_function():
+                pass
+    
+            # NOTE: this is important
+            def another_function():
+                pass
+        ''').strip()
+    
+        # Use regex to match any TODO comment
+        pattern = re.compile(r'TODO:.*')
+        result = filter_after_comment(code, pattern)
+    
+        self.assertIn('def main():', result)
+        self.assertNotIn('def unfinished_function():', result)
+        self.assertNotIn('def another_function():', result)
+        self.assertNotIn('TODO:', result)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.filter_after_comment_no_match:
+
+filter_after_comment_no_match
+-----------------------------
+
+Test filter_after_comment when comment is not found.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_filter_after_comment_no_match(self):
+        """Test filter_after_comment when comment is not found."""
+        code = dedent('''
+            def func1():
+                return "test"
+    
+            # Some other comment
+            def func2():
+                return "test2"
+        ''').strip()
+    
+        result = filter_after_comment(code, "NONEXISTENT COMMENT")
+    
+        # Should return original code unchanged
+        self.assertEqual(result, code)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.filter_after_comment_multiple_matches:
+
+filter_after_comment_multiple_matches
+-------------------------------------
+
+Test filter_after_comment with multiple matching comments.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_filter_after_comment_multiple_matches(self):
+        """Test filter_after_comment with multiple matching comments."""
+        code = dedent('''
+            def func1():
+                return 1
+    
+            # STOP here first time
+            def func2():
+                return 2
+    
+            # STOP here second time  
+            def func3():
+                return 3
+        ''').strip()
+    
+        result = filter_after_comment(code, "STOP")
+    
+        # Should stop at the first match
+        self.assertIn('def func1():', result)
+        self.assertNotIn('def func2():', result)
+        self.assertNotIn('def func3():', result)
+        self.assertNotIn('STOP here first time', result)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.filter_after_comment_empty_code:
+
+filter_after_comment_empty_code
+-------------------------------
+
+Test filter_after_comment with empty code.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_filter_after_comment_empty_code(self):
+        """Test filter_after_comment with empty code."""
+        result = filter_after_comment("", "any comment")
+        self.assertEqual(result, "")
+    
+        result = filter_after_comment("   ", "any comment")
+        self.assertEqual(result, "   ")
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.filter_after_comment_comment_at_end:
+
+filter_after_comment_comment_at_end
+-----------------------------------
+
+Test filter_after_comment when comment is at the last line.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_filter_after_comment_comment_at_end(self):
+        """Test filter_after_comment when comment is at the last line."""
+        code = dedent('''
+            def func():
+                return "test"
+    
+            x = 1
+            # END: this is the last line
+        ''').strip()
+    
+        result = filter_after_comment(code, "END: this is the last line")
+    
+        self.assertIn('def func():', result)
+        self.assertIn('x = 1', result)
+        self.assertNotIn('END:', result)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.filter_after_comment_regex_complex:
+
+filter_after_comment_regex_complex
+----------------------------------
+
+Test filter_after_comment with complex regex.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_filter_after_comment_regex_complex(self):
+        """Test filter_after_comment with complex regex."""
+        code = dedent('''
+            import math
+    
+            def calculate():
+                return math.pi
+    
+            # Version: 1.2.3 - remove from here
+            def version_specific():
+                pass
+    
+            # Version: 2.0.0 - and this too
+            def newer_version():
+                pass
+        ''').strip()
+    
+        # Match any version comment
+        pattern = re.compile(r'Version:\s+\d+\.\d+\.\d+')
+        result = filter_after_comment(code, pattern)
+    
+        self.assertIn('def calculate():', result)
+        self.assertNotIn('def version_specific():', result)
+        self.assertNotIn('def newer_version():', result)
+        self.assertNotIn('Version:', result)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.filter_after_comment_invalid_pattern_type:
+
+filter_after_comment_invalid_pattern_type
+-----------------------------------------
+
+Test filter_after_comment with invalid pattern type.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_filter_after_comment_invalid_pattern_type(self):
+        """Test filter_after_comment with invalid pattern type."""
+        code = dedent('''
+            def func():
+                return "test"
+    
+            # Some comment here
+            def another_func():
+                pass
+        ''').strip()
+    
+        with self.assertRaises(TypeError):
+            filter_after_comment(code, 123)  # Invalid type
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_module_with_module_name:
+
+load_module_with_module_name
+----------------------------
+
+Test load_module with standard module name.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_module_with_module_name(self):
+        """Test load_module with standard module name."""
+        # Test with built-in module
+        os_module = load_module("os")
+        import os
+        self.assertEqual(os_module, os)
+    
+        # Test with sub-module
+        path_module = load_module("os.path")
+        import os.path
+        self.assertEqual(path_module, os.path)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_module_with_file_path:
+
+load_module_with_file_path
+--------------------------
+
+Test load_module with file path.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_module_with_file_path(self):
+        """Test load_module with file path."""
+        test_content = dedent('''
+            def test_function():
+                return "from file path"
+    
+            TEST_CONSTANT = 42
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            resolved_module = load_module(f.name)
+    
+            self.assertTrue(hasattr(resolved_module, 'test_function'))
+            self.assertTrue(hasattr(resolved_module, 'TEST_CONSTANT'))
+            self.assertEqual(resolved_module.test_function(), "from file path")
+            self.assertEqual(resolved_module.TEST_CONSTANT, 42)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_module_with_module_object:
+
+load_module_with_module_object
+------------------------------
+
+Test load_module with existing module object.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_module_with_module_object(self):
+        """Test load_module with existing module object."""
+        import math
+        resolved_module = load_module(math)
+        self.assertEqual(resolved_module, math)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_module_errors:
+
+load_module_errors
+------------------
+
+Test load_module error cases.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_module_errors(self):
+        """Test load_module error cases."""
+        # Non-existent module
+        with self.assertRaises(ImportError):
+            load_module("non_existent_module_12345")
+    
+        # Non-existent file path  
+        with self.assertRaises(FileNotFoundError):
+            load_module("/non/existent/path.py")
+    
+        # Invalid type
+        with self.assertRaises(TypeError):
+            load_module(123)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_all:
+
+collect_module_attr_all
+-----------------------
+
+Test collect_module_attr with all=True.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_all(self):
+        """Test collect_module_attr with all=True."""
+        test_content = dedent('''
+            def test_func():
+                return "test"
+    
+            TEST_VAR = 42
+            TEST_STR = "hello"
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            attrs = collect_module_attr(f.name, all=True)
+    
+            # Should contain all module attributes
+            self.assertIn('test_func', attrs)
+            self.assertIn('TEST_VAR', attrs)
+            self.assertIn('TEST_STR', attrs)
+            self.assertEqual(attrs['TEST_VAR'], 42)
+            self.assertEqual(attrs['test_func'](), 'test')
+            self.assertEqual(attrs['TEST_STR'], "hello")
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_names_dict:
+
+collect_module_attr_names_dict
+------------------------------
+
+Test collect_module_attr with names as dict (source->target mapping).
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_names_dict(self):
+        """Test collect_module_attr with names as dict (source->target mapping)."""
+        import math
+    
+        # Test direct name mapping: source_name -> target_name
+        attrs = collect_module_attr(math, names={'pi': 'PI', 'sqrt': 'SQRT'})
+    
+        self.assertIn('PI', attrs)
+        self.assertIn('SQRT', attrs)
+        self.assertEqual(attrs['PI'], math.pi)
+        self.assertEqual(attrs['SQRT'], math.sqrt)
+        # Original names should not be present
+        self.assertNotIn('pi', attrs)
+        self.assertNotIn('sqrt', attrs)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_names_list:
+
+collect_module_attr_names_list
+------------------------------
+
+Test collect_module_attr with names as list (original names).
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_names_list(self):
+        """Test collect_module_attr with names as list (original names)."""
+        import math
+    
+        # Test list format uses original names
+        attrs = collect_module_attr(math, names=['pi', 'sqrt'])
+    
+        self.assertIn('pi', attrs)
+        self.assertIn('sqrt', attrs)
+        self.assertEqual(attrs['pi'], math.pi)
+        self.assertEqual(attrs['sqrt'], math.sqrt)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_names_regex_dict:
+
+collect_module_attr_names_regex_dict
+------------------------------------
+
+Test collect_module_attr with regex patterns in dict.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_names_regex_dict(self):
+        """Test collect_module_attr with regex patterns in dict."""
+        import math
+    
+        # Test regex pattern in dict - should use original names (value is ignored)
+        attrs = collect_module_attr(
+            math, 
+            names={re.compile(r'^(sin|cos|tan)$'): 'ignored_value'}
+        )
+    
+        # With regex in dict, matched attributes use original names
+        self.assertIn('sin', attrs)
+        self.assertIn('cos', attrs)
+        self.assertIn('tan', attrs)
+        self.assertEqual(attrs['sin'], math.sin)
+        self.assertEqual(attrs['cos'], math.cos)
+        self.assertEqual(attrs['tan'], math.tan)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_names_regex_list:
+
+collect_module_attr_names_regex_list
+------------------------------------
+
+Test collect_module_attr with regex patterns in list.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_names_regex_list(self):
+        """Test collect_module_attr with regex patterns in list."""
+        import math
+    
+        # Test regex pattern in list - should use original names
+        attrs = collect_module_attr(
+            math, 
+            names=[re.compile(r'^(sin|cos|tan)$')]
+        )
+    
+        # With regex in list, matched attributes use original names
+        self.assertIn('sin', attrs)
+        self.assertIn('cos', attrs)
+        self.assertIn('tan', attrs)
+        self.assertEqual(attrs['sin'], math.sin)
+        self.assertEqual(attrs['cos'], math.cos)
+        self.assertEqual(attrs['tan'], math.tan)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_names_mapping_dict:
+
+collect_module_attr_names_mapping_dict
+--------------------------------------
+
+Test collect_module_attr with names_mapping as dict.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_names_mapping_dict(self):
+        """Test collect_module_attr with names_mapping as dict."""
+        import math
+    
+        # First collect, then remap
+        attrs = collect_module_attr(
+            math, 
+            names=['pi', 'sqrt'],
+            names_mapping={'pi': 'PI_VALUE', 'sqrt': 'SQRT_FUNC'}
+        )
+    
+        self.assertIn('PI_VALUE', attrs)
+        self.assertIn('SQRT_FUNC', attrs)
+        self.assertEqual(attrs['PI_VALUE'], math.pi)
+        self.assertEqual(attrs['SQRT_FUNC'], math.sqrt)
+        # Original names should be removed after mapping
+        self.assertNotIn('pi', attrs)
+        self.assertNotIn('sqrt', attrs)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_names_mapping_callable:
+
+collect_module_attr_names_mapping_callable
+------------------------------------------
+
+Test collect_module_attr with names_mapping as callable.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_names_mapping_callable(self):
+        """Test collect_module_attr with names_mapping as callable."""
+        import math
+    
+        # Define a mapping function
+        def to_upper_mapping(name):
+            return name.upper()
+    
+        attrs = collect_module_attr(
+            math, 
+            names=['pi', 'sqrt'],
+            names_mapping=to_upper_mapping
+        )
+    
+        self.assertIn('PI', attrs)
+        self.assertIn('SQRT', attrs)
+        self.assertEqual(attrs['PI'], math.pi)
+        self.assertEqual(attrs['SQRT'], math.sqrt)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_by_classes:
+
+collect_module_attr_by_classes
+------------------------------
+
+Test collect_module_attr with class filtering.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_by_classes(self):
+        """Test collect_module_attr with class filtering."""
+        test_content = dedent('''
+            test_int = 42
+            test_str = "hello"
+            test_float = 3.14
+            test_list = [1, 2, 3]
+    
+            class TestClass:
+                pass
+    
+            def test_func():
+                pass
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            attrs = collect_module_attr(f.name, classes=[int, str])
+    
+            self.assertIn('test_int', attrs)
+            self.assertIn('test_str', attrs)
+            self.assertNotIn('test_float', attrs)  # float not in classes list
+            self.assertNotIn('test_list', attrs)   # list not in classes list
+            self.assertEqual(attrs['test_int'], 42)
+            self.assertEqual(attrs['test_str'], "hello")
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_all_classes:
+
+collect_module_attr_all_classes
+-------------------------------
+
+Test collect_module_attr with classes=True to collect all classes.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_all_classes(self):
+        """Test collect_module_attr with classes=True to collect all classes."""
+        test_content = dedent('''
+            class FirstClass:
+                def method1(self):
+                    return "first"
+    
+            class SecondClass:
+                def method2(self):
+                    return "second"
+    
+            class _PrivateClass:  # Should be skipped
+                pass
+    
+            # These should not be collected
+            test_int = 42
+            test_str = "hello"
+    
+            def test_func():
+                pass
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            attrs = collect_module_attr(f.name, classes=True)
+    
+            # Should contain all public classes
+            self.assertIn('FirstClass', attrs)
+            self.assertIn('SecondClass', attrs)
+    
+            # Should not contain private class (starts with _)
+            self.assertNotIn('_PrivateClass', attrs)
+    
+            # Should not contain non-class attributes
+            self.assertNotIn('test_int', attrs)
+            self.assertNotIn('test_str', attrs)
+            self.assertNotIn('test_func', attrs)
+    
+            # Verify they are actually classes
+            self.assertTrue(inspect.isclass(attrs['FirstClass']))
+            self.assertTrue(inspect.isclass(attrs['SecondClass']))
+    
+            # Test instantiation
+            first_instance = attrs['FirstClass']()
+            second_instance = attrs['SecondClass']()
+            self.assertEqual(first_instance.method1(), "first")
+            self.assertEqual(second_instance.method2(), "second")
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_functions:
+
+collect_module_attr_functions
+-----------------------------
+
+Test collect_module_attr with function collection.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_functions(self):
+        """Test collect_module_attr with function collection."""
+        test_content = dedent('''
+            def function_one():
+                return 1
+    
+            def function_two():
+                return 2
+    
+            class NotAFunction:
+                pass
+    
+            variable = "not a function"
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            attrs = collect_module_attr(f.name, functions=True)
+    
+            self.assertIn('function_one', attrs)
+            self.assertIn('function_two', attrs)
+            self.assertNotIn('NotAFunction', attrs)  # Class, not function
+            self.assertNotIn('variable', attrs)      # Variable, not function
+    
+            # Test that functions are callable
+            self.assertEqual(attrs['function_one'](), 1)
+            self.assertEqual(attrs['function_two'](), 2)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_combined:
+
+collect_module_attr_combined
+----------------------------
+
+Test collect_module_attr with multiple criteria and mapping.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_combined(self):
+        """Test collect_module_attr with multiple criteria and mapping."""
+        test_content = dedent('''
+            def helper_func():
+                return "helper"
+    
+            def main_func():
+                return "main"
+    
+            CONSTANT = 100
+            message = "hello world"
+    
+            class MyClass:
+                pass
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            attrs = collect_module_attr(
+                f.name,
+                names={'message': 'MSG', 'CONSTANT': 'CONST'},  # source->target mapping
+                classes=[str, int],
+                functions=True,
+                names_mapping={'helper_func': 'HELPER', 'main_func': 'MAIN'}
+            )
+    
+            # Check remapped names from names dict
+            self.assertIn('MSG', attrs)
+            self.assertIn('CONST', attrs)
+            self.assertEqual(attrs['MSG'], "hello world")
+            self.assertEqual(attrs['CONST'], 100)
+    
+            # Check classes (should also include the ones from names)
+            self.assertIn('message', attrs)  # str instance from classes
+            self.assertIn('CONSTANT', attrs)  # int instance from classes
+    
+            # Check functions with mapping
+            self.assertIn('HELPER', attrs)  # mapped from helper_func
+            self.assertIn('MAIN', attrs)    # mapped from main_func
+            self.assertNotIn('helper_func', attrs)  # original should be removed
+            self.assertNotIn('main_func', attrs)    # original should be removed
+    
+            # Check that class is not included
+            self.assertNotIn('MyClass', attrs)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.collect_module_attr_errors:
+
+collect_module_attr_errors
+--------------------------
+
+Test collect_module_attr error cases.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_collect_module_attr_errors(self):
+        """Test collect_module_attr error cases."""
+        import math
+    
+        # Invalid names type
+        with self.assertRaises(TypeError):
+            collect_module_attr(math, names="invalid_string")
+    
+        # Invalid pattern type in dict (key should be str or re.Pattern)
+        with self.assertRaises(TypeError):
+            collect_module_attr(math, names={123: 'target_name'})
+    
+        # Invalid pattern type in list
+        with self.assertRaises(TypeError):
+            collect_module_attr(math, names=[123])
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_basic:
+
+load_main_basic
+---------------
+
+Test basic load_main functionality using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_basic(self):
+        """Test basic load_main functionality using helper functions."""
+        test_content = dedent('''
+            def greet(name):
+                return f"Hello, {name}!"
+    
+            value = 100
+    
+            if __name__ == "__main__":
+                message = greet("World")
+                doubled = value * 2
+                test_result = "success"
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            result = load_main(f.name, globals=test_globals)
+    
+            self.assertIn('message', result)
+            self.assertIn('doubled', result) 
+            self.assertIn('test_result', result)
+            self.assertEqual(result['message'], 'Hello, World!')
+            self.assertEqual(result['doubled'], 200)
+            self.assertEqual(result['test_result'], 'success')
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_with_import:
+
+load_main_with_import
+---------------------
+
+Test basic load_main functionality using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_with_import(self):
+        """Test basic load_main functionality using helper functions."""
+        test_content = dedent('''
+            if __name__ == "__main__":
+                import numpy as np
+                from textwrap import dedent
+                def test_func():
+                    return np.array([1, 2, 3])
+    
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            result = load_main(f.name, globals=test_globals)
+    
+            self.assertIn('np', result)
+            self.assertIn('dedent', result)
+            self.assertIn('test_func', result)
+            import numpy as np
+            # Use numpy array comparison instead of assertEqual to avoid ambiguous truth value
+            np.testing.assert_array_equal(result['test_func'](), np.array([1, 2, 3]))
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_with_classes:
+
+load_main_with_classes
+----------------------
+
+Test load_main with class definitions using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_with_classes(self):
+        """Test load_main with class definitions using helper functions."""
+        test_content = dedent('''
+            class Calculator:
+                def __init__(self, name):
+                    self.name = name
+    
+                def add(self, a, b):
+                    return a + b
+    
+            DEFAULT_NAME = "MyCalc"
+    
+            if __name__ == "__main__":
+                calc = Calculator(DEFAULT_NAME)
+                result = calc.add(10, 20)
+                calc_name = calc.name + "_used"
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            result = load_main(f.name, globals=test_globals)
+    
+            self.assertIn('calc', result)
+            self.assertIn('result', result)
+            self.assertIn('calc_name', result)
+            self.assertEqual(result['result'], 30)
+            self.assertEqual(result['calc_name'], 'MyCalc_used')
+            self.assertIsInstance(result['calc'], module.Calculator)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_with_selective_collection:
+
+load_main_with_selective_collection
+-----------------------------------
+
+Test load_main with selective attribute collection using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_with_selective_collection(self):
+        """Test load_main with selective attribute collection using helper functions."""
+        test_content = dedent('''
+            def greet(name):
+                return f"Hello, {name}!"
+    
+            def calculate(a, b):
+                return a * b
+    
+            BASE_VALUE = 10
+            SECRET = "should not be visible"
+    
+            if __name__ == "__main__":
+                greeting = greet("World")
+                result = calculate(BASE_VALUE, 5)
+                total = BASE_VALUE + result
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions to selectively collect
+            module = load_module(f.name)
+            test_globals = collect_module_attr(
+                module,
+                names=['BASE_VALUE'],  # use list format for original names
+                functions=True
+            )
+    
+            self.assertNotIn('SECRET', test_globals)
+    
+            result = load_main(f.name, globals=test_globals)
+    
+            self.assertIn('greeting', result)
+            self.assertIn('result', result)
+            self.assertIn('total', result)
+            self.assertEqual(result['greeting'], 'Hello, World!')
+            self.assertEqual(result['result'], 50)  # 10 * 5
+            self.assertEqual(result['total'], 60)   # 10 + 50
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_with_custom_locals:
+
+load_main_with_custom_locals
+----------------------------
+
+Test load_main with custom locals using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_with_custom_locals(self):
+        """Test load_main with custom locals using helper functions."""
+        test_content = dedent('''
+            def multiply(a, b):
+                return a * b
+    
+            BASE_VALUE = 5
+    
+            if __name__ == "__main__":
+                result = multiply(BASE_VALUE, existing_multiplier)
+                final_value = result + existing_offset
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions with specific classes and functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, functions=True, classes=[int])
+    
+            custom_locals = {
+                'existing_multiplier': 3,
+                'existing_offset': 10
+            }
+    
+            result = load_main(f.name, locals=custom_locals, globals=test_globals)
+    
+            self.assertIn('existing_multiplier', result)
+            self.assertIn('existing_offset', result)
+            self.assertIn('result', result)
+            self.assertIn('final_value', result)
+            self.assertEqual(result['result'], 15)  # 5 * 3
+            self.assertEqual(result['final_value'], 25)  # 15 + 10
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_with_code_filter:
+
+load_main_with_code_filter
+--------------------------
+
+Test load_main with code filter using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_with_code_filter(self):
+        """Test load_main with code filter using helper functions."""
+        test_content = dedent('''
+            def process_data(data):
+                return data.upper()
+    
+            DEFAULT_DATA = "hello world"
+    
+            if __name__ == "__main__":
+                processed = process_data(DEFAULT_DATA)
+                length = len(processed)
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            def add_prefix_filter(code: str) -> str:
+                return f"prefix_var = 'code_filtered'\n{code}"
+    
+            result = load_main(f.name, code_filter=add_prefix_filter, globals=test_globals)
+    
+            self.assertIn('prefix_var', result)
+            self.assertIn('processed', result)
+            self.assertIn('length', result)
+            self.assertEqual(result['prefix_var'], 'code_filtered')
+            self.assertEqual(result['processed'], 'HELLO WORLD')
+            self.assertEqual(result['length'], 11)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_with_name_mapping:
+
+load_main_with_name_mapping
+---------------------------
+
+Test load_main with name mapping using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_with_name_mapping(self):
+        """Test load_main with name mapping using helper functions."""
+        test_content = dedent('''
+            def calculate_area(radius):
+                import math
+                return math.pi * radius ** 2
+    
+            def calculate_volume(radius, height):
+                import math
+                return math.pi * radius ** 2 * height
+    
+            DEFAULT_RADIUS = 5
+            DEFAULT_HEIGHT = 10
+    
+            if __name__ == "__main__":
+                area = calculate_area(DEFAULT_RADIUS)
+                volume = calculate_volume(DEFAULT_RADIUS, DEFAULT_HEIGHT)
+                summary = f"Area: {area:.2f}, Volume: {volume:.2f}"
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions with selective collection (without name mapping to avoid conflicts)
+            module = load_module(f.name)
+            test_globals = collect_module_attr(
+                module,
+                functions=True,  # Get all functions with original names
+                classes=[int]    # Get integer constants
+            )
+    
+            result = load_main(f.name, globals=test_globals)
+    
+            self.assertIn('area', result)
+            self.assertIn('volume', result)
+            self.assertIn('summary', result)
+            self.assertAlmostEqual(result['area'], 78.53981633974483, places=5)
+            self.assertAlmostEqual(result['volume'], 785.3981633974483, places=4)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_complex_main_block:
+
+load_main_complex_main_block
+----------------------------
+
+Test load_main with complex main block using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_complex_main_block(self):
+        """Test load_main with complex main block using helper functions."""
+        test_content = dedent('''
+            def fibonacci(n):
+                if n <= 1:
+                    return n
+                return fibonacci(n-1) + fibonacci(n-2)
+    
+            def is_even(num):
+                return num % 2 == 0
+    
+            LIMIT = 8
+    
+            if __name__ == "__main__":
+                fib_numbers = []
+                for i in range(LIMIT):
+                    fib_numbers.append(fibonacci(i))
+    
+                even_fibs = [num for num in fib_numbers if is_even(num)]
+    
+                if len(even_fibs) > 0:
+                    max_even_fib = max(even_fibs)
+                    result_status = "found_evens"
+                else:
+                    max_even_fib = 0
+                    result_status = "no_evens"
+    
+                total_sum = sum(fib_numbers)
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            result = load_main(f.name, globals=test_globals)
+    
+            self.assertIn('fib_numbers', result)
+            self.assertIn('even_fibs', result)
+            self.assertIn('max_even_fib', result)
+            self.assertIn('result_status', result)
+            self.assertIn('total_sum', result)
+    
+            # Check fibonacci sequence: [0, 1, 1, 2, 3, 5, 8, 13]
+            expected_fibs = [0, 1, 1, 2, 3, 5, 8, 13]
+            self.assertEqual(result['fib_numbers'], expected_fibs)
+            self.assertEqual(result['even_fibs'], [0, 2, 8])
+            self.assertEqual(result['max_even_fib'], 8)
+            self.assertEqual(result['result_status'], 'found_evens')
+            self.assertEqual(result['total_sum'], 33)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_with_module_object:
+
+load_main_with_module_object
+----------------------------
+
+Test load_main with actual module object using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_with_module_object(self):
+        """Test load_main with actual module object using helper functions."""
+        test_content = dedent('''
+            def get_message():
+                return "from module object"
+    
+            CONFIG_VALUE = "test_config"
+    
+            if __name__ == "__main__":
+                message = get_message()
+                config = CONFIG_VALUE.upper()
+                combined = f"{message}_{config}"
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            # Test with module object instead of file path
+            result = load_main(module, globals=test_globals)
+    
+            self.assertIn('message', result)
+            self.assertIn('config', result)
+            self.assertIn('combined', result)
+            self.assertEqual(result['message'], 'from module object')
+            self.assertEqual(result['config'], 'TEST_CONFIG')
+            self.assertEqual(result['combined'], 'from module object_TEST_CONFIG')
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_integration_complex:
+
+load_main_integration_complex
+-----------------------------
+
+Test complex integration example with all features using helper functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_integration_complex(self):
+        """Test complex integration example with all features using helper functions."""
+        test_content = dedent('''
+            import math
+    
+            def fibonacci(n):
+                if n <= 1:
+                    return n
+                return fibonacci(n-1) + fibonacci(n-2)
+    
+            def is_prime(num):
+                if num < 2:
+                    return False
+                for i in range(2, int(math.sqrt(num)) + 1):
+                    if num % i == 0:
+                        return False
+                return True
+    
+            PI_APPROX = 3.14
+            LIMIT = 10
+    
+            if __name__ == "__main__":
+                # Calculate fibonacci numbers
+                fib_numbers = [fibonacci(i) for i in range(LIMIT)]
+    
+                # Find prime fibonacci numbers
+                prime_fibs = [num for num in fib_numbers if is_prime(num)]
+    
+                # Use math module
+                circle_area = math.pi * (5 ** 2)
+                pi_accuracy = abs(math.pi - PI_APPROX) < 0.01
+    
+                # Summary
+                result_summary = {
+                    'fibonacci_count': len(fib_numbers),
+                    'prime_fibonacci': prime_fibs,
+                    'circle_area': round(circle_area, 2),
+                    'pi_is_accurate': pi_accuracy
+                }
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions - need to include math module
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)  # Include everything including imported modules
+    
+            result = load_main(f.name, globals=test_globals)
+    
+            # Verify results
+            self.assertIn('fib_numbers', result)
+            self.assertIn('prime_fibs', result)
+            self.assertIn('circle_area', result)
+            self.assertIn('result_summary', result)
+    
+            expected_fibs = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+            self.assertEqual(result['fib_numbers'], expected_fibs)
+    
+            # Prime fibonacci numbers up to 34: [2, 3, 5, 13]
+            self.assertEqual(result['prime_fibs'], [2, 3, 5, 13])
+    
+            summary = result['result_summary']
+            self.assertEqual(summary['fibonacci_count'], 10)
+            self.assertEqual(summary['prime_fibonacci'], [2, 3, 5, 13])
+            self.assertEqual(summary['circle_area'], 78.54)
+            self.assertTrue(summary['pi_is_accurate'])
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_error_cases:
+
+load_main_error_cases
+---------------------
+
+Test load_main error cases.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_error_cases(self):
+        """Test load_main error cases."""
+        # Non-existent file
+        with self.assertRaises(FileNotFoundError):
+            load_main("nonexistent_file_12345.py")
+    
+        # File with no main block
+        test_content = dedent('''
+            def function():
+                return "no main block"
+    
+            variable = 42
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            with self.assertRaises(ValueError) as cm:
+                load_main(f.name)
+            self.assertIn("No 'if __name__ == \"__main__\"' block found", str(cm.exception))
+    
+        # Syntax error
+        test_content_broken = dedent('''
+            def broken_function(
+                # Missing closing parenthesis
+    
+            if __name__ == "__main__":
+                result = "never reached"
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content_broken)
+            f.flush()
+    
+            with self.assertRaises(SyntaxError):
+                load_main(f.name)
+    
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_with_add_code_object:
+
+load_main_with_add_code_object
+------------------------------
+
+Test load_main with add_code_object=True for inspect.getsource() support.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_with_add_code_object(self):
+        """Test load_main with add_code_object=True for inspect.getsource() support."""
+        test_content = dedent('''
+            def helper_function(x):
+                """A helper function."""
+                return x * 2
+    
+            BASE_VALUE = 10
+    
+            if __name__ == "__main__":
+                def main_function(y):
+                    """Function defined in main block."""
+                    return helper_function(y) + BASE_VALUE
+    
+                class MainClass:
+                    """Class defined in main block."""
+                    def __init__(self, value):
+                        self.value = value
+    
+                    def get_value(self):
+                        return self.value * 2
+    
+                result = main_function(5)
+                instance = MainClass(10)
+                class_result = instance.get_value()
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            # Test with add_code_object=True
+            result = load_main(f.name, add_code_object=True, globals=test_globals)
+    
+            # Verify objects exist
+            self.assertIn('main_function', result)
+            self.assertIn('MainClass', result)
+            self.assertIn('result', result)
+            self.assertIn('instance', result)
+            self.assertIn('class_result', result)
+    
+            # Test function
+            main_func = result['main_function']
+            self.assertEqual(main_func(5), 20)  # 5*2 + 10 = 20
+            self.assertEqual(result['result'], 20)
+    
+            # Test class
+            main_class = result['MainClass']
+            instance = main_class(15)
+            self.assertEqual(instance.get_value(), 30)  # 15 * 2 = 30
+            self.assertEqual(result['class_result'], 20)  # 10 * 2 = 20
+    
+            # Test comprehensive source code information for all objects
+            print("\n=== Detailed source code info test ===")
+    
+            # Test all functions and classes
+            test_objects = {
+                'main_function': main_func,
+                'MainClass': main_class
+            }
+    
+            for obj_name, obj in test_objects.items():
+                print(f"\n--- Testing {obj_name} ---")
+    
+                if inspect.isclass(obj):
+                    print(f"Type: class")
+                    # Test class source
+                    self.assertTrue(hasattr(obj, '__source__'), f"{obj_name} missing __source__ attribute")
+                    class_source = obj.__source__
+                    self.assertIn(f'class {obj.__name__}:', class_source)
+                    print(f"✓ Class source length: {len(class_source)} chars")
+                    print(f"✓ Virtual file: {getattr(obj, '__module__', 'N/A')}")
+                    print(f"✓ File attribute: {getattr(obj, '__file__', 'N/A')}")
+    
+                    # Test all methods in the class
+                    for method_name in dir(obj):
+                        method = getattr(obj, method_name)
+                        # Check if it's a method we want to test
+                        if callable(method):
+                            # Include special methods like __init__ and user-defined methods
+                            should_test = (
+                                method_name in ['__init__', 'method', 'get_value', 'static_method'] or
+                                (not method_name.startswith('__') and not method_name.startswith('_'))
+                            )
+    
+                            if should_test:
+                                print(f"  Testing method: {method_name}")
+                                # Check if it's an instance method with __func__
+                                if hasattr(method, '__func__'):
+                                    try:
+                                        method_source = inspect.getsource(method)
+                                        print(f"    ✓ inspect.getsource() success: {len(method_source)} chars")
+                                        if hasattr(method.__func__, '__code__'):
+                                            code = method.__func__.__code__
+                                            print(f"    ✓ Filename: {code.co_filename}")
+                                            print(f"    ✓ First line: {code.co_firstlineno}")
+                                        print("===source===")
+                                        print(method_source)
+                                        print("============")
+                                    except (OSError, TypeError) as e:
+                                        print(f"    ✗ inspect.getsource() failed: {e}")
+                                # Check if it's a static method or other callable
+                                elif hasattr(method, '__code__'):
+                                    try:
+                                        method_source = inspect.getsource(method)
+                                        print(f"    ✓ inspect.getsource() success: {len(method_source)} chars")
+                                        code = method.__code__
+                                        print(f"    ✓ Filename: {code.co_filename}")
+                                        print(f"    ✓ First line: {code.co_firstlineno}")
+                                        print("===source===")
+                                        print(method_source)
+                                        print("============")
+                                    except (OSError, TypeError) as e:
+                                        print(f"    ✗ inspect.getsource() failed: {e}")
+                                else:
+                                    print(f"    • Skipped built-in method or attribute")
+    
+                    # Try inspect.getsource on class (may fail for dynamic classes)
+                    try:
+                        inspect_class_source = inspect.getsource(obj)
+                        print(f"✓ Class inspect.getsource() success: {len(inspect_class_source)} chars")
+                    except (OSError, TypeError) as e:
+                        print(f"✗ Class inspect.getsource() failed: {e} (expected)")
+    
+                elif callable(obj):
+                    print(f"Type: function")
+                    # Test function source
+                    self.assertTrue(hasattr(obj, '__source__'), f"{obj_name} missing __source__ attribute")
+                    func_source = obj.__source__
+                    self.assertIn(f'def {obj.__name__}(', func_source)
+                    print(f"✓ Function source length: {len(func_source)} chars")
+                    print(f"✓ Virtual module: {getattr(obj, '__module__', 'N/A')}")
+    
+                    if hasattr(obj, '__code__'):
+                        code = obj.__code__
+                        print(f"✓ Code object filename: {code.co_filename}")
+                        print(f"✓ Code object first line: {code.co_firstlineno}")
+    
+                    # Test inspect.getsource for functions (should work)
+                    try:
+                        inspect_func_source = inspect.getsource(obj)
+                        print(f"✓ inspect.getsource() success: {len(inspect_func_source)} chars")
+                        self.assertIn(f'def {obj.__name__}(', inspect_func_source)
+                    except (OSError, TypeError) as e:
+                        print(f"✗ inspect.getsource() failed: {e}")
+                        self.fail(f"Function {obj_name} inspect.getsource() should work")
+    
+            print("\n=== Source code info test complete ===\n")
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+  
+    === Detailed source code info test ===
+  
+    --- Testing main_function ---
+    Type: function
+    ✓ Function source length: 106 chars
+    ✓ Virtual module: <load_main:tmplgmweslk.py>
+    ✓ Code object filename: <load_main:tmplgmweslk.py>
+    ✓ Code object first line: 8
+    ✓ inspect.getsource() success: 119 chars
+  
+    --- Testing MainClass ---
+    Type: class
+    ✓ Class source length: 169 chars
+    ✓ Virtual file: <load_main:tmplgmweslk.py>
+    ✓ File attribute: <load_main:tmplgmweslk.py>
+      Testing method: __init__
+        ✓ inspect.getsource() success: 66 chars
+        ✓ Filename: <load_main:tmplgmweslk.py>
+        ✓ First line: 14
+    ===source===
+            def __init__(self, value):
+                self.value = value
+  
+    ============
+      Testing method: get_value
+        ✓ inspect.getsource() success: 63 chars
+        ✓ Filename: <load_main:tmplgmweslk.py>
+        ✓ First line: 17
+    ===source===
+            def get_value(self):
+                return self.value * 2
+  
+    ============
+    ✗ Class inspect.getsource() failed: <class '<load_main:tmplgmweslk.py>.MainClass'> is a built-in class (expected)
+  
+    === Source code info test complete ===
+  
+  
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_add_code_object_complex:
+
+load_main_add_code_object_complex
+---------------------------------
+
+Test add_code_object with nested functions and async functions.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_add_code_object_complex(self):
+        """Test add_code_object with nested functions and async functions."""
+        test_content = dedent('''
+            import asyncio
+    
+            def outer_function():
+                return "outer"
+    
+            if __name__ == "__main__":
+                def nested_function():
+                    def inner_function():
+                        return "inner"
+                    return inner_function
+    
+                async def async_function():
+                    return "async"
+    
+                class ComplexClass:
+                    def __init__(self):
+                        self.value = "complex"
+    
+                    def method(self):
+                        return self.value
+    
+                    @staticmethod
+                    def static_method():
+                        return "static"
+    
+                inner_func = nested_function()
+                complex_instance = ComplexClass()
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            # Use helper functions
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            result = load_main(f.name, add_code_object=True, globals=test_globals)
+    
+            # Test nested function
+            nested_func = result['nested_function']
+            inner_func = nested_func()
+            self.assertEqual(inner_func(), "inner")
+    
+            # Test async function
+            async_func = result['async_function']
+            self.assertTrue(asyncio.iscoroutinefunction(async_func))
+    
+            # Test complex class
+            complex_class = result['ComplexClass']
+            instance = complex_class()
+            self.assertEqual(instance.method(), "complex")
+            self.assertEqual(complex_class.static_method(), "static")
+    
+            # Test comprehensive source code information for all complex objects
+            print("\n=== Detailed source code info test ===")
+    
+            # Test all functions and classes
+            test_objects = {
+                'nested_function': nested_func,
+                'async_function': async_func,
+                'ComplexClass': complex_class
+            }
+    
+            for obj_name, obj in test_objects.items():
+                print(f"\n--- Testing {obj_name} ---")
+    
+                if inspect.isclass(obj):
+                    print(f"Type: complex class")
+                    # Test class source
+                    self.assertTrue(hasattr(obj, '__source__'), f"{obj_name} missing __source__ attribute")
+                    class_source = obj.__source__
+                    self.assertIn(f'class {obj.__name__}:', class_source)
+                    print(f"✓ Class source length: {len(class_source)} chars")
+                    print(f"✓ Virtual file: {getattr(obj, '__module__', 'N/A')}")
+                    print(f"✓ File attribute: {getattr(obj, '__file__', 'N/A')}")
+    
+                    # Test all methods in the class
+                    for method_name in dir(obj):
+                        method = getattr(obj, method_name)
+                        # Check if it's a method we want to test
+                        if callable(method):
+                            # Include special methods like __init__ and user-defined methods
+                            should_test = (
+                                method_name in ['__init__', 'method', 'get_value', 'static_method'] or
+                                (not method_name.startswith('__') and not method_name.startswith('_'))
+                            )
+    
+                            if should_test:
+                                print(f"  Testing method: {method_name}")
+                                # Check if it's an instance method with __func__
+                                if hasattr(method, '__func__'):
+                                    try:
+                                        method_source = inspect.getsource(method)
+                                        print(f"    ✓ inspect.getsource() success: {len(method_source)} chars")
+                                        if hasattr(method.__func__, '__code__'):
+                                            code = method.__func__.__code__
+                                            print(f"    ✓ Filename: {code.co_filename}")
+                                            print(f"    ✓ First line: {code.co_firstlineno}")
+                                    except (OSError, TypeError) as e:
+                                        print(f"    ✗ inspect.getsource() failed: {e}")
+                                # Check if it's a static method or other callable
+                                elif hasattr(method, '__code__'):
+                                    try:
+                                        method_source = inspect.getsource(method)
+                                        print(f"    ✓ inspect.getsource() success: {len(method_source)} chars")
+                                        code = method.__code__
+                                        print(f"    ✓ Filename: {code.co_filename}")
+                                        print(f"    ✓ First line: {code.co_firstlineno}")
+                                    except (OSError, TypeError) as e:
+                                        print(f"    ✗ inspect.getsource() failed: {e}")
+                                else:
+                                    print(f"    • Skipped built-in method or attribute")
+    
+                    print(f"   Total methods tested: {len(dir(obj))}")
+    
+                    # Try inspect.getsource on class (may fail for dynamic classes)
+                    try:
+                        inspect_class_source = inspect.getsource(obj)
+                        print(f"✓ Class inspect.getsource() success: {len(inspect_class_source)} chars")
+                    except (OSError, TypeError) as e:
+                        print(f"✗ Class inspect.getsource() failed: {e} (expected)")
+    
+                elif callable(obj):
+                    if asyncio.iscoroutinefunction(obj):
+                        print(f"Type: async function")
+                    else:
+                        print(f"Type: nested function")
+    
+                    # Test function source
+                    self.assertTrue(hasattr(obj, '__source__'), f"{obj_name} missing __source__ attribute")
+                    func_source = obj.__source__
+                    print(f"✓ Function source length: {len(func_source)} chars")
+                    print(f"✓ Virtual module: {getattr(obj, '__module__', 'N/A')}")
+    
+                    # Verify function definition exists in source
+                    if obj_name == 'nested_function':
+                        self.assertIn('def nested_function():', func_source)
+                        self.assertIn('def inner_function():', func_source)
+                        print("✓ Contains nested function definition")
+                    elif obj_name == 'async_function':
+                        self.assertIn('async def async_function():', func_source)
+                        print("✓ Contains async function definition")
+    
+                    if hasattr(obj, '__code__'):
+                        code = obj.__code__
+                        print(f"✓ Code object filename: {code.co_filename}")
+                        print(f"✓ Code object first line: {code.co_firstlineno}")
+                        print(f"✓ Function name: {code.co_name}")
+    
+                    # Test inspect.getsource for functions (should work)
+                    try:
+                        inspect_func_source = inspect.getsource(obj)
+                        print(f"✓ inspect.getsource() success: {len(inspect_func_source)} chars")
+                        if obj_name == 'nested_function':
+                            self.assertIn('def nested_function():', inspect_func_source)
+                        elif obj_name == 'async_function':
+                            self.assertIn('async def async_function():', inspect_func_source)
+                    except (OSError, TypeError) as e:
+                        print(f"✗ inspect.getsource() failed: {e}")
+                        # For complex nested functions, inspect.getsource might fail
+                        if obj_name != 'nested_function':
+                            self.fail(f"Function {obj_name} inspect.getsource() should work")
+    
+            # Additional test: verify inner function from nested_function
+            print(f"\n--- Testing nested inner function ---")
+            inner_func = nested_func()
+            if callable(inner_func):
+                print(f"Type: nested inner function")
+                print(f"Function name: {inner_func.__name__}")
+                if hasattr(inner_func, '__code__'):
+                    code = inner_func.__code__
+                    print(f"✓ Inner function filename: {code.co_filename}")
+                    print(f"✓ Inner function first line: {code.co_firstlineno}")
+    
+                try:
+                    inner_source = inspect.getsource(inner_func)
+                    print(f"✓ Inner function inspect.getsource() success: {len(inner_source)} chars")
+                except (OSError, TypeError) as e:
+                    print(f"✗ Inner function inspect.getsource() failed: {e} (possible)")
+    
+            print("\n=== Detailed source code info test complete ===\n")
+    
+
+
+.. collapse:: OUTPUT
+  :open:
+
+  .. code-block:: 
+
+  
+    === Detailed source code info test ===
+  
+    --- Testing nested_function ---
+    Type: nested function
+    ✓ Function source length: 97 chars
+    ✓ Virtual module: <load_main:tmp0z4sqb64.py>
+    ✓ Contains nested function definition
+    ✓ Code object filename: <load_main:tmp0z4sqb64.py>
+    ✓ Code object first line: 7
+    ✓ Function name: nested_function
+    ✓ inspect.getsource() success: 114 chars
+  
+    --- Testing async_function ---
+    Type: async function
+    ✓ Function source length: 46 chars
+    ✓ Virtual module: <load_main:tmp0z4sqb64.py>
+    ✓ Contains async function definition
+    ✓ Code object filename: <load_main:tmp0z4sqb64.py>
+    ✓ Code object first line: 12
+    ✓ Function name: async_function
+    ✓ inspect.getsource() success: 55 chars
+  
+    --- Testing ComplexClass ---
+    Type: complex class
+    ✓ Class source length: 191 chars
+    ✓ Virtual file: <load_main:tmp0z4sqb64.py>
+    ✓ File attribute: <load_main:tmp0z4sqb64.py>
+      Testing method: __init__
+        ✓ inspect.getsource() success: 63 chars
+        ✓ Filename: <load_main:tmp0z4sqb64.py>
+        ✓ First line: 16
+      Testing method: method
+        ✓ inspect.getsource() success: 56 chars
+        ✓ Filename: <load_main:tmp0z4sqb64.py>
+        ✓ First line: 19
+      Testing method: static_method
+        ✓ inspect.getsource() success: 57 chars
+        ✓ Filename: <load_main:tmp0z4sqb64.py>
+        ✓ First line: 23
+       Total methods tested: 31
+    ✗ Class inspect.getsource() failed: <class '<load_main:tmp0z4sqb64.py>.ComplexClass'> is a built-in class (expected)
+  
+    --- Testing nested inner function ---
+    Type: nested inner function
+    Function name: inner_function
+    ✓ Inner function filename: <string>
+    ✓ Inner function first line: 2
+    ✗ Inner function inspect.getsource() failed: could not get source code (possible)
+  
+    === Detailed source code info test complete ===
+  
+  
+
+
+.. _unittests/unittest2doc.utils.exec_tool.load_main_add_code_object_disabled:
+
+load_main_add_code_object_disabled
+----------------------------------
+
+Test that add_code_object=False doesn't break anything.
+
+.. collapse:: INPUT
+
+  .. code-block:: python
+
+    def test_load_main_add_code_object_disabled(self):
+        """Test that add_code_object=False doesn't break anything."""
+        test_content = dedent('''
+            def helper():
+                return "helper"
+    
+            if __name__ == "__main__":
+                def main_func():
+                    return "main"
+    
+                result = main_func()
+        ''').strip()
+    
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py') as f:
+            f.write(test_content)
+            f.flush()
+    
+            module = load_module(f.name)
+            test_globals = collect_module_attr(module, all=True)
+    
+            # Test with add_code_object=False (default)
+            result = load_main(f.name, add_code_object=False, globals=test_globals)
+    
+            # Verify function works normally
+            main_func = result['main_func']
+            self.assertEqual(main_func(), "main")
+            self.assertEqual(result['result'], "main")
+    
+            # inspect.getsource should fail as expected for dynamically created functions
+            with self.assertRaises((OSError, TypeError)):
+                inspect.getsource(main_func)
+    
+

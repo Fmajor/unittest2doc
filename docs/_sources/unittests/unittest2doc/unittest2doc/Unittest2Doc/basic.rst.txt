@@ -430,7 +430,7 @@ output_as_python
             'system_tags': [
                 OrderedDict({'a': 1, 'b': 2, 'c': 3})
             ],
-            'date': datetime.datetime(2025, 3, 2, 21, 49, 12, 596234)
+            'date': datetime.datetime(2025, 3, 6, 12, 47, 58, 511133)
         }
     ]
   
@@ -466,7 +466,7 @@ test with exception, the output string will be processed by ``no_home_folder`` p
   .. code-block:: 
 
     Traceback (most recent call last):
-      File "${PROJECT_ROOT}/unittest2doc/src/unittest2doc/unittest2doc.py", line 887, in generate_docs
+      File "${PROJECT_ROOT}/unittest2doc/src/unittest2doc/unittest2doc.py", line 909, in generate_docs
         func()
       File "${PROJECT_ROOT}/unittest2doc/tests/test_unittest2doc.py", line 152, in test_with_exception
         raise Exception('expected exception')

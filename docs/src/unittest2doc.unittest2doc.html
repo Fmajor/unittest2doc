@@ -99,11 +99,17 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.all_type_json_serializer" title="unittest2doc.unittest2doc.all_type_json_serializer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_type_json_serializer</span></code></a>(obj)</p></td>
 <td><p>try to use repr() to serialize objects that are not JSON serializable</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.docpprint" title="unittest2doc.unittest2doc.docpprint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">docpprint</span></code></a>(data, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.docpformat" title="unittest2doc.unittest2doc.docpformat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">docpformat</span></code></a>(data[, indent])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.docpprint" title="unittest2doc.unittest2doc.docpprint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">docpprint</span></code></a>(data, **kwargs)</p></td>
 <td><p>Pretty print data for documentation purposes</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.expected_failure" title="unittest2doc.unittest2doc.expected_failure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expected_failure</span></code></a>(func)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.expected_failure" title="unittest2doc.unittest2doc.expected_failure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">expected_failure</span></code></a>(func)</p></td>
 <td><p>use &#64;unittest2doc.expected_failure to mark a test as expected to fail</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.get_caller_func_name" title="unittest2doc.unittest2doc.get_caller_func_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_caller_func_name</span></code></a>()</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.unittest2doc.only" title="unittest2doc.unittest2doc.only"><code class="xref py py-obj docutils literal notranslate"><span class="pre">only</span></code></a>(func)</p></td>
 <td><p>use &#64;unittest2doc.only to only run some unittest</p></td>
@@ -316,6 +322,13 @@ Usually it should be <cite>&lt;package-folder&gt;/docs/source/unittests</cite></
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.docpformat">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">docpformat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.docpformat" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="unittest2doc.unittest2doc.docpprint">
 <span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">docpprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.docpprint" title="Link to this definition">¶</a></dt>
 <dd><p>Pretty print data for documentation purposes</p>
@@ -335,6 +348,13 @@ for documentation output.</p>
 <dt class="sig sig-object py" id="unittest2doc.unittest2doc.expected_failure">
 <span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">expected_failure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unittest2doc.unittest2doc.expected_failure" title="Link to this definition">¶</a></dt>
 <dd><p>use &#64;unittest2doc.expected_failure to mark a test as expected to fail</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.unittest2doc.get_caller_func_name">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.unittest2doc.</span></span><span class="sig-name descname"><span class="pre">get_caller_func_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#unittest2doc.unittest2doc.get_caller_func_name" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -443,8 +463,10 @@ for documentation output.</p>
 </li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.add_foldable_output"><code class="docutils literal notranslate"><span class="pre">add_foldable_output()</span></code></a></li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.all_type_json_serializer"><code class="docutils literal notranslate"><span class="pre">all_type_json_serializer()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.docpformat"><code class="docutils literal notranslate"><span class="pre">docpformat()</span></code></a></li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.docpprint"><code class="docutils literal notranslate"><span class="pre">docpprint()</span></code></a></li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.expected_failure"><code class="docutils literal notranslate"><span class="pre">expected_failure()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.unittest2doc.get_caller_func_name"><code class="docutils literal notranslate"><span class="pre">get_caller_func_name()</span></code></a></li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.only"><code class="docutils literal notranslate"><span class="pre">only()</span></code></a></li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.skip"><code class="docutils literal notranslate"><span class="pre">skip()</span></code></a></li>
 <li><a class="reference internal" href="#unittest2doc.unittest2doc.stop"><code class="docutils literal notranslate"><span class="pre">stop()</span></code></a></li>

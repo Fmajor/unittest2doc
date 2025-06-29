@@ -887,6 +887,42 @@ and save to the <code class="docutils literal notranslate"><span class="pre">/sp
 <span class="linenos">386</span>    <span class="n">t</span><span class="o">.</span><span class="n">generate_docs</span><span class="p">()</span>
 </pre></div>
 </div>
+</section>
+<section id="tests-test-exec-tool-py">
+<h2><code class="docutils literal notranslate"><span class="pre">tests/test_exec_tool.py</span></code><a class="headerlink" href="#tests-test-exec-tool-py" title="Link to this heading">¶</a></h2>
+<p>Generated documentation: <a class="reference internal" href="unittests/unittest2doc/utils/exec_tool.html"><span class="doc">unittest2doc.utils.exec_tool</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">unittest2doc</span>
+<span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">unittest2doc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Unittest2Doc</span>
+<span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">unittest2doc.utils.exec_tool</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_after_comment_by</span><span class="p">,</span> <span class="n">load_module</span><span class="p">,</span> <span class="n">collect_module_attr</span><span class="p">,</span> <span class="n">load_main</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="sd">&quot;&quot;&quot; Note</span>
+<span class="linenos"> 7</span><span class="sd">This is a special way to run test cases in the ``if __name__ == &quot;__main__&quot;`` block of a test file (src/unittest2doc/utils/exec_tool.py),</span>
+<span class="linenos"> 8</span><span class="sd">Using the helper functions from that file.</span>
+<span class="linenos"> 9</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">12</span>    <span class="n">test_module</span> <span class="o">=</span> <span class="s2">&quot;unittest2doc.utils.exec_tool&quot;</span>
+<span class="linenos">13</span>    <span class="n">module</span> <span class="o">=</span> <span class="n">load_module</span><span class="p">(</span><span class="n">test_module</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="n">module_globals</span> <span class="o">=</span> <span class="n">collect_module_attr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>    <span class="n">main</span> <span class="o">=</span> <span class="n">load_main</span><span class="p">(</span>
+<span class="linenos">17</span>             <span class="n">module</span><span class="p">,</span>
+<span class="linenos">18</span>             <span class="n">code_filter</span><span class="o">=</span><span class="n">filter_after_comment_by</span><span class="p">(</span><span class="s2">&quot;Run unittests&quot;</span><span class="p">),</span>
+<span class="linenos">19</span>             <span class="nb">globals</span><span class="o">=</span><span class="n">module_globals</span><span class="p">,</span>
+<span class="linenos">20</span>             <span class="n">add_code_object</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">21</span>           <span class="p">)</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="n">t</span> <span class="o">=</span> <span class="n">unittest2doc</span><span class="o">.</span><span class="n">Unittest2Doc</span><span class="p">(</span>
+<span class="linenos">24</span>        <span class="n">testcase</span><span class="o">=</span><span class="n">main</span><span class="p">[</span><span class="s1">&#39;TestExecTool&#39;</span><span class="p">](),</span>
+<span class="linenos">25</span>        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;unittest2doc.utils.exec_tool&#39;</span><span class="p">,</span>
+<span class="linenos">26</span>        <span class="n">ref</span><span class="o">=</span><span class="s1">&#39;:mod:`unittest2doc.utils.exec_tool`&#39;</span><span class="p">,</span>
+<span class="linenos">27</span>        <span class="n">doc_root</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;sphinx-docs/source/unittests&#39;</span><span class="p">,</span>
+<span class="linenos">28</span>        <span class="n">open_input</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">29</span>    <span class="p">)</span>
+<span class="linenos">30</span>    <span class="n">t</span><span class="o">.</span><span class="n">generate_docs</span><span class="p">()</span>
+</pre></div>
+</div>
 <p>Finally, let’s look at the generated documentation</p>
 <ul class="simple">
 <li><p>API documentation comes from our project source code, generated by sphinx’s autosummary feature, which is not the focus of this article</p></li>
@@ -916,6 +952,7 @@ and save to the <code class="docutils literal notranslate"><span class="pre">/sp
 <li><a class="reference internal" href="#">Welcome to Unittest2doc</a><ul>
 <li><a class="reference internal" href="#tests-test-unittest2doc-py"><code class="docutils literal notranslate"><span class="pre">tests/test_unittest2doc.py</span></code></a></li>
 <li><a class="reference internal" href="#tests-test-pformat-json-py"><code class="docutils literal notranslate"><span class="pre">tests/test_pformat_json.py</span></code></a></li>
+<li><a class="reference internal" href="#tests-test-exec-tool-py"><code class="docutils literal notranslate"><span class="pre">tests/test_exec_tool.py</span></code></a></li>
 <li><a class="reference internal" href="#api-documentation-and-unittests">API Documentation and Unittests</a></li>
 </ul>
 </li>

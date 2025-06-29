@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>unittest2doc.utils &#8212; unittest2doc  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css?v=f9ae72be" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2c7d14eb" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/underscore.js?v=e1a751a7"></script>
+    <script src="../_static/underscore_rename.js?v=cd124915"></script>
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/underscore.js?v=e1a751a7"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="unittest2doc.utils.exec_tool" href="unittest2doc.utils.exec_tool.html" />
+    <link rel="prev" title="unittest2doc.formatter.json_formatter" href="unittest2doc.formatter.json_formatter.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="unittest2doc.utils.exec_tool.html" title="unittest2doc.utils.exec_tool"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="unittest2doc.formatter.json_formatter.html" title="unittest2doc.formatter.json_formatter"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">unittest2doc  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../catalogue.html" >API Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../src.html" accesskey="U">src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">unittest2doc.utils</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-unittest2doc.utils">
+<span id="unittest2doc-utils"></span><h1>unittest2doc.utils<a class="headerlink" href="#module-unittest2doc.utils" title="Link to this heading">¶</a></h1>
+<p><strong>Functions:</strong></p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.utils.collect_module_attr" title="unittest2doc.utils.collect_module_attr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_module_attr</span></code></a>(module, *[, all, names, ...])</p></td>
+<td><p>Collect attributes from a module to construct a globals dictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#unittest2doc.utils.load_main" title="unittest2doc.utils.load_main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_main</span></code></a>(somemodule[, code_filter, locals, ...])</p></td>
+<td><p>Load and execute the code from <cite>if __name__ == &quot;__main__&quot;</cite> block of a module.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unittest2doc.utils.load_module" title="unittest2doc.utils.load_module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_module</span></code></a>(module)</p></td>
+<td><p>Resolve a module from string (module name or file path) or return the module if already loaded.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.utils.collect_module_attr">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.utils.</span></span><span class="sig-name descname"><span class="pre">collect_module_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ModuleType</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Pattern</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Pattern</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names_mapping</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#unittest2doc.utils.collect_module_attr" title="Link to this definition">¶</a></dt>
+<dd><p>Collect attributes from a module to construct a globals dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<em>str</em><em> | </em><em>ModuleType</em>) – Module object or module name/path to resolve</p></li>
+<li><p><strong>names</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em> | </em><em>Pattern</em><em>] </em><em>| </em><em>list</em><em>[</em><em>str</em><em>, </em><em>Pattern</em><em>] </em><em>| </em><em>None</em>) – Dictionary mapping source names to target names, or list of names to collect</p></li>
+<li><p><strong>classes</strong> (<em>list</em><em>[</em><em>type</em><em>] </em><em>| </em><em>bool</em><em> | </em><em>None</em>) – List of class types to collect instances of using isinstance,
+or True to collect all classes</p></li>
+<li><p><strong>functions</strong> (<em>bool</em>) – If True, collect all top-level functions (callable but not class)</p></li>
+<li><p><strong>names_mapping</strong> (<em>Dict</em><em> | </em><em>Callable</em><em> | </em><em>None</em>) – Additional name mapping after collection (dict or callable)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of collected attributes suitable for use as globals</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Dict</em>[str, <em>Any</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.utils.load_main">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.utils.</span></span><span class="sig-name descname"><span class="pre">load_main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">somemodule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ModuleType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_code_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#unittest2doc.utils.load_main" title="Link to this definition">¶</a></dt>
+<dd><p>Load and execute the code from <cite>if __name__ == “__main__”</cite> block of a module.</p>
+<p>This function allows you to execute the code that would normally only run when
+a module is executed directly (i.e., code within if __name__ == “__main__” block).</p>
+<p>IMPORTANT: Users are responsible for providing the correct locals and globals
+environment. Typically, you should import the module first to make its functions
+and variables available.</p>
+<p>NOTE: This function does NOT automatically execute the module code. This is by
+design because modules often use relative imports (e.g., from .submodule import foo),
+making automatic module execution non-trivial and error-prone. The user should
+handle the module import process properly according to their package structure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>somemodule</strong> (<em>str</em><em> | </em><em>ModuleType</em>) – Either a module object or a file path string</p></li>
+<li><p><strong>code_filter</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>, </em><em>str</em><em>] </em><em>| </em><em>None</em>) – Optional function to modify the code before execution</p></li>
+<li><p><strong>locals</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>] </em><em>| </em><em>None</em>) – Local variables for code execution</p></li>
+<li><p><strong>globals</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>] </em><em>| </em><em>None</em>) – Global variables for code execution (should contain module’s functions/vars)</p></li>
+<li><p><strong>add_code_object</strong> (<em>bool</em>) – If True, add source code information to functions and classes
+so that inspect.getsource() can work with them</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary containing the locals after execution</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Dict</em>[str, <em>Any</em>]</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Typical usage pattern:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">somemodule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">somemodule</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Execute the __main__ block with proper environment</span>
+<span class="n">main_vars</span> <span class="o">=</span> <span class="n">load_main</span><span class="p">(</span><span class="n">somemodule</span><span class="p">,</span> <span class="nb">locals</span><span class="o">=</span><span class="nb">locals</span><span class="p">(),</span> <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
+
+<span class="c1"># With source code support for inspect.getsource():</span>
+<span class="n">main_vars</span> <span class="o">=</span> <span class="n">load_main</span><span class="p">(</span><span class="n">somemodule</span><span class="p">,</span> <span class="n">add_code_object</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
+<span class="n">func</span> <span class="o">=</span> <span class="n">main_vars</span><span class="p">[</span><span class="s1">&#39;some_function&#39;</span><span class="p">]</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>  <span class="c1"># This will work!</span>
+
+<span class="c1"># Or with a file path:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib.util</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">&quot;mymodule&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/module.py&quot;</span><span class="p">)</span>
+<span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+<span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
+
+<span class="c1"># Prepare globals with module&#39;s functions and variables</span>
+<span class="n">module_globals</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">module_globals</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+<span class="n">main_vars</span> <span class="o">=</span> <span class="n">load_main</span><span class="p">(</span><span class="s2">&quot;path/to/module.py&quot;</span><span class="p">,</span> <span class="nb">globals</span><span class="o">=</span><span class="n">module_globals</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="unittest2doc.utils.load_module">
+<span class="sig-prename descclassname"><span class="pre">unittest2doc.utils.</span></span><span class="sig-name descname"><span class="pre">load_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ModuleType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ModuleType</span></span></span><a class="headerlink" href="#unittest2doc.utils.load_module" title="Link to this definition">¶</a></dt>
+<dd><p>Resolve a module from string (module name or file path) or return the module if already loaded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>module</strong> (<em>str</em><em> | </em><em>ModuleType</em>) – Either a module object, module name (e.g., “os.path”), or file path (e.g., “/path/to/module.py”)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resolved module object</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ImportError</strong> – If module cannot be imported or loaded</p></li>
+<li><p><strong>FileNotFoundError</strong> – If file path doesn’t exist</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>ModuleType</em></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import by name</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">resolve_module</span><span class="p">(</span><span class="s2">&quot;os.path&quot;</span><span class="p">)</span>
+
+<span class="c1"># Import by file path</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">resolve_module</span><span class="p">(</span><span class="s2">&quot;/path/to/mymodule.py&quot;</span><span class="p">)</span>
+
+<span class="c1"># Return existing module</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">resolve_module</span><span class="p">(</span><span class="n">os</span><span class="p">)</span>  <span class="c1"># returns os module</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="rubric">Modules</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="unittest2doc.utils.exec_tool.html#module-unittest2doc.utils.exec_tool" title="unittest2doc.utils.exec_tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exec_tool</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper"><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">unittest2doc.utils</a><ul>
+<li><a class="reference internal" href="#unittest2doc.utils.collect_module_attr"><code class="docutils literal notranslate"><span class="pre">collect_module_attr()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.utils.load_main"><code class="docutils literal notranslate"><span class="pre">load_main()</span></code></a></li>
+<li><a class="reference internal" href="#unittest2doc.utils.load_module"><code class="docutils literal notranslate"><span class="pre">load_module()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../catalogue.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../catalogue.html#unittests">Unittests</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/src/unittest2doc.utils.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="unittest2doc.utils.exec_tool.html" title="unittest2doc.utils.exec_tool"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="unittest2doc.formatter.json_formatter.html" title="unittest2doc.formatter.json_formatter"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">unittest2doc  documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../catalogue.html" >API Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../src.html" >src</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">unittest2doc.utils</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Fmajor.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

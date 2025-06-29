@@ -10,3 +10,4 @@ src
 
    unittest2doc.unittest2doc
    unittest2doc.formatter
+   unittest2doc.utils
