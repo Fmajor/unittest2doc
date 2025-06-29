@@ -982,5 +982,6 @@ __all__ = [
   'add_foldable_output',
   'v',
   'update_config',
-  'all_type_json_serializer'
+  'all_type_json_serializer',
+  'get_caller_func_name',
 ]

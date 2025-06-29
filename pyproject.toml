@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "unittest2doc"
-version = "0.1.1"
+version = "0.1.2"
 description = "Convert unittest test cases to sphinx doc"
 license = "MIT"
 readme = "README.rst"
