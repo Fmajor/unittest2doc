@@ -30,6 +30,7 @@ Unittest2doc 是一个将 Python 单元测试代码转换为文档的工具。�
      tests/                 # 测试目录, 我们使用Unittest2doc的地方
        test_unittest2doc.py # 测试文件, 其中包括了一个Unittest2doc类, 和其运行示例
        test_pformat_json.py # 我们这里测试了一个结构化输出json的函数
+       test_exec_tool.py    # 我们这里使用特殊技巧,运行了utils/exec_tool.py中位于``if __name__ == "__main__"``块中的测试代码
                             #   对于一个结构化输出函数，最好的测试方法是展示出其结果并保存为文档
      pyproject.toml
      README.rst

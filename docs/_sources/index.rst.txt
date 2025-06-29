@@ -30,6 +30,7 @@ The project structure is:
      tests/                 # Test directory, where we use Unittest2doc
        test_unittest2doc.py # Test file, including a Unittest2doc class and its running examples
        test_pformat_json.py # Here we test a function for structured JSON output
+       test_exec_tool.py    # Here we use a special trick to run the test code in the ``if __name__ == "__main__"`` block of utils/exec_tool.py
                             # For a structured output function, the best way to test is to display the results and save as documentation
      pyproject.toml
      README.rst
