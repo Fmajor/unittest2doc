@@ -65,6 +65,15 @@ Unittest2doc 是一个将 Python 单元测试代码转换为文档的工具。�
    :language: python
    :linenos:
 
+``tests/test_exec_tool.py``
+------------------------------
+
+其生成的文档为: :doc:`/unittests/unittest2doc/utils/exec_tool`
+
+.. literalinclude:: ../../tests/test_exec_tool.py
+   :language: python
+   :linenos:
+
 最后，我们来看一下生成的文档
 
 * API 文档来源于我们的项目源代码, 是sphinx中的autosummary功能生成的, 不是本文的重点
